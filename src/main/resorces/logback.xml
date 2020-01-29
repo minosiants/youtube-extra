@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %date{ISO8601} %-5level %logger{36} %X{akkaSource} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+     
+
+    <logger name="org.eclipse.jetty" level="off" />
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+</included>

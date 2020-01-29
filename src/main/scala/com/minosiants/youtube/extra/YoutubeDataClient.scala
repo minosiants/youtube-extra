@@ -10,9 +10,9 @@ import org.http4s.headers.{ Accept, Authorization }
 
 final case class YoutubeDataAccessProps(key: String, token: String)
 
-final case class YoutubeDataClient(client: Client[IO], accessProps: YoutubeDataAccessProps) {
+final case class YoutubeDataClient(client: Client[IO], baseUri:Uri, accessProps: YoutubeDataAccessProps) {
 
-  private val apiUri = Uri.unsafeFromString("https://www.googleapis.com/youtube/v3")
+  private val apiUri = baseUri / "youtube" / "v3"
 
   private def playListItemsUri(playlistId: String): Uri =
     apiUri / "playlistItems" +? ("key", accessProps.key) +? ("playlistId", playlistId) +? ("part", "snippet")

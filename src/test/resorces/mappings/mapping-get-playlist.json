@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/youtube/v3/playlistItems?part=snippet&playlistId=PLBCF2DAC6FFB574DE&key=AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM'"
+    "headers" : {
+      "x-origin" : "https://explorer.apis.google.com",
+      "authorization": "Bearer ya29.ImS7BzsX8ziHDuAX8Y7O4lmZ55_sBiNVXXPakKmnDwfUFJ_kvdZ4LZfLTTnfMAIXKIGRBbBsCHaHMU33GXtX0lzjElI6wz7TFNDn8G0eNXxmoqamGojmU03fJMCQ2cmb52fXWQMq"
+    }
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName" : "playlist.json",
+    "headers": {
+      "Content-Type": "text/json"
+    }
+  }
+}
