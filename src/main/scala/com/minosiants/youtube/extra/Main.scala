@@ -14,7 +14,7 @@ object Main extends IOApp {
 
   implicit val cs: ContextShift[IO] = IO.contextShift(global)
 
-  val baseUri = Uri.unsafeFromString("https://www.googleapis.com")
+  val baseUri = YoutubeDataClient.apiUri
   val key     = ""
   val token   = ""
 

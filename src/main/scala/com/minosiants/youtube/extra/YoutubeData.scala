@@ -10,18 +10,13 @@ import org.http4s.EntityDecoder
 import org.http4s.circe.jsonOf
 import io.circe.generic.auto._
 
-sealed trait YoutubeDataThumbnail {
-  def url: String
-  def width: Int
-  def height: Int
-
-}
-case class YoutubeDataDefault(url: String, width: Int, height: Int)  extends YoutubeDataThumbnail
-case class YoutubeDataMedium(url: String, width: Int, height: Int)   extends YoutubeDataThumbnail
-case class YoutubeDataHigh(url: String, width: Int, height: Int)     extends YoutubeDataThumbnail
-case class YoutubeDataStandard(url: String, width: Int, height: Int) extends YoutubeDataThumbnail
-
-object YoutubeDataThumbnail {}
+case class YoutubeDataThumbnail(url: String, width: Int, height: Int)
+case class YoutubeDataThumbnails(
+    default: YoutubeDataThumbnail,
+    medium: YoutubeDataThumbnail,
+    high: YoutubeDataThumbnail,
+    standard: YoutubeDataThumbnail
+)
 
 case class YoutubeDataResourceId(kind: String, videoId: String)
 case class YoutubeDataSnippet(
@@ -31,8 +26,8 @@ case class YoutubeDataSnippet(
     publishedAt: Instant,
     channelId: String,
     title: String,
-    description: String //,
-    //thumbnails: List[YoutubeDataThumbnail]
+    description: String,
+    thumbnails: Option[YoutubeDataThumbnails]
 )
 case class YoutubeDataItem(id: String, snippet: YoutubeDataSnippet)
 case class YoutubeDataPageInfo(totalResults: Int, resultsPerPage: Int)
@@ -49,5 +44,7 @@ object YoutubeDataPlaylistItems {
   implicit val decodeInstant: Decoder[Instant] = Decoder.decodeString.emap { str =>
     Either.catchNonFatal(Instant.parse(str)).leftMap(_.toString)
   }
+
   implicit def decoder: EntityDecoder[IO, YoutubeDataPlaylistItems] = jsonOf[IO, YoutubeDataPlaylistItems]
+
 }

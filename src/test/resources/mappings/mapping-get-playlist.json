@@ -1,7 +1,7 @@
 {
   "request": {
     "method": "GET",
-    "url": "/youtube/v3/playlistItems?key=AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM&playlistId=PLBCF2DAC6FFB574DE&part=snippet"
+    "url": "/playlistItems?key=AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM&playlistId=PLBCF2DAC6FFB574DE&part=snippet"
   },
   "response": {
     "status": 200,
