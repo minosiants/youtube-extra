@@ -15,6 +15,9 @@ final case class YoutubeDataClient(client: Client[IO], apiUri: Uri, accessProps:
   private def playListItemsUri(playlistId: String): Uri =
     apiUri / "playlistItems" +? ("key", accessProps.key) +? ("playlistId", playlistId) +? ("part", "snippet")
 
+  private def videosStatisticsUri(ids: List[String]): Uri =
+    apiUri / "videos" +? ("key", accessProps.key) +? ("id", ids.mkString(",")) +? ("part", "statistics")
+
   private def get(uri: Uri): IO[Request[IO]] = Method.GET(
     uri,
     Authorization(
@@ -27,6 +30,11 @@ final case class YoutubeDataClient(client: Client[IO], apiUri: Uri, accessProps:
   def getPlayList(playlistId: String) = {
     val request = get(playListItemsUri(playlistId))
     client.expect[YoutubeDataPlaylistItems](request).attempt
+  }
+
+  def getVideosStatisitcs(ids: List[String]) = {
+    val request = get(videosStatisticsUri(ids))
+    client.expect[YoutubeDataVideos](request).attempt
   }
 
 }

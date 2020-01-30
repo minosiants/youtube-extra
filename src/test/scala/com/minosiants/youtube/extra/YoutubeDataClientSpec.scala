@@ -36,8 +36,15 @@ class YoutubeDataClientSpec extends Specification with After with CatsIO {
       val result = BlazeClientBuilder[IO](global).resource
         .use(YoutubeDataClient(_, baseUri, props).getPlayList(playlistId))
         .unsafeRunSync()
-      //result.isRight mustEqual true
-      true mustEqual true
+      result.isRight mustEqual true
+
+    }
+    "get videos statistics" in {
+      val ids = List("GvgqDSnpRQM", "V4DDt30Aat4", "07718Vcwcyc", "XDgC4FMftpg")
+      val result = BlazeClientBuilder[IO](global).resource
+        .use(YoutubeDataClient(_, baseUri, props).getVideosStatisitcs(ids))
+        .unsafeRunSync()
+      result.isRight mustEqual true
     }
 
   }

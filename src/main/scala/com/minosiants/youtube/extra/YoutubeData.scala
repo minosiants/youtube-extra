@@ -39,6 +39,14 @@ case class YoutubeDataPlaylistItems(
     items: List[YoutubeDataItem]
 )
 
+case class YoutubeDataVideoStatistics(viewCount: String, likeCount: String, dislikeCount: String, favoriteCount: String)
+case class YoutubeDataVideo(id: String, statistics: YoutubeDataVideoStatistics)
+case class YoutubeDataVideos(pageInfo: YoutubeDataPageInfo, items: List[YoutubeDataVideo])
+
+object YoutubeDataVideos {
+  implicit def decoder: EntityDecoder[IO, YoutubeDataVideos] = jsonOf[IO, YoutubeDataVideos]
+}
+
 object YoutubeDataPlaylistItems {
   implicit val encodeInstant: Encoder[Instant] = Encoder.encodeString.contramap[Instant](_.toString)
   implicit val decodeInstant: Decoder[Instant] = Decoder.decodeString.emap { str =>
