@@ -15,8 +15,8 @@ object Main extends IOApp {
   implicit val cs: ContextShift[IO] = IO.contextShift(global)
 
   val baseUri = Uri.unsafeFromString("https://www.googleapis.com")
-  val key =""
-  val token = ""
+  val key     = ""
+  val token   = ""
 
   override def run(args: List[String]): IO[ExitCode] = {
     BlazeClientBuilder[IO](global).resource

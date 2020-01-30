@@ -10,7 +10,7 @@ import org.http4s.headers.{ Accept, Authorization }
 
 final case class YoutubeDataAccessProps(key: String, token: String)
 
-final case class YoutubeDataClient(client: Client[IO], baseUri:Uri, accessProps: YoutubeDataAccessProps) {
+final case class YoutubeDataClient(client: Client[IO], baseUri: Uri, accessProps: YoutubeDataAccessProps) {
 
   private val apiUri = baseUri / "youtube" / "v3"
 
