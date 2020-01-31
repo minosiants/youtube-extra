@@ -7,6 +7,7 @@ import org.http4s.client.dsl.io._
 import org.http4s._
 import org.http4s.client.Client
 import org.http4s.headers.{ Accept, Authorization }
+import YoutubeDataClient._
 
 final case class YoutubeDataAccessProps(key: String, token: String)
 
@@ -19,7 +20,7 @@ final case class YoutubeDataClient(
   private def playListItemsUri(playlistId: String): Uri =
     apiUri / "playlistItems" +? ("key", accessProps.key) +? ("playlistId", playlistId) +? ("part", "snippet")
 
-  private def videosStatisticsUri(ids: List[String]): Uri =
+  private def videosUri(ids: List[String]): Uri =
     apiUri / "videos" +? ("key", accessProps.key) +? ("id", ids.mkString(",")) +? ("part", "snippet,statistics")
 
   private def get(uri: Uri): IO[Request[IO]] = Method.GET(
@@ -31,17 +32,17 @@ final case class YoutubeDataClient(
     Header("x-origin", "https://explorer.apis.google.com")
   )
 
-  def getPlayList(playlistId: String) = {
+  def getPlayList(playlistId: String):Result[YoutubeDataPlaylistItems] = {
     val request = get(playListItemsUri(playlistId))
     client.expect[YoutubeDataPlaylistItems](request).attempt
   }
 
-  def getVideos(ids: List[String]) = {
-    val request = get(videosStatisticsUri(ids))
+  def getVideos(ids: List[String]):Result[YoutubeDataVideos] = {
+    val request = get(videosUri(ids))
     client.expect[YoutubeDataVideos](request).attempt
   }
 
-  def getPlaylistVideos(playlistId: String) = {
+  def getPlaylistVideos(playlistId: String):Result[YoutubeDataVideos] = {
     (for {
       playlist <- EitherT(getPlayList(playlistId))
       ids = playlist.items
@@ -54,5 +55,6 @@ final case class YoutubeDataClient(
 }
 
 object YoutubeDataClient {
+  type Result[A] = IO[Either[Throwable, A]]
   val apiUri = Uri.unsafeFromString("https://www.googleapis.com/youtube/v3")
 }
