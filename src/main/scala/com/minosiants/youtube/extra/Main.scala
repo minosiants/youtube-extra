@@ -21,7 +21,8 @@ object Main extends IOApp {
   override def run(args: List[String]): IO[ExitCode] = {
     BlazeClientBuilder[IO](global).resource
       .use { client =>
-        YoutubeDataClient(client, baseUri, YoutubeDataAccessProps(key, token)).getPlayList("")
+        YoutubeDataClient(client, baseUri, YoutubeDataAccessProps(key, token))
+          .getPlayList("")
       }
       .as(ExitCode.Success)
 

@@ -1,37 +1,47 @@
 package com.minosiants
 package youtube.extra
 
-import org.specs2.mutable._
+import cats.effect.IO
+import io.circe.Decoder
 import io.circe.generic.auto._
 import io.circe.parser._
+import org.specs2.execute.Result
 
-class YoutubeDataCodecsSpec extends Specification {
+class YoutubeDataCodecsSpec extends YoutubeDataSpec {
   import YoutubeDataCodecsSpec._
 
-  "YoutubeDataPlaylistItems" should {
-    "be decoded properly" in {
+  "YoutubeDataCodecsSpec" should {
 
-      val playlist = loadFile("__files/playlist.json")
+    "YoutubeDataPlaylistItems be decoded properly" in {
+      checkDecoding[YoutubeDataPlaylistItems]("__files/playlist.json")
+        .unsafeRunSync()
+    }
 
-      val result = decode[YoutubeDataPlaylistItems](playlist)
-      result.isRight mustEqual true
+    "YoutubeDataVideos be decoded properly" in {
+      checkDecoding[YoutubeDataVideos]("__files/videos.json").unsafeRunSync()
     }
 
   }
-  "YoutubeDataVideosStatistics" should {
-    "be decoded properly" in {
-      val videos = loadFile("__files/videos-statistics.json")
-      val result = decode[YoutubeDataVideos](videos)
-      println(result)
-      result.isRight mustEqual true
-    }
+
+  def checkDecoding[A: Decoder](filename: String): IO[Result] = {
+    (for {
+      json <- loadFile(filename)
+      result = decode[A](json)
+    } yield result) map toSpecResult
   }
 }
 
 object YoutubeDataCodecsSpec {
 
-  def loadFile(name: String) = {
-    val f = getClass().getClassLoader().getResource(name).toURI
-    scala.io.Source.fromFile(f).mkString
+  def loadFile(name: String): IO[String] = {
+    IO {
+      val f = getClass().getClassLoader().getResource(name).toURI
+      scala.io.Source.fromFile(f)
+    }.bracket { s =>
+      IO(s.mkString)
+    } { s =>
+      IO(s.close())
+    }
   }
+
 }

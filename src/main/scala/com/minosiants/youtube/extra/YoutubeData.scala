@@ -11,6 +11,7 @@ import org.http4s.circe.jsonOf
 import io.circe.generic.auto._
 
 case class YoutubeDataThumbnail(url: String, width: Int, height: Int)
+
 case class YoutubeDataThumbnails(
     default: YoutubeDataThumbnail,
     medium: YoutubeDataThumbnail,
@@ -21,16 +22,13 @@ case class YoutubeDataThumbnails(
 case class YoutubeDataResourceId(kind: String, videoId: String)
 case class YoutubeDataSnippet(
     resourceId: YoutubeDataResourceId,
-    channelTitle: String,
-    playlistId: String,
-    publishedAt: Instant,
-    channelId: String,
-    title: String,
-    description: String,
     thumbnails: Option[YoutubeDataThumbnails]
 )
-case class YoutubeDataItem(id: String, snippet: YoutubeDataSnippet)
+case class YoutubeDataItem(id: String, snippet: YoutubeDataSnippet) {
+  def notPrivate: Boolean = snippet.thumbnails.nonEmpty
+}
 case class YoutubeDataPageInfo(totalResults: Int, resultsPerPage: Int)
+
 case class YoutubeDataPlaylistItems(
     kind: String,
     nextPageToken: Option[String],
@@ -39,20 +37,48 @@ case class YoutubeDataPlaylistItems(
     items: List[YoutubeDataItem]
 )
 
-case class YoutubeDataVideoStatistics(viewCount: String, likeCount: String, dislikeCount: String, favoriteCount: String)
-case class YoutubeDataVideo(id: String, statistics: YoutubeDataVideoStatistics)
-case class YoutubeDataVideos(pageInfo: YoutubeDataPageInfo, items: List[YoutubeDataVideo])
+case class YoutubeDataVideoSnippet(
+    channelTitle: String,
+    publishedAt: Instant,
+    channelId: String,
+    title: String,
+    description: String,
+    thumbnails: Option[YoutubeDataThumbnails],
+    tags: List[String]
+)
+case class YoutubeDataVideoStatistics(
+    viewCount: String,
+    likeCount: String,
+    dislikeCount: String,
+    favoriteCount: String
+)
+case class YoutubeDataVideo(
+    id: String,
+    snippet: YoutubeDataVideoSnippet,
+    statistics: YoutubeDataVideoStatistics
+)
+case class YoutubeDataVideos(
+    pageInfo: YoutubeDataPageInfo,
+    items: List[YoutubeDataVideo]
+)
 
-object YoutubeDataVideos {
-  implicit def decoder: EntityDecoder[IO, YoutubeDataVideos] = jsonOf[IO, YoutubeDataVideos]
+object YoutubeDataVideos extends CommonCodecs {
+  implicit def decoder: EntityDecoder[IO, YoutubeDataVideos] =
+    jsonOf[IO, YoutubeDataVideos]
 }
 
-object YoutubeDataPlaylistItems {
-  implicit val encodeInstant: Encoder[Instant] = Encoder.encodeString.contramap[Instant](_.toString)
-  implicit val decodeInstant: Decoder[Instant] = Decoder.decodeString.emap { str =>
-    Either.catchNonFatal(Instant.parse(str)).leftMap(_.toString)
+object YoutubeDataPlaylistItems extends CommonCodecs {
+
+  implicit def decoder: EntityDecoder[IO, YoutubeDataPlaylistItems] =
+    jsonOf[IO, YoutubeDataPlaylistItems]
+
+}
+
+trait CommonCodecs {
+  implicit val encodeInstant: Encoder[Instant] =
+    Encoder.encodeString.contramap[Instant](_.toString)
+  implicit val decodeInstant: Decoder[Instant] = Decoder.decodeString.emap {
+    str =>
+      Either.catchNonFatal(Instant.parse(str)).leftMap(_.toString)
   }
-
-  implicit def decoder: EntityDecoder[IO, YoutubeDataPlaylistItems] = jsonOf[IO, YoutubeDataPlaylistItems]
-
 }
