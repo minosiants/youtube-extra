@@ -5,6 +5,7 @@ val http4sVersion   = "0.21.0-M6"
 val specs2Version   = "4.8.3"
 val logbackVersion  = "1.2.3"
 val circeVersion    = "0.12.3"
+val monocleVersion = "2.0.0"
 val wiremockVersion = "2.25.1"
 
 lazy val root = (project in file("."))
@@ -21,6 +22,8 @@ lazy val root = (project in file("."))
       "io.circe"               %% "circe-core"                 % circeVersion,
       "io.circe"               %% "circe-generic"              % circeVersion,
       "io.circe"               %% "circe-parser"               % circeVersion,
+      "com.github.julien-truffaut" %%  "monocle-core"  % monocleVersion,
+      "com.github.julien-truffaut" %%  "monocle-macro" % monocleVersion,
       "org.specs2"             %% "specs2-core"                % specs2Version % "test",
       "com.codecommit"         %% "cats-effect-testing-specs2" % "0.3.0",
       "com.github.tomakehurst" % "wiremock-jre8"               % wiremockVersion % "test",

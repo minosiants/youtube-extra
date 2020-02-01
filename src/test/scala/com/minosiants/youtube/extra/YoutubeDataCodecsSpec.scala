@@ -7,6 +7,8 @@ import io.circe.generic.auto._
 import io.circe.parser._
 import org.specs2.execute.Result
 
+import scala.util.Try
+
 class YoutubeDataCodecsSpec extends YoutubeDataSpec {
   import YoutubeDataCodecsSpec._
 
@@ -19,6 +21,25 @@ class YoutubeDataCodecsSpec extends YoutubeDataSpec {
 
     "YoutubeDataVideos be decoded properly" in {
       checkDecoding[YoutubeDataVideos]("__files/videos.json").unsafeRunSync()
+    }
+
+    "bla" in {
+      val r = IO.fromTry(Try[String](throw new RuntimeException("exeption >>>>> ")))
+        .bracket(a => IO("Hello")){ a =>
+          println(">>>> final")
+          IO("bls")
+        }
+        .attempt
+      println(r.unsafeRunSync())
+      println(
+        (try{
+        throw new RuntimeException("exeption >>>>> ")
+        IO("Hello")
+      }catch {
+          case e: Throwable => IO.raiseError(e)
+      }).attempt.unsafeRunSync()
+      )
+      success
     }
 
   }
