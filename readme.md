@@ -1,6 +1,6 @@
 
 # youtube-extra
-Goal is to collect some extra useful functionality using youtube data api
+Goal is to implement some extra useful functionality using youtube data api
 
 ### Generate playlist videos html page
 Main goal is to be able to sort playlist videos by videos statistics data (views, likes, dislikes, comments) 
