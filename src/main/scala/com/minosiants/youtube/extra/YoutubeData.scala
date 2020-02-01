@@ -5,7 +5,7 @@ import java.time.Instant
 
 import cats.effect.IO
 import cats.syntax.either._
-import io.circe.{Decoder, Encoder}
+import io.circe.{ Decoder, Encoder }
 import org.http4s.EntityDecoder
 import org.http4s.circe.jsonOf
 import io.circe.generic.auto._
@@ -69,12 +69,16 @@ object YoutubeDataVideos extends CommonCodecs {
   implicit def decoder: EntityDecoder[IO, YoutubeDataVideos] =
     jsonOf[IO, YoutubeDataVideos]
 
-  val itemsLens = GenLens[YoutubeDataVideos](_.items)
+  val itemsLens   = GenLens[YoutubeDataVideos](_.items)
   val snippetLens = GenLens[YoutubeDataVideo](_.snippet)
 
-  val allVideos: Traversal[YoutubeDataVideos, YoutubeDataVideo] = itemsLens composeTraversal each
+  val allVideos
+      : Traversal[YoutubeDataVideos, YoutubeDataVideo] = itemsLens composeTraversal each
 
-  val titleAndDescription = Traversal.apply2[YoutubeDataVideoSnippet, String](_.title, _.description){ case (fn, ln, l) => l.copy(title = fn, description = ln)}
+  val titleAndDescription =
+    Traversal.apply2[YoutubeDataVideoSnippet, String](_.title, _.description) {
+      case (fn, ln, l) => l.copy(title = fn, description = ln)
+    }
   val titleAndDescriptionLens = (allVideos composeLens snippetLens composeTraversal titleAndDescription)
 
 }

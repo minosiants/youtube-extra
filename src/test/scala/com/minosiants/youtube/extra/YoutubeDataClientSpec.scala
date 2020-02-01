@@ -48,12 +48,13 @@ class YoutubeDataClientSpec extends YoutubeDataSpec with After with CatsIO {
 
   }
   def withClient[A](
-      youtubeClient: YoutubeDataClient => IO[Either[Throwable, A]]
+      youtubeClient: YoutubeDataClient => IO[A]
   ): IO[Result] = {
     BlazeClientBuilder[IO](global).resource
       .use { client =>
         youtubeClient(YoutubeDataClient(client, baseUri, props))
       }
+      .attempt
       .map(toSpecResult)
   }
 

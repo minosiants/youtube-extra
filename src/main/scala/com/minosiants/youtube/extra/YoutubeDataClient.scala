@@ -32,29 +32,28 @@ final case class YoutubeDataClient(
     Header("x-origin", "https://explorer.apis.google.com")
   )
 
-  def getPlayList(playlistId: String):Result[YoutubeDataPlaylistItems] = {
+  def getPlayList(playlistId: String): IO[YoutubeDataPlaylistItems] = {
     val request = get(playListItemsUri(playlistId))
-    client.expect[YoutubeDataPlaylistItems](request).attempt
+    client.expect[YoutubeDataPlaylistItems](request)
   }
 
-  def getVideos(ids: List[String]):Result[YoutubeDataVideos] = {
+  def getVideos(ids: List[String]): IO[YoutubeDataVideos] = {
     val request = get(videosUri(ids))
-    client.expect[YoutubeDataVideos](request).attempt
+    client.expect[YoutubeDataVideos](request)
   }
 
-  def getPlaylistVideos(playlistId: String):Result[YoutubeDataVideos] = {
-    (for {
-      playlist <- EitherT(getPlayList(playlistId))
+  def getPlaylistVideos(playlistId: String): IO[YoutubeDataVideos] = {
+    for {
+      playlist <- getPlayList(playlistId)
       ids = playlist.items
         .filter(_.notPrivate)
         .map(_.snippet.resourceId.videoId)
-      videos <- EitherT(getVideos(ids))
-    } yield videos).value
+      videos <- getVideos(ids)
+    } yield videos
 
   }
 }
 
 object YoutubeDataClient {
-  type Result[A] = IO[Either[Throwable, A]]
   val apiUri = Uri.unsafeFromString("https://www.googleapis.com/youtube/v3")
 }
