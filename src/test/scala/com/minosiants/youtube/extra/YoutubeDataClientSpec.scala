@@ -9,7 +9,6 @@ import org.specs2.mutable._
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig
 import org.http4s.Uri
-import org.http4s.client.Client
 import org.http4s.client.blaze.BlazeClientBuilder
 import org.specs2.execute.Result
 

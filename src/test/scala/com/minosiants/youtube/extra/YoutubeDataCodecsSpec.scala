@@ -4,13 +4,9 @@ package youtube.extra
 import cats.effect.IO
 import io.circe.Decoder
 import io.circe.generic.auto._
-import io.circe.parser._
 import org.specs2.execute.Result
 
-import scala.util.Try
-
 class YoutubeDataCodecsSpec extends YoutubeDataSpec {
-  import YoutubeDataCodecsSpec._
 
   "YoutubeDataCodecsSpec" should {
 
@@ -25,25 +21,7 @@ class YoutubeDataCodecsSpec extends YoutubeDataSpec {
 
   }
 
-  def checkDecoding[A: Decoder](filename: String): IO[Result] = {
-    (for {
-      json <- loadFile(filename)
-      result = decode[A](json)
-    } yield result) map toSpecResult
-  }
-}
-
-object YoutubeDataCodecsSpec {
-
-  def loadFile(name: String): IO[String] = {
-    IO {
-      val f = getClass().getClassLoader().getResource(name).toURI
-      scala.io.Source.fromFile(f)
-    }.bracket { s =>
-      IO(s.mkString)
-    } { s =>
-      IO(s.close())
-    }
-  }
+  def checkDecoding[A: Decoder](filename: String): IO[Result] =
+    decodeJson(filename).attempt.map(toSpecResult)
 
 }

@@ -9,27 +9,44 @@ import io.circe.generic.auto._
 import scala.util.Try
 
 case class PlaylistGenerator() {
+  import PlaylistGenerator._
 
-  def createPlaylist(videos: YoutubeDataVideos, destination: File) = {
+  def createPlaylist(videos: YoutubeDataVideos, destination: File): IO[Unit] = {
     val escapedVideos = YoutubeDataVideos.titleAndDescriptionLens.modify(
-      xml.Utility.escape
+      escapeHtml
     )(videos)
-    val json = escapedVideos.asJson.toString()
+    val json = escapedVideos.asJson.noSpaces
     for {
       template <- loadFile("templates/playlist.html")
       result = template.replace("@playlist@", json)
+      _ <- createDestination(destination)
       _ <- saveToFile(result, destination)
     } yield ()
   }
 
-  def saveToFile(text: String, destination: File): IO[Unit] = {
+}
+object PlaylistGenerator {
+  def escapeHtml(text: String): String = {
+    xml.Utility
+      .escape(text)
+      .replaceAll("'", "&#39;")
+      .replaceAll("(\r\n|\n)", "<br/>");
+  }
+  def createDestination(destination: File): IO[Unit] =
+    IO.fromTry(Try[Unit] {
+      val parent = destination.getParentFile()
+      if (!parent.exists() && !parent.mkdirs()) {
+        throw new IllegalStateException("Couldn't create dir: " + parent);
+      }
+    })
+
+  def saveToFile(text: String, destination: File): IO[Unit] =
     IO.fromTry(Try[Unit] {
       val p = new PrintWriter(destination)
       p.write(text)
       p.close()
     })
 
-  }
   def loadFile(name: String): IO[String] = {
     IO {
       val f = getClass().getClassLoader().getResource(name).toURI
