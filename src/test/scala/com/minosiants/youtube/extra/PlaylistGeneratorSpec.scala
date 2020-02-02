@@ -9,6 +9,7 @@ class PlaylistGeneratorSpec extends YoutubeDataSpec with CatsIO {
 
   "PlaylistGenerator" should {
     val playlistGen = PlaylistGenerator()
+
     "create playlist" in {
       val destination = new File("target/playlist/test.html")
       (for {
@@ -17,10 +18,6 @@ class PlaylistGeneratorSpec extends YoutubeDataSpec with CatsIO {
       } yield ()).attempt.map(toSpecResult).unsafeRunSync()
 
     }
-    "escape" in {
-      val st = "hit northeast Australia, Mark's"
-      println(xml.Utility.escape(st))
-      success
-    }
+
   }
 }

@@ -53,9 +53,13 @@
 		}
 		body {
 			font-family: Roboto, Arial, sans-serif;
-		background-color: #2e3440 ;
-		color: #e5e9f0;
-		margin: 3rem;
+			background-color: #2e3440 ;
+			color: #e5e9f0;
+			margin: 3rem;
+		}
+		.container{
+			width: 80%;
+			margin: 0 auto;
 		}
 		h1{
 			font-size: 2.3rem;
@@ -74,13 +78,13 @@
 			float: left;
 			display: inline;
 		}
-		.thumbnail-decription{
+		.thumbnail-description{
 			float: left;
 			display: inline;
 			padding-left: 1rem;
 			width: 50%
 		}
-		.decription-item{
+		.description-item{
 			padding-bottom: 1rem;
 		}
 		.statistics-block:after, .thumbnail:after{
@@ -111,50 +115,55 @@
 		}
 		</style>
 		<script type="text/javascript">
-			var playlist = JSON.parse('@playlist@');
-			$(function() {
-				console.log(playlist);
-			});
-		</script>
-	</header>
-	<body>
-		<h1 class="playlist-title">Play list</h1>
-		<ul class ="playlist">
-			<li class="item">
+			var playlist = JSON.parse(`@playlist@`);
+			const itemTemplate = ( item ) => `
+			  <li class="item">
 				<div class="thumbnail">
-					<img class="thumbnail-video" src="https://i.ytimg.com/vi/GvgqDSnpRQM/mqdefault.jpg"></img>
-					<div class="thumbnail-decription">
-						
-						
-						<h3 class="title decription-item"><a target="_blank" href="https://www.youtube.com/watch?v=GvgqDSnpRQM">Andrew Willis, Skatepark Engineer</a></h3>
-						<div class ="description decription-item">
-							Andrew Willis built a skatepark in East London using reclaimed materials left over from the Olympic Games, creating a lasting legacy for the local community of Hackney Wick.
-						</div>
-						<div class="published-at decription-item">
+					<img class="thumbnail-video" src="${item.snippet.thumbnails.medium.url}"></img>
+					<div class="thumbnail-description">
+
+
+						<h3 class="title description-item"><a target="_blank" href="https://www.youtube.com/watch?v=${item.id}">${item.snippet.title}</a></h3>
+						<div class ="description description-item">${item.snippet.description}</div>
+						<div class="published-at description-item">
 							<span class="label"> published</span>
-							<span class="label">2013-10-18T07:03:29.000Z</span>
+							<span class="label">${item.snippet.publishedAt}</span>
 						</div>
 					</div>
 				</div>
 				<ul class="statistics-block">
 					<li>
-						<span class="label view-count">5579074</span>
+						<span class="label view-count">${item.statistics.viewCount}</span>
 						<span  class="label">views</span>
 					</li>
 					<li>
-						<span class="label dislike-count" >853</span>
+						<span class="label dislike-count" >${item.statistics.dislikeCount}</span>
 						<span class="label">dislikes</span>
 					</li>
 					<li>
-						<span class="label favorite-count">0</span>
+						<span class="label favorite-count">${item.statistics.favoriteCount}</span>
 						<span class="label">favorites</span>
 					</li>
 					<li class="statistics">
-						<span class="label comment-count">853</span>
+						<span class="label comment-count">${item.statistics.commentCount}</span>
 						<span class="label">comments</span>
 					</li>
 				</ul>
 			</li>
+			`;
+
+
+			$(function() {
+				$(".playlist").html(playlist.items.map(itemTemplate).join(''))
+			});
+		</script>
+	</header>
+	<body>
+		<div class ="container">
+		<h1 class="playlist-title">Play list</h1>
+		<ul class ="playlist">
+
 		</ul>
+		</div>
 	</body>
 </html>

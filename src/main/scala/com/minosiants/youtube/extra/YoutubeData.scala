@@ -53,7 +53,8 @@ case class YoutubeDataVideoStatistics(
     viewCount: String,
     likeCount: String,
     dislikeCount: String,
-    favoriteCount: String
+    favoriteCount: String,
+    commentCount:String
 )
 case class YoutubeDataVideo(
     id: String,
