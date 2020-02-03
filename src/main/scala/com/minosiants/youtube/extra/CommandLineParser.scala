@@ -6,6 +6,8 @@ import cats.Applicative
 import cats.effect.IO
 import cats.implicits._
 
+import scala.annotation.tailrec
+
 object CommandLineParser {
 
   def parseCommand(args: List[String]): IO[Command] = {
@@ -17,25 +19,34 @@ object CommandLineParser {
 
   def playlistCommand(args: List[String]): IO[Command] = {
 
-    def go(l: List[String]): Map[String, String] = {
+    @tailrec
+    def go(
+        l: List[String],
+        result: Map[String, String]
+    ): Map[String, String] = {
       l match {
-        case "-id" :: value :: xs => Map("id" -> value) ++ go(xs)
-        case "-t" :: value :: xs  => Map("t" -> value) ++ go(xs)
-        case "-d" :: value :: xs  => Map("d" -> value) ++ go(xs)
-        case Nil                  => Map.empty[String, String]
+        case "-id" :: value :: xs => go(xs, Map("id" -> value) ++ result)
+        case "-t" :: value :: xs  => go(xs, Map("t" -> value) ++ result)
+        case "-d" :: value :: xs  => go(xs, Map("d" -> value) ++ result)
+        case _                    => result
+
       }
     }
-    val result = go(args)
 
+    val result = go(args, Map.empty[String, String])
+    createPlaylistCommand(result)
+  }
+
+  def createPlaylistCommand(args: Map[String, String]): IO[Command] =
     Applicative[Option]
-      .map2(result.get("id"), result.get("t"))(
+      .map2(args.get("id"), args.get("t"))(
         (id, token) =>
-          PlaylistCommand(id, token, result.get("d").map(v => new File(v)))
+          PlaylistCommand(id, token, args.get("d").map(v => new File(v)))
       )
       .fold(
         IO.raiseError[PlaylistCommand](
           NoRequiredArguments("'id' and 't' should be provided for playlist")
         )
       )(IO.pure)
-  }
+
 }
