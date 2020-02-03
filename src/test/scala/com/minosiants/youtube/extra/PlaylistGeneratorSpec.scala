@@ -8,13 +8,12 @@ import io.circe.generic.auto._
 class PlaylistGeneratorSpec extends YoutubeDataSpec with CatsIO {
 
   "PlaylistGenerator" should {
-    val playlistGen = PlaylistGenerator()
 
     "create playlist" in {
       val destination = new File("target/playlist/test.html")
       (for {
         videos <- decodeJson[YoutubeDataVideos]("__files/videos.json")
-        _      <- playlistGen.createPlaylist(videos, destination)
+        _      <- PlaylistGenerator.createPlaylist(videos, destination)
       } yield ()).attempt.map(toSpecResult).unsafeRunSync()
 
     }

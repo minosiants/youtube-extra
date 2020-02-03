@@ -10,8 +10,9 @@ import scala.annotation.tailrec
 
 object CommandLineParser {
 
-  def parseCommand(args: List[String]): IO[Command] = {
+  def parseArgs(args: List[String]): IO[Command] = {
     args match {
+      case Nil                => IO(HelpCommand)
       case "playlist" :: tail => playlistCommand(tail)
       case _                  => IO.raiseError(CommandNotFound("No valid command found."))
     }

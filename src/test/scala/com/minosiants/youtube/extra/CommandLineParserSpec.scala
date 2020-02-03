@@ -9,7 +9,7 @@ class CommandLineParserSpec extends YoutubeDataSpec {
     val args = List("playlist", "-id", "id-value", "-t", "token-value")
 
     "parse playlist command without destination" in {
-      val result = CommandLineParser.parseCommand(args).attempt.unsafeRunSync()
+      val result = CommandLineParser.parseArgs(args).attempt.unsafeRunSync()
       result match {
         case Right(PlaylistCommand("id-value", "token-value", None)) => success
         case _                                                       => failure
@@ -18,7 +18,7 @@ class CommandLineParserSpec extends YoutubeDataSpec {
 
     "parse playlist command with destination" in {
       val result = CommandLineParser
-        .parseCommand(args ++ List("-d", "destination-value"))
+        .parseArgs(args ++ List("-d", "destination-value"))
         .attempt
         .unsafeRunSync()
       val e = PlaylistCommand(
@@ -31,7 +31,7 @@ class CommandLineParserSpec extends YoutubeDataSpec {
 
     "parse playlist command without playlist option" in {
       val result = CommandLineParser
-        .parseCommand(List("-d", "destination-value"))
+        .parseArgs(List("-d", "destination-value"))
         .attempt
         .unsafeRunSync()
       result mustEqual Left(CommandNotFound("No valid command found."))
@@ -39,7 +39,7 @@ class CommandLineParserSpec extends YoutubeDataSpec {
 
     "parse playlist command without token option" in {
       val result = CommandLineParser
-        .parseCommand(
+        .parseArgs(
           List("playlist", "-id", "id-value", "-d", "destination-value")
         )
         .attempt

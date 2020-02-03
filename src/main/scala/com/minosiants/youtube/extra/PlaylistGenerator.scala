@@ -8,8 +8,7 @@ import io.circe.syntax._
 import io.circe.generic.auto._
 import scala.util.Try
 
-case class PlaylistGenerator() {
-  import PlaylistGenerator._
+object PlaylistGenerator {
 
   def createPlaylist(videos: YoutubeDataVideos, destination: File): IO[Unit] = {
     val escapedVideos = YoutubeDataVideos.titleAndDescriptionLens.modify(
@@ -24,8 +23,6 @@ case class PlaylistGenerator() {
     } yield ()
   }
 
-}
-object PlaylistGenerator {
   def escapeHtml(text: String): String = {
     xml.Utility
       .escape(text)
