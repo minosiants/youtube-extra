@@ -87,7 +87,7 @@
 		.description-item{
 			padding-bottom: 1rem;
 		}
-		.statistics-block:after, .thumbnail:after{
+		.sorting-menu:after, .statistics-block:after, .thumbnail:after{
 			content: "";
 			display: table;
 			clear: both;
@@ -113,9 +113,24 @@
 			padding-top:1rem;
 			padding-bottom:1rem;
 		}
+		.sorting-menu li{
+			float: right;
+			margin: 1rem 0 1rem 1rem;
+
+		}
+
+		.sorting-menu li a{
+			padding: 0.5rem;
+
+		}
+
+		.selected {
+			background-color: #e5e9f0 ;
+			color: #2e3440;
+		}
 		</style>
 		<script type="text/javascript">
-			var playlist = JSON.parse(`@playlist@`);
+			const playlist = JSON.parse(`@playlist@`);
 			const itemTemplate = ( item ) => `
 			  <li class="item">
 				<div class="thumbnail">
@@ -154,13 +169,53 @@
 
 
 			$(function() {
-				$(".playlist").html(playlist.items.map(itemTemplate).join(''))
+				var renderPlaylist = function renderPlaylist(pl){
+						$(".playlist").html(pl.items.map(itemTemplate).join(''))
+					},
+					sortBy = function sortBy (pl, countField){
+
+							var items = pl.items.sort(function(a, b){
+									var aa = parseInt(a.statistics[countField]),
+										bb = parseInt(b.statistics[countField]);
+
+									if( aa < bb)
+										return 1;
+									if( aa > bb)
+										return -1;
+									return 0;
+								});
+							return {items:items};
+					},
+					sortAndRender = function sortAndRender(pl, countField){
+						var _pl =  sortBy(pl, countField)
+						renderPlaylist(_pl);
+					};
+
+
+				$(".sorting-option").click(function(event){
+					event.preventDefault();
+					var $this = $(this),
+						countField = $this.attr('data');
+					$(".sorting-option").removeClass("selected");
+					$this.addClass("selected");
+
+					sortAndRender(playlist, countField);
+
+				});
+				sortAndRender(playlist, "viewCount");
+
 			});
 		</script>
 	</header>
 	<body>
 		<div class ="container">
 		<h1 class="playlist-title">Play list</h1>
+		<ul class="sorting-menu">
+			<li><a class="sorting-option" data="commentCount"  href="">comments</a></li>
+			<li><a class="sorting-option" data="favoriteCount" href="">favorites</a></li>
+			<li><a class="sorting-option" data="dislikeCount" href="">dislikes</a></li>
+			<li><a class="sorting-option selected" data="viewCount" href="">views</a></li>
+		</ul>
 		<ul class ="playlist">
 
 		</ul>
