@@ -21,6 +21,7 @@ object PlaylistGenerator {
       FullPlaylist.videoTitleAndDescriptionLens.modify(escapeHtml)(pl)
 
     val json = escapedPlaylist.asJson.noSpaces
+    
     for {
       template <- loadFile("templates/playlist.html")
       result = template.replace("@playlist@", json)

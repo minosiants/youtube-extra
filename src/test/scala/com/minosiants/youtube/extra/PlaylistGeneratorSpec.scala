@@ -3,6 +3,7 @@ package com.minosiants.youtube.extra
 import java.io.File
 
 import cats.effect.specs2.CatsIO
+import com.minosiants.youtube.extra.PlaylistGenerator.createPlaylist
 import io.circe.generic.auto._
 
 class PlaylistGeneratorSpec extends YoutubeDataSpec with CatsIO {
@@ -15,7 +16,7 @@ class PlaylistGeneratorSpec extends YoutubeDataSpec with CatsIO {
         playlist <- decodeJson[YoutubeDataPlaylists]("__files/playlists.json")
           .map(_.items.head)
         videos <- decodeJson[YoutubeDataVideos]("__files/videos.json")
-        _ <- PlaylistGenerator.createPlaylist(
+        _ <- createPlaylist(
           FullPlaylist(playlist, videos.items),
           destination
         )

@@ -67,7 +67,7 @@ final case class YoutubeDataClient(
   }
 
   private def playlistsUri(playlistId: String): Uri =
-    apiUri / "playlists" +? ("key", accessProps.key) +? ("playlistId", playlistId) +? ("part", "snippet")
+    apiUri / "playlists" +? ("key", accessProps.key) +? ("id", playlistId) +? ("part", "snippet")
 
   private def playlistItemsUri(playlistId: String): Uri =
     apiUri / "playlistItems" +? ("key", accessProps.key) +? ("playlistId", playlistId) +? ("part", "snippet") +? ("maxResults", 15)

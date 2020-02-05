@@ -168,8 +168,8 @@
 			`;
 			 const playlistInfoTemplate = ( playlistInfo ) => `
 
-				<h1 class="playlist-title">playlistInfo.title</h1>
-				<div>playlistInfo.description</div>
+				<h1 class="playlist-title">${playlistInfo.snippet.title}</h1>
+				<div>${playlistInfo.snippet.description}</div>
 
 
 			 `;
@@ -178,7 +178,7 @@
 				var renderPlaylist = function renderPlaylist(pl){
 						$(".playlist").html(pl.videos.map(itemTemplate).join(''))
 					},
-					renderPlaylistInfo = function renderPlaylistInfo(playlistInfo){
+					renderPlaylistInfo = function renderPlaylistInfo(pl){
 						$(".playlist-info").html(playlistInfoTemplate(pl.playlistInfo))
 
 					},
@@ -212,6 +212,8 @@
 					sortAndRender(playlist, countField);
 
 				});
+
+				renderPlaylistInfo(playlist);
 				sortAndRender(playlist, "viewCount");
 
 				//$(".number-of-videos").html(playlist.length);
