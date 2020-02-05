@@ -10,6 +10,7 @@ import org.http4s.headers.{ Accept, Authorization }
 import YoutubeDataClient._
 
 final case class YoutubeDataAccessProps(key: String, token: String)
+
 object YoutubeDataAccessProps {
   def props(key: String, token: String) = YoutubeDataAccessProps(key, token)
 }
@@ -20,7 +21,55 @@ final case class YoutubeDataClient(
     accessProps: YoutubeDataAccessProps
 ) {
 
-  private def playListItemsUri(playlistId: String): Uri =
+  def getPlaylists(playlistId: String): IO[YoutubeDataPlaylist] = {
+
+    val request = get(playlistsUri(playlistId))
+
+    client.expect[YoutubeDataPlaylists](request).flatMap { playlists =>
+      playlists.items.headOption match {
+        case Some(playlist) => IO(playlist)
+        case None =>
+          IO.raiseError(PlaylistNotFound(s"Playlist $playlistId not found"))
+      }
+
+    }
+  }
+
+  def getPlaylistItems(playlistId: String): IO[List[YoutubeDataItem]] = {
+
+    val uri = playlistItemsUri(playlistId)
+    val response =
+      (playlist: YoutubeDataPlaylistItems) =>
+        (playlist.nextPageToken, playlist.items)
+    goThroughPages(uri, response)
+
+  }
+
+  def getVideos(ids: List[String]): IO[List[YoutubeDataVideo]] = {
+    val request = get(videosUri(ids))
+    client.expect[YoutubeDataVideos](request)
+
+    val response =
+      (videos: YoutubeDataVideos) => (videos.nextPageToken, videos.items)
+    goThroughPages(videosUri(ids), response)
+  }
+
+  def getFullPlaylist(playlistId: String): IO[FullPlaylist] = {
+    for {
+      playlist      <- getPlaylists(playlistId)
+      playlistItems <- getPlaylistItems(playlistId)
+      ids = playlistItems
+        .filter(_.notPrivate)
+        .map(_.snippet.resourceId.videoId)
+      videos <- getVideos(ids)
+    } yield FullPlaylist(playlist, videos)
+
+  }
+
+  private def playlistsUri(playlistId: String): Uri =
+    apiUri / "playlists" +? ("key", accessProps.key) +? ("playlistId", playlistId) +? ("part", "snippet")
+
+  private def playlistItemsUri(playlistId: String): Uri =
     apiUri / "playlistItems" +? ("key", accessProps.key) +? ("playlistId", playlistId) +? ("part", "snippet") +? ("maxResults", 15)
 
   private def videosUri(ids: List[String]): Uri =
@@ -57,35 +106,6 @@ final case class YoutubeDataClient(
       (_nextPageToken, _items) = response(resp)
       items <- go(_nextPageToken, _items)
     } yield items
-
-  }
-  def getPlayList(playlistId: String): IO[List[YoutubeDataItem]] = {
-
-    val uri = playListItemsUri(playlistId)
-    val response =
-      (playlist: YoutubeDataPlaylistItems) =>
-        (playlist.nextPageToken, playlist.items)
-    goThroughPages(uri, response)
-
-  }
-
-  def getVideos(ids: List[String]): IO[List[YoutubeDataVideo]] = {
-    val request = get(videosUri(ids))
-    client.expect[YoutubeDataVideos](request)
-
-    val response =
-      (videos: YoutubeDataVideos) => (videos.nextPageToken, videos.items)
-    goThroughPages(videosUri(ids), response)
-  }
-
-  def getPlaylistVideos(playlistId: String): IO[List[YoutubeDataVideo]] = {
-    for {
-      playlist <- getPlayList(playlistId)
-      ids = playlist
-        .filter(_.notPrivate)
-        .map(_.snippet.resourceId.videoId)
-      videos <- getVideos(ids)
-    } yield videos
 
   }
 }

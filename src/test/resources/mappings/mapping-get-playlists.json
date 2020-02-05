@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/playlists?key=AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM&playlistId=PLBCF2DAC6FFB574DE&part=snippet"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName" : "playlists.json",
+    "headers": {
+      "Content-Type": "text/json"
+    }
+  }
+}

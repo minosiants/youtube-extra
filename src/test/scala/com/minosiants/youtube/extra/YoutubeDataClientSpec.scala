@@ -32,7 +32,9 @@ class YoutubeDataClientSpec extends YoutubeDataSpec with After with CatsIO {
   "YoutubeDataClint" should {
 
     "get playlist" in {
-      withClient(_.getPlayList(playlistId)).map(toSpecResult).unsafeRunSync()
+      withClient(_.getPlaylistItems(playlistId))
+        .map(toSpecResult)
+        .unsafeRunSync()
     }
 
     /*"get playlist wit pagination" in {
@@ -50,11 +52,14 @@ class YoutubeDataClientSpec extends YoutubeDataSpec with After with CatsIO {
     }
 
     "get playlist videos" in {
-      withClient(_.getPlaylistVideos(playlistId))
+      withClient(_.getFullPlaylist(playlistId))
         .map(toSpecResult)
         .unsafeRunSync()
     }
 
+    "get playlists" in {
+      withClient(_.getPlaylists(playlistId)).map(toSpecResult).unsafeRunSync()
+    }
   }
 
   def withClient[A](

@@ -13,33 +13,33 @@ import monocle.macros.GenLens
 import monocle.function.all._
 import monocle.Traversal
 
-case class YoutubeDataThumbnail(url: String, width: Int, height: Int)
+final case class YoutubeDataThumbnail(url: String, width: Int, height: Int)
 
-case class YoutubeDataThumbnails(
+final case class YoutubeDataThumbnails(
     default: YoutubeDataThumbnail,
     medium: YoutubeDataThumbnail,
     high: YoutubeDataThumbnail,
     standard: Option[YoutubeDataThumbnail]
 )
 
-case class YoutubeDataResourceId(kind: String, videoId: String)
-case class YoutubeDataSnippet(
+final case class YoutubeDataResourceId(kind: String, videoId: String)
+final case class YoutubeDataSnippet(
     resourceId: YoutubeDataResourceId,
     thumbnails: Option[YoutubeDataThumbnails]
 )
-case class YoutubeDataItem(id: String, snippet: YoutubeDataSnippet) {
+final case class YoutubeDataItem(id: String, snippet: YoutubeDataSnippet) {
   def notPrivate: Boolean = snippet.thumbnails.nonEmpty
 }
-case class YoutubeDataPageInfo(totalResults: Int, resultsPerPage: Int)
+final case class YoutubeDataPageInfo(totalResults: Int, resultsPerPage: Int)
 
-case class YoutubeDataPlaylistItems(
+final case class YoutubeDataPlaylistItems(
     nextPageToken: Option[String],
     prevPageToken: Option[String],
     pageInfo: Option[YoutubeDataPageInfo],
     items: List[YoutubeDataItem]
 )
 
-case class YoutubeDataVideoSnippet(
+final case class YoutubeDataVideoSnippet(
     channelTitle: String,
     publishedAt: Instant,
     channelId: String,
@@ -48,24 +48,78 @@ case class YoutubeDataVideoSnippet(
     thumbnails: Option[YoutubeDataThumbnails],
     tags: Option[List[String]]
 )
-case class YoutubeDataVideoStatistics(
+final case class YoutubeDataVideoStatistics(
     viewCount: String,
     likeCount: String,
     dislikeCount: String,
     favoriteCount: String,
     commentCount: String
 )
-case class YoutubeDataVideo(
+final case class YoutubeDataVideo(
     id: String,
     snippet: YoutubeDataVideoSnippet,
     statistics: YoutubeDataVideoStatistics
 )
-case class YoutubeDataVideos(
+
+final case class YoutubeDataVideos(
     pageInfo: YoutubeDataPageInfo,
     nextPageToken: Option[String],
     prevPageToken: Option[String],
     items: List[YoutubeDataVideo]
 )
+
+final case class YoutubeDataPlaylistSnippet(
+    publishedAt: Instant,
+    channelId: String,
+    title: String,
+    description: String,
+    thumbnails: YoutubeDataThumbnails,
+    channelTitle: String
+)
+final case class YoutubeDataPlaylist(
+    id: String,
+    snippet: YoutubeDataPlaylistSnippet
+)
+final case class YoutubeDataPlaylists(
+    pageInfo: YoutubeDataPageInfo,
+    items: List[YoutubeDataPlaylist]
+)
+
+final case class FullPlaylist(
+    playlistInfo: YoutubeDataPlaylist,
+    videos: List[YoutubeDataVideo]
+)
+
+object FullPlaylist extends CommonCodecs {
+
+  val videosLens  = GenLens[FullPlaylist](_.videos)
+  val snippetLens = GenLens[YoutubeDataVideo](_.snippet)
+
+  val allVideos
+      : Traversal[FullPlaylist, YoutubeDataVideo] = videosLens composeTraversal each
+
+  val titleAndDescription =
+    Traversal.apply2[YoutubeDataVideoSnippet, String](_.title, _.description) {
+      case (fn, ln, l) => l.copy(title = fn, description = ln)
+    }
+  val videoTitleAndDescriptionLens = (allVideos composeLens snippetLens composeTraversal titleAndDescription)
+
+  val playlistLens        = GenLens[FullPlaylist](_.playlistInfo)
+  val playlistSnippetLens = GenLens[YoutubeDataPlaylist](_.snippet)
+  val playlisttitleAndDescription =
+    Traversal
+      .apply2[YoutubeDataPlaylistSnippet, String](_.title, _.description) {
+        case (fn, ln, l) => l.copy(title = fn, description = ln)
+      }
+
+  val playlistTitleAndDescriptionLens = (playlistLens composeLens playlistSnippetLens composeTraversal playlisttitleAndDescription)
+}
+
+object YoutubeDataPlaylists extends CommonCodecs {
+  implicit def decoder: EntityDecoder[IO, YoutubeDataPlaylists] =
+    jsonOf[IO, YoutubeDataPlaylists]
+
+}
 
 object YoutubeDataVideos extends CommonCodecs {
   implicit def decoder: EntityDecoder[IO, YoutubeDataVideos] =

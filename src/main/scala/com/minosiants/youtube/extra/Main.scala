@@ -32,7 +32,7 @@ object Main extends IOApp {
         val ydClient =
           YoutubeDataClient(client, apiUri, props(googleAppKey, token))
         for {
-          playlist <- ydClient.getPlaylistVideos(playlistId)
+          playlist <- ydClient.getFullPlaylist(playlistId)
           _        <- createPlaylist(playlist, destination)
         } yield ()
       }

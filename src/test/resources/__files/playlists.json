@@ -1,0 +1,53 @@
+{
+  "kind": "youtube#playlistListResponse",
+  "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/PE-uKwvcedfnCX3rCcKoxV1hsaA\"",
+  "pageInfo": {
+    "totalResults": 1,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#playlist",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/h9oqIa4JV6Lx2cQNSGZlFAU91cw\"",
+      "id": "PLBCF2DAC6FFB574DE",
+      "snippet": {
+        "publishedAt": "2011-09-23T04:52:01.000Z",
+        "channelId": "UCvceBgMIpKb4zK1ss-Sh90w",
+        "title": "Google Search Stories",
+        "description": "Searches can become stories. Some are inspiring, some change the way we see the world, and some just make us laugh. Here are a few of our favorites.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/GvgqDSnpRQM/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/GvgqDSnpRQM/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/GvgqDSnpRQM/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/GvgqDSnpRQM/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          }
+        },
+        "channelTitle": "Google Search Stories",
+        "tags": [
+          "Google search stories",
+          "Google search commercial",
+          "Google commercials"
+        ],
+        "localized": {
+          "title": "Google Search Stories",
+          "description": "Searches can become stories. Some are inspiring, some change the way we see the world, and some just make us laugh. Here are a few of our favorites."
+        }
+      }
+    }
+  ]
+}

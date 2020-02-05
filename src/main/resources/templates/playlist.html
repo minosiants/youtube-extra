@@ -166,15 +166,25 @@
 				</ul>
 			</li>
 			`;
+			 const playlistInfoTemplate = ( playlistInfo ) => `
 
+				<h1 class="playlist-title">playlistInfo.title</h1>
+				<div>playlistInfo.description</div>
+
+
+			 `;
 
 			$(function() {
 				var renderPlaylist = function renderPlaylist(pl){
-						$(".playlist").html(pl.map(itemTemplate).join(''))
+						$(".playlist").html(pl.videos.map(itemTemplate).join(''))
+					},
+					renderPlaylistInfo = function renderPlaylistInfo(playlistInfo){
+						$(".playlist-info").html(playlistInfoTemplate(pl.playlistInfo))
+
 					},
 					sortBy = function sortBy (pl, countField){
 
-							var items = pl.sort(function(a, b){
+							var items = pl.videos.sort(function(a, b){
 									var aa = parseInt(a.statistics[countField]),
 										bb = parseInt(b.statistics[countField]);
 
@@ -184,7 +194,7 @@
 										return -1;
 									return 0;
 								});
-							return items;
+							return {playlistInfo:pl.playlistInfo,videos:items};
 					},
 					sortAndRender = function sortAndRender(pl, countField){
 						var _pl =  sortBy(pl, countField)
@@ -203,14 +213,17 @@
 
 				});
 				sortAndRender(playlist, "viewCount");
-				$(".number-of-videos").html(playlist.length);
+
+				//$(".number-of-videos").html(playlist.length);
 
 			});
 		</script>
 	</header>
 	<body>
 		<div class ="container">
-		<h1 class="playlist-title">Play list</h1>
+		<header class="playlist-info">
+			<h1 class="playlist-title">Play list</h1>
+		</header>
 		<span class="label number-of-videos"></span>
 		<ul class="sorting-menu">
 			<li><a class="sorting-option" data="commentCount"  href="">comments</a></li>

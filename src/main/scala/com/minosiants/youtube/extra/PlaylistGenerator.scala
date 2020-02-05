@@ -11,15 +11,16 @@ import scala.util.Try
 object PlaylistGenerator {
 
   def createPlaylist(
-      videos: List[YoutubeDataVideo],
+      playlist: FullPlaylist,
       destination: File
   ): IO[Unit] = {
-    val escapedVideos = videos.map(
-      YoutubeDataVideos.titleAndDescriptionLens.modify(
-        escapeHtml
-      )(_)
-    )
-    val json = escapedVideos.asJson.noSpaces
+
+    val pl =
+      FullPlaylist.playlistTitleAndDescriptionLens.modify(escapeHtml)(playlist)
+    val escapedPlaylist =
+      FullPlaylist.videoTitleAndDescriptionLens.modify(escapeHtml)(pl)
+
+    val json = escapedPlaylist.asJson.noSpaces
     for {
       template <- loadFile("templates/playlist.html")
       result = template.replace("@playlist@", json)
