@@ -10,12 +10,10 @@ import scala.annotation.tailrec
 
 object CommandLineParser {
 
-  def parseArgs(args: List[String]): IO[Command] = {
-    args match {
-      case Nil                => IO(HelpCommand)
-      case "playlist" :: tail => playlistCommand(tail)
-      case _                  => IO.raiseError(CommandNotFound("No valid command found."))
-    }
+  def parseArgs(args: List[String]): IO[Command] = args match {
+    case Nil                => IO(HelpCommand)
+    case "playlist" :: tail => playlistCommand(tail)
+    case _                  => IO.raiseError(CommandNotFound("No valid command found."))
   }
 
   def playlistCommand(args: List[String]): IO[Command] = {
@@ -46,7 +44,7 @@ object CommandLineParser {
       )
       .fold(
         IO.raiseError[PlaylistCommand](
-          NoRequiredArguments("'id' and 't' should be provided for playlist")
+          NoRequiredArguments("'-id' and '-t' should be provided for playlist")
         )
       )(IO.pure)
 

@@ -32,29 +32,37 @@ class YoutubeDataClientSpec extends YoutubeDataSpec with After with CatsIO {
   "YoutubeDataClint" should {
 
     "get playlist" in {
-      withClient(_.getPlayList(playlistId)).unsafeRunSync()
+      withClient(_.getPlayList(playlistId)).map(toSpecResult).unsafeRunSync()
     }
 
+    /*"get playlist wit pagination" in {
+      withClient(_.getPlayList("PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt"))
+        .map{
+          case Right(playlist) => playlist.size mustEqual 10
+          case Left(error) => failure(error.getMessage)
+        }.unsafeRunSync()
+
+    }*/
     "get videos" in {
       val ids = List("GvgqDSnpRQM", "V4DDt30Aat4", "XDgC4FMftpg")
-      withClient(_.getVideos(ids)).unsafeRunSync()
+      withClient(_.getVideos(ids)).map(toSpecResult).unsafeRunSync()
 
     }
 
     "get playlist videos" in {
-      withClient(_.getPlaylistVideos(playlistId)).unsafeRunSync()
+      withClient(_.getPlaylistVideos(playlistId))
+        .map(toSpecResult)
+        .unsafeRunSync()
     }
 
   }
+
   def withClient[A](
       youtubeClient: YoutubeDataClient => IO[A]
-  ): IO[Result] = {
-    BlazeClientBuilder[IO](global).resource
-      .use { client =>
-        youtubeClient(YoutubeDataClient(client, baseUri, props))
-      }
-      .attempt
-      .map(toSpecResult)
+  ) = {
+    BlazeClientBuilder[IO](global).resource.use { client =>
+      youtubeClient(YoutubeDataClient(client, baseUri, props))
+    }.attempt
   }
 
   override def after: Any = {

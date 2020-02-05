@@ -1,0 +1,236 @@
+{
+  "kind": "youtube#playlistItemListResponse",
+  "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/P8B56F70Emi8yJ-65zo7sUBK_Ag\"",
+  "prevPageToken": "CAUQAQ",
+  "pageInfo": {
+    "totalResults": 46,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/Ly37USSrnApo3QBqWoJxFnaW_cU\"",
+      "id": "UExMTUxPQzNXTTJyNUtEd2tTUnJMSjFfTzZrWnFsaGhGdC4xMkVGQjNCMUM1N0RFNEUx",
+      "snippet": {
+        "publishedAt": "2019-07-11T08:18:45.000Z",
+        "channelId": "UCOHg8YCiyMVRRxb3mJT_0Mg",
+        "title": "Cellular Automata How to become an artist with a few lines - Maciej Gorywoda",
+        "description": "This video was recorded at Scala Days Lausanne 2019\nFollow us on Twitter @ScalaDays or visit our website for more information http://scaladays.org \n\nMore information and the abstract can be found here:\nhttps://scaladays.org/schedule/cellular-automata-how-to-become-an-artist-with-a-few-lines",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/vXNClgyHud0/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/vXNClgyHud0/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/vXNClgyHud0/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/vXNClgyHud0/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/vXNClgyHud0/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Scala Days Conferences",
+        "playlistId": "PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt",
+        "position": 5,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "vXNClgyHud0"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/uo0Z4tG0hNcxbLfN1QJ7VhV-MLY\"",
+      "id": "UExMTUxPQzNXTTJyNUtEd2tTUnJMSjFfTzZrWnFsaGhGdC41MzJCQjBCNDIyRkJDN0VD",
+      "snippet": {
+        "publishedAt": "2019-07-11T08:25:27.000Z",
+        "channelId": "UCOHg8YCiyMVRRxb3mJT_0Mg",
+        "title": "Techniques for Teaching Scala - Noel Welsh",
+        "description": "This video was recorded at Scala Days Lausanne 2019\nFollow us on Twitter @ScalaDays or visit our website for more information http://scaladays.org \n\nMore information and the abstract can be found here:\nhttps://scaladays.org/schedule/techniques-for-teaching-scala",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/xnBm8TFLt_k/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/xnBm8TFLt_k/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/xnBm8TFLt_k/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/xnBm8TFLt_k/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/xnBm8TFLt_k/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Scala Days Conferences",
+        "playlistId": "PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt",
+        "position": 6,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "xnBm8TFLt_k"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/z09RjBATxrfEmJGYD6sUUdkWAXg\"",
+      "id": "UExMTUxPQzNXTTJyNUtEd2tTUnJMSjFfTzZrWnFsaGhGdC5DQUNERDQ2NkIzRUQxNTY1",
+      "snippet": {
+        "publishedAt": "2019-07-11T08:25:27.000Z",
+        "channelId": "UCOHg8YCiyMVRRxb3mJT_0Mg",
+        "title": "Scala First Lessons from 3 student generations - Björn Regnell",
+        "description": "This video was recorded at Scala Days Lausanne 2019\nFollow us on Twitter @ScalaDays or visit our website for more information http://scaladays.org \n\nMore information and the abstract can be found here:\nhttps://scaladays.org/schedule/scala-first-lessons-from-3-student-generations",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/ii_sC1TfpZY/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/ii_sC1TfpZY/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/ii_sC1TfpZY/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/ii_sC1TfpZY/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/ii_sC1TfpZY/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Scala Days Conferences",
+        "playlistId": "PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt",
+        "position": 7,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "ii_sC1TfpZY"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/9UNuJCUsEONrh56Q14l6GtIhGFo\"",
+      "id": "UExMTUxPQzNXTTJyNUtEd2tTUnJMSjFfTzZrWnFsaGhGdC45NDk1REZENzhEMzU5MDQz",
+      "snippet": {
+        "publishedAt": "2019-07-11T08:25:27.000Z",
+        "channelId": "UCOHg8YCiyMVRRxb3mJT_0Mg",
+        "title": "sbt core concepts - Eugene Yokota",
+        "description": "This video was recorded at Scala Days Lausanne 2019\nFollow us on Twitter @ScalaDays or visit our website for more information http://scaladays.org \n\nMore information and the abstract can be found here:\nhttps://scaladays.org/schedule/sbt-core-concepts",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/-shamsTC7rQ/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/-shamsTC7rQ/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/-shamsTC7rQ/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/-shamsTC7rQ/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/-shamsTC7rQ/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Scala Days Conferences",
+        "playlistId": "PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt",
+        "position": 8,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "-shamsTC7rQ"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/GsBltDV4zT9-u2VF-iS5MjUh5Mc\"",
+      "id": "UExMTUxPQzNXTTJyNUtEd2tTUnJMSjFfTzZrWnFsaGhGdC5GNjNDRDREMDQxOThCMDQ2",
+      "snippet": {
+        "publishedAt": "2019-07-11T08:31:48.000Z",
+        "channelId": "UCOHg8YCiyMVRRxb3mJT_0Mg",
+        "title": "In Types We Trust - Bill Venners",
+        "description": "This video was recorded at Scala Days Lausanne 2019\nFollow us on Twitter @ScalaDays or visit our website for more information http://scaladays.org \n\nMore information and the abstract can be found here:\nhttps://scaladays.org/schedule/in-types-we-trust",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/oK1P7cPu0i0/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/oK1P7cPu0i0/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/oK1P7cPu0i0/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/oK1P7cPu0i0/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/oK1P7cPu0i0/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Scala Days Conferences",
+        "playlistId": "PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt",
+        "position": 9,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "oK1P7cPu0i0"
+        }
+      }
+    }
+  ]
+}

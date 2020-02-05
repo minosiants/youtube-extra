@@ -8,8 +8,6 @@ import cats.implicits._
 import com.minosiants.youtube.extra.PlaylistGenerator.createPlaylist
 import com.minosiants.youtube.extra.YoutubeDataAccessProps.props
 import com.minosiants.youtube.extra.YoutubeDataClient.{ apiUri, googleAppKey }
-import javax.print.attribute.standard.Destination
-import org.http4s.Uri
 import org.http4s.client.blaze._
 //import org.http4s.Uri._
 import cats.effect.{ ContextShift, IO }
@@ -45,14 +43,19 @@ object Main extends IOApp {
     CommandLineParser
       .parseArgs(args)
       .flatMap {
-        case HelpCommand => IO { println("Programm hellp message") }
+        case HelpCommand => IO { println("Program help message") }
         case PlaylistCommand(playlistId, token, Some(destination)) =>
           playlist(playlistId, token, destination)
         case PlaylistCommand(playlistId, token, None) =>
-          playlist(playlistId, token, new File("."))
+          playlist(playlistId, token, new File(s"./$playlistId.html"))
       }
       .attempt
-      .as(ExitCode.Success)
+      .flatMap {
+        case Right(_) => IO(ExitCode.Success)
+        case Left(error) =>
+          println(error.getMessage)
+          IO(ExitCode.Error)
+      }
 
   }
 }

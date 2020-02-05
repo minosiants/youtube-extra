@@ -45,7 +45,7 @@ class CommandLineParserSpec extends YoutubeDataSpec {
         .attempt
         .unsafeRunSync()
       result mustEqual Left(
-        NoRequiredArguments("'id' and 't' should be provided for playlist")
+        NoRequiredArguments("'-id' and '-t' should be provided for playlist")
       )
     }
   }

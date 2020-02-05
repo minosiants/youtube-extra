@@ -21,10 +21,10 @@ final case class YoutubeDataClient(
 ) {
 
   private def playListItemsUri(playlistId: String): Uri =
-    apiUri / "playlistItems" +? ("key", accessProps.key) +? ("playlistId", playlistId) +? ("part", "snippet")
+    apiUri / "playlistItems" +? ("key", accessProps.key) +? ("playlistId", playlistId) +? ("part", "snippet") +? ("maxResults", 15)
 
   private def videosUri(ids: List[String]): Uri =
-    apiUri / "videos" +? ("key", accessProps.key) +? ("id", ids.mkString(",")) +? ("part", "snippet,statistics")
+    apiUri / "videos" +? ("key", accessProps.key) +? ("id", ids.mkString(",")) +? ("part", "snippet,statistics") +? ("maxResults", 15)
 
   private def get(uri: Uri): IO[Request[IO]] = Method.GET(
     uri,
@@ -35,20 +35,53 @@ final case class YoutubeDataClient(
     Header("x-origin", "https://explorer.apis.google.com")
   )
 
-  def getPlayList(playlistId: String): IO[YoutubeDataPlaylistItems] = {
-    val request = get(playListItemsUri(playlistId))
-    client.expect[YoutubeDataPlaylistItems](request)
+  def goThroughPages[A, B](uri: Uri, response: B => (Option[String], List[A]))(
+      implicit entityDecoder: EntityDecoder[IO, B]
+  ): IO[List[A]] = {
+
+    def go(nextPageToken: Option[String], items: List[A]): IO[List[A]] = {
+      nextPageToken match {
+        case Some(pageToken) =>
+          val request = get(uri +? ("pageToken", pageToken))
+          for {
+            resp <- client.expect[B](request)
+            (_nextPageToken, _items) = response(resp)
+            result <- go(_nextPageToken, items ++ _items)
+          } yield result
+        case None => IO(items)
+      }
+    }
+    val request = get(uri)
+    for {
+      resp <- client.expect[B](request)
+      (_nextPageToken, _items) = response(resp)
+      items <- go(_nextPageToken, _items)
+    } yield items
+
+  }
+  def getPlayList(playlistId: String): IO[List[YoutubeDataItem]] = {
+
+    val uri = playListItemsUri(playlistId)
+    val response =
+      (playlist: YoutubeDataPlaylistItems) =>
+        (playlist.nextPageToken, playlist.items)
+    goThroughPages(uri, response)
+
   }
 
-  def getVideos(ids: List[String]): IO[YoutubeDataVideos] = {
+  def getVideos(ids: List[String]): IO[List[YoutubeDataVideo]] = {
     val request = get(videosUri(ids))
     client.expect[YoutubeDataVideos](request)
+
+    val response =
+      (videos: YoutubeDataVideos) => (videos.nextPageToken, videos.items)
+    goThroughPages(videosUri(ids), response)
   }
 
-  def getPlaylistVideos(playlistId: String): IO[YoutubeDataVideos] = {
+  def getPlaylistVideos(playlistId: String): IO[List[YoutubeDataVideo]] = {
     for {
       playlist <- getPlayList(playlistId)
-      ids = playlist.items
+      ids = playlist
         .filter(_.notPrivate)
         .map(_.snippet.resourceId.videoId)
       videos <- getVideos(ids)

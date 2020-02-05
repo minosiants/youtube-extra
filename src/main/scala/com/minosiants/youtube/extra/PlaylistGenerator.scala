@@ -10,10 +10,15 @@ import scala.util.Try
 
 object PlaylistGenerator {
 
-  def createPlaylist(videos: YoutubeDataVideos, destination: File): IO[Unit] = {
-    val escapedVideos = YoutubeDataVideos.titleAndDescriptionLens.modify(
-      escapeHtml
-    )(videos)
+  def createPlaylist(
+      videos: List[YoutubeDataVideo],
+      destination: File
+  ): IO[Unit] = {
+    val escapedVideos = videos.map(
+      YoutubeDataVideos.titleAndDescriptionLens.modify(
+        escapeHtml
+      )(_)
+    )
     val json = escapedVideos.asJson.noSpaces
     for {
       template <- loadFile("templates/playlist.html")

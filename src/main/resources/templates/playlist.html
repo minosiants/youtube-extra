@@ -170,11 +170,11 @@
 
 			$(function() {
 				var renderPlaylist = function renderPlaylist(pl){
-						$(".playlist").html(pl.items.map(itemTemplate).join(''))
+						$(".playlist").html(pl.map(itemTemplate).join(''))
 					},
 					sortBy = function sortBy (pl, countField){
 
-							var items = pl.items.sort(function(a, b){
+							var items = pl.sort(function(a, b){
 									var aa = parseInt(a.statistics[countField]),
 										bb = parseInt(b.statistics[countField]);
 
@@ -184,7 +184,7 @@
 										return -1;
 									return 0;
 								});
-							return {items:items};
+							return items;
 					},
 					sortAndRender = function sortAndRender(pl, countField){
 						var _pl =  sortBy(pl, countField)
@@ -203,6 +203,7 @@
 
 				});
 				sortAndRender(playlist, "viewCount");
+				$(".number-of-videos").html(playlist.length);
 
 			});
 		</script>
@@ -210,6 +211,7 @@
 	<body>
 		<div class ="container">
 		<h1 class="playlist-title">Play list</h1>
+		<span class="label number-of-videos"></span>
 		<ul class="sorting-menu">
 			<li><a class="sorting-option" data="commentCount"  href="">comments</a></li>
 			<li><a class="sorting-option" data="favoriteCount" href="">favorites</a></li>

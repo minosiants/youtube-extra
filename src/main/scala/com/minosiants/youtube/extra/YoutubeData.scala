@@ -19,7 +19,7 @@ case class YoutubeDataThumbnails(
     default: YoutubeDataThumbnail,
     medium: YoutubeDataThumbnail,
     high: YoutubeDataThumbnail,
-    standard: YoutubeDataThumbnail
+    standard: Option[YoutubeDataThumbnail]
 )
 
 case class YoutubeDataResourceId(kind: String, videoId: String)
@@ -33,10 +33,9 @@ case class YoutubeDataItem(id: String, snippet: YoutubeDataSnippet) {
 case class YoutubeDataPageInfo(totalResults: Int, resultsPerPage: Int)
 
 case class YoutubeDataPlaylistItems(
-    kind: String,
     nextPageToken: Option[String],
     prevPageToken: Option[String],
-    pageInfo: YoutubeDataPageInfo,
+    pageInfo: Option[YoutubeDataPageInfo],
     items: List[YoutubeDataItem]
 )
 
@@ -47,7 +46,7 @@ case class YoutubeDataVideoSnippet(
     title: String,
     description: String,
     thumbnails: Option[YoutubeDataThumbnails],
-    tags: List[String]
+    tags: Option[List[String]]
 )
 case class YoutubeDataVideoStatistics(
     viewCount: String,
@@ -63,6 +62,8 @@ case class YoutubeDataVideo(
 )
 case class YoutubeDataVideos(
     pageInfo: YoutubeDataPageInfo,
+    nextPageToken: Option[String],
+    prevPageToken: Option[String],
     items: List[YoutubeDataVideo]
 )
 
@@ -80,7 +81,7 @@ object YoutubeDataVideos extends CommonCodecs {
     Traversal.apply2[YoutubeDataVideoSnippet, String](_.title, _.description) {
       case (fn, ln, l) => l.copy(title = fn, description = ln)
     }
-  val titleAndDescriptionLens = (allVideos composeLens snippetLens composeTraversal titleAndDescription)
+  val titleAndDescriptionLens = (snippetLens composeTraversal titleAndDescription)
 
 }
 

@@ -1,0 +1,216 @@
+{
+  "kind": "youtube#playlistItemListResponse",
+  "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/FvpQ89eOxhyCxaHklOIiC0FsJZw\"",
+  "nextPageToken": "CAUQAA",
+  "pageInfo": {
+    "totalResults": 46,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/yCbx2kxP368YVao0N-svkYqsz0c\"",
+      "id": "UExMTUxPQzNXTTJyNUtEd2tTUnJMSjFfTzZrWnFsaGhGdC41NkI0NEY2RDEwNTU3Q0M2",
+      "snippet": {
+        "publishedAt": "2019-07-11T08:09:40.000Z",
+        "channelId": "UCOHg8YCiyMVRRxb3mJT_0Mg",
+        "title": "Welcome and intro",
+        "description": "This video was recorded at Scala Days Lausanne 2019\nFollow us on Twitter @ScalaDays or visit our website for more information http://scaladays.org",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/tKj9YejBRbQ/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/tKj9YejBRbQ/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/tKj9YejBRbQ/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Scala Days Conferences",
+        "playlistId": "PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt",
+        "position": 0,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "tKj9YejBRbQ"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/wfFM1nGom4MQoeyEvbXIg1s8pfo\"",
+      "id": "UExMTUxPQzNXTTJyNUtEd2tTUnJMSjFfTzZrWnFsaGhGdC4yODlGNEE0NkRGMEEzMEQy",
+      "snippet": {
+        "publishedAt": "2019-07-11T08:14:58.000Z",
+        "channelId": "UCOHg8YCiyMVRRxb3mJT_0Mg",
+        "title": "Creating Native iOS and Android Apps Scala without tears - Zahari Dichev",
+        "description": "This video was recorded at Scala Days Lausanne 2019\nFollow us on Twitter @ScalaDays or visit our website for more information http://scaladays.org \n\nMore information and the abstract can be found here:\nhttps://scaladays.org/schedule/creating-native-ios-and-android-apps-in-scala-without-tears",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/j2OMNkIbIuM/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/j2OMNkIbIuM/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/j2OMNkIbIuM/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          }
+        },
+        "channelTitle": "Scala Days Conferences",
+        "playlistId": "PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt",
+        "position": 1,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "j2OMNkIbIuM"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/vsLLx-86AwNRkY9Wwo8cbsJMFqg\"",
+      "id": "UExMTUxPQzNXTTJyNUtEd2tTUnJMSjFfTzZrWnFsaGhGdC4wMTcyMDhGQUE4NTIzM0Y5",
+      "snippet": {
+        "publishedAt": "2019-07-11T08:14:58.000Z",
+        "channelId": "UCOHg8YCiyMVRRxb3mJT_0Mg",
+        "title": "Future proofing Scala the TASTY intermediate rep - Guillaume Martres",
+        "description": "This video was recorded at Scala Days Lausanne 2019\nFollow us on Twitter @ScalaDays or visit our website for more information http://scaladays.org \n\nMore information and the abstract can be found here:\nhttps://scaladays.org/schedule/future-proofing-scala-the-tasty-intermediate-representation",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/zQFjC3zLYwo/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/zQFjC3zLYwo/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/zQFjC3zLYwo/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/zQFjC3zLYwo/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/zQFjC3zLYwo/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Scala Days Conferences",
+        "playlistId": "PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt",
+        "position": 2,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "zQFjC3zLYwo"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/YkV91pRiIvx-PDFpuZUlb3hyuEY\"",
+      "id": "UExMTUxPQzNXTTJyNUtEd2tTUnJMSjFfTzZrWnFsaGhGdC41MjE1MkI0OTQ2QzJGNzNG",
+      "snippet": {
+        "publishedAt": "2019-07-11T08:18:44.000Z",
+        "channelId": "UCOHg8YCiyMVRRxb3mJT_0Mg",
+        "title": "Akka Streams to the Extreme - Heiko Seeberger",
+        "description": "This video was recorded at Scala Days Lausanne 2019\nFollow us on Twitter @ScalaDays or visit our website for more information http://scaladays.org \n\nMore information and the abstract can be found here:\nhttps://scaladays.org/schedule/akka-streams-to-the-extreme",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/CrpJJYPzdJE/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/CrpJJYPzdJE/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/CrpJJYPzdJE/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/CrpJJYPzdJE/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/CrpJJYPzdJE/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Scala Days Conferences",
+        "playlistId": "PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt",
+        "position": 3,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "CrpJJYPzdJE"
+        }
+      }
+    },
+    {
+      "kind": "youtube#playlistItem",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/jE3AVvbCksDcgh-RDOJHuvv2Tuw\"",
+      "id": "UExMTUxPQzNXTTJyNUtEd2tTUnJMSjFfTzZrWnFsaGhGdC4wOTA3OTZBNzVEMTUzOTMy",
+      "snippet": {
+        "publishedAt": "2019-07-11T08:18:45.000Z",
+        "channelId": "UCOHg8YCiyMVRRxb3mJT_0Mg",
+        "title": "Massively Parallel Distributed Scala Compilation And You - Stu Hood",
+        "description": "This video was recorded at Scala Days Lausanne 2019\nFollow us on Twitter @ScalaDays or visit our website for more information http://scaladays.org \n\nMore information and the abstract can be found here:\nhttps://scaladays.org/schedule/massively-parallel-distributed-scala-compilation----and-you",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/87K4_v2IvBg/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/87K4_v2IvBg/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/87K4_v2IvBg/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/87K4_v2IvBg/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/87K4_v2IvBg/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Scala Days Conferences",
+        "playlistId": "PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt",
+        "position": 4,
+        "resourceId": {
+          "kind": "youtube#video",
+          "videoId": "87K4_v2IvBg"
+        }
+      }
+    }
+  ]
+}
