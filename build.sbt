@@ -10,7 +10,7 @@ val wiremockVersion = "2.25.1"
 
 lazy val root = (project in file("."))
   .settings(
-    
+
     organization := "com.minosiatns",
     name := "youtube-extra",
     version := "0.0.1-SNAPSHOT",

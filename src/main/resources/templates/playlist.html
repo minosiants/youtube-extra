@@ -166,10 +166,10 @@
 				</ul>
 			</li>
 			`;
-			 const playlistInfoTemplate = ( playlistInfo ) => `
+			 const playlistInfoTemplate = ( pl ) => `
 
-				<h1 class="playlist-title">${playlistInfo.snippet.title}</h1>
-				<div>${playlistInfo.snippet.description}</div>
+				<h1 class="playlist-title">${pl.playlistInfo.snippet.title} ( ${pl.videos.length} videos)</h1>
+				<div>${pl.playlistInfo.snippet.description}</div>
 
 
 			 `;
@@ -179,7 +179,7 @@
 						$(".playlist").html(pl.videos.map(itemTemplate).join(''))
 					},
 					renderPlaylistInfo = function renderPlaylistInfo(pl){
-						$(".playlist-info").html(playlistInfoTemplate(pl.playlistInfo))
+						$(".playlist-info").html(playlistInfoTemplate(pl))
 
 					},
 					sortBy = function sortBy (pl, countField){

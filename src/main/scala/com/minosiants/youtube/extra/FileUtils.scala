@@ -1,9 +1,11 @@
 package com.minosiants
 package youtube.extra
 
-import java.io.{ File, PrintWriter }
+import java.io.{File, InputStream, PrintWriter}
+import java.net.URL
 
 import cats.effect.IO
+
 import scala.util.Try
 
 object FileUtils {
@@ -15,15 +17,15 @@ object FileUtils {
       p.close()
     })
 
-  def loadFile(name: String): IO[String] =
-    IO {
-      val f = getClass().getClassLoader().getResource(name).toURI
-      scala.io.Source.fromFile(f)
-    }.bracket { s =>
-      IO(s.mkString)
-    } { s =>
-      IO(s.close())
-    }
+
+
+  def loadFile(file: String): IO[String] =
+    IO.fromTry(Try {
+      val is = getClass().getResourceAsStream(file)
+      val result = scala.io.Source.fromInputStream(is).mkString
+      is.close()
+      result
+    })
 
   def mkParentDirs(file: File): IO[Unit] =
     IO.fromTry(Try[Unit] {
