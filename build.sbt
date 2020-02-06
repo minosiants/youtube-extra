@@ -16,7 +16,7 @@ lazy val root = (project in file("."))
     version := "0.0.1",
     scalaVersion := "2.13.1",
     mainClass in assembly := Some("com.minosiants.youtube.extra.Main"),
-    assemblyJarName in assembly := s"youtube-extra-${(version in ThisBuild).value}.jar",
+    assemblyJarName in assembly := s"youtube-extra-${(version in Compile).value}.jar",
     libraryDependencies ++= Seq(
       "org.typelevel"              %% "cats-core"                  % catsVersion,
       "org.http4s"                 %% "http4s-blaze-client"        % http4sVersion,
