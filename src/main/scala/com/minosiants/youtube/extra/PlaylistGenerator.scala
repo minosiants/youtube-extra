@@ -16,8 +16,8 @@ object PlaylistGenerator {
       destination: File
   ): IO[Unit] = {
 
-    val json = escape(playlist).asJson.noSpaces
-    val filename = titleToFilename(playlist)
+    val json         = escape(playlist).asJson.noSpaces
+    val filename     = titleToFilename(playlist)
     val playlistFile = destination / s"$filename.html"
 
     for {
@@ -28,12 +28,12 @@ object PlaylistGenerator {
     } yield ()
   }
 
-  private def escape(playlist:FullPlaylist):FullPlaylist = {
+  private def escape(playlist: FullPlaylist): FullPlaylist = {
     val pl =
       FullPlaylist.playlistTitleAndDescriptionLens.modify(escapeHtml)(playlist)
-      FullPlaylist.videoTitleAndDescriptionLens.modify(escapeHtml)(pl)
+    FullPlaylist.videoTitleAndDescriptionLens.modify(escapeHtml)(pl)
   }
-  private def titleToFilename(playlist:FullPlaylist):String = {
+  private def titleToFilename(playlist: FullPlaylist): String = {
     playlist.playlistInfo.snippet.title.toLowerCase.replaceAll("\\s+", "-")
   }
 }

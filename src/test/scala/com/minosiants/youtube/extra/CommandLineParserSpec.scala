@@ -48,5 +48,17 @@ class CommandLineParserSpec extends YoutubeDataSpec {
         NoRequiredArguments("'-id' and '-t' should be provided for playlist")
       )
     }
+
+    "parse playlist command without options" in {
+      val result = CommandLineParser
+        .parseArgs(
+          List("playlist")
+        )
+        .attempt
+        .unsafeRunSync()
+      result mustEqual Left(
+        NoRequiredArguments("'-id' and '-t' should be provided for playlist")
+      )
+    }
   }
 }

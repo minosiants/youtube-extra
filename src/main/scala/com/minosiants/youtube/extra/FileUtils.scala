@@ -1,7 +1,7 @@
 package com.minosiants
 package youtube.extra
 
-import java.io.{File, InputStream, PrintWriter}
+import java.io.{ File, InputStream, PrintWriter }
 import java.net.URL
 
 import cats.effect.IO
@@ -17,11 +17,9 @@ object FileUtils {
       p.close()
     })
 
-
-
   def loadFile(file: String): IO[String] =
     IO.fromTry(Try {
-      val is = getClass().getResourceAsStream(file)
+      val is     = getClass().getResourceAsStream(file)
       val result = scala.io.Source.fromInputStream(is).mkString
       is.close()
       result
