@@ -10,10 +10,13 @@ val wiremockVersion = "2.25.1"
 
 lazy val root = (project in file("."))
   .settings(
+    
     organization := "com.minosiatns",
     name := "youtube-extra",
     version := "0.0.1-SNAPSHOT",
     scalaVersion := "2.13.1",
+    mainClass in assembly := Some("com.minosiants.youtube.extra.Main"),
+
     libraryDependencies ++= Seq(
       "org.typelevel"              %% "cats-core"                  % catsVersion,
       "org.http4s"                 %% "http4s-blaze-client"        % http4sVersion,
@@ -32,3 +35,4 @@ lazy val root = (project in file("."))
     addCompilerPlugin("org.typelevel" %% "kind-projector"     % "0.10.3"),
     addCompilerPlugin("com.olegpy"    %% "better-monadic-for" % "0.3.0")
   )
+
