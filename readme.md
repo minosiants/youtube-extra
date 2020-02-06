@@ -34,3 +34,7 @@ playlist -id PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt -t ya29.ImS9ByJmfJwEzLMvajfDecCx
  3. Copy token from Authorization header
  
 ![How to get token](docs/images/how-to-get-token.png?raw=true "How to get token")
+
+
+### Generated sample
+[scala days lausanne 2019](docs/scala-days-lausanne-2019)
