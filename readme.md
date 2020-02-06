@@ -25,7 +25,7 @@ youtube-extra playlist -id {playlistId} -t {oauth token}
 ```
 example
 ```
-playlist -id PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt -t ya29.ImS9ByJmfJwEzLMvajfDecCxMcHUb5QEOhO_ZDi7XELLhcbzFiNb9UzwRcVqVa1KxlQU27z9xFO_m57lK1vkeC17PxVVFuFo_9Nn4YPb00aRHJbNQXhF77KMDS-Qhpo6zOFnnArf 
+youtube-extra playlist -id PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt -t ya29.ImS9ByJmfJwEzLMvajfDecCxMcHUb5QEOhO_ZDi7XELLhcbzFiNb9UzwRcVqVa1KxlQU27z9xFO_m57lK1vkeC17PxVVFuFo_9Nn4YPb00aRHJbNQXhF77KMDS-Qhpo6zOFnnArf 
 ```
 
 ### How to get oauth token
