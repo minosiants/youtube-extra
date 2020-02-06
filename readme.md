@@ -37,4 +37,4 @@ playlist -id PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt -t ya29.ImS9ByJmfJwEzLMvajfDecCx
 
 
 ### Generated sample
-[scala days lausanne 2019](../master/docs/scala-days-lausanne-2019)
+[scala days lausanne 2019](../master/docs/scala-days-lausanne-2019.html)
