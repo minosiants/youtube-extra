@@ -16,7 +16,6 @@ object Main extends IOApp {
 
   implicit val cs: ContextShift[IO] = IO.contextShift(global)
 
-
   def playlist(
       playlistId: String,
       token: String,
@@ -42,7 +41,7 @@ object Main extends IOApp {
         case PlaylistCommand(playlistId, token, Some(destination)) =>
           playlist(playlistId, token, destination)
         case PlaylistCommand(playlistId, token, None) =>
-          playlist(playlistId, token, new File(s"./$playlistId.html"))
+          playlist(playlistId, token, new File("."))
       }
       .attempt
       .flatMap {

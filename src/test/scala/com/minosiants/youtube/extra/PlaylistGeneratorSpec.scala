@@ -11,7 +11,7 @@ class PlaylistGeneratorSpec extends YoutubeDataSpec with CatsIO {
   "PlaylistGenerator" should {
 
     "create playlist" in {
-      val destination = new File("target/playlist/test.html")
+      val destination = new File("target/playlist")
       (for {
         playlist <- decodeJson[YoutubeDataPlaylists]("__files/playlists.json")
           .map(_.items.head)
