@@ -1,25 +1,36 @@
 
 # youtube-extra
-Goal is to implement some extra useful functionality using youtube data api
+Goal is to implement some extra useful functionality using youtube data api.
 
+## Functionality available 
 ### Generate playlist videos html page
 Main goal is to be able to sort playlist videos by videos statistics data (views, likes, dislikes, comments) 
+
+### Installation
+```
+curl -Lo ~/bin/youtube-extra https://raw.githubusercontent.com/minosiants/youtube-extra/master/youtube-extra
+chmod 777 ~/bin/youtube-extra
+```
  
 
 ### How to use
 
-TODO
+#### playlist
+```
+youtube-extra playlist -id {playlistId} -t {oauth token}
 
-https://developers.google.com/youtube/v3/docs/playlistItems/list
-https://developers.google.com/youtube/v3/docs/videos/list
+-id - playlist id from youtube
+-t  - oauth token (see instuctons below)
 
-https://content.googleapis.com/youtube/v3/playlistItems?maxResults=25&part=snippet%2CcontentDetails&playlistId=PLBCF2DAC6FFB574DE&key=AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM
+```
+example
+```
+playlist -id PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt -t ya29.ImS9ByJmfJwEzLMvajfDecCxMcHUb5QEOhO_ZDi7XELLhcbzFiNb9UzwRcVqVa1KxlQU27z9xFO_m57lK1vkeC17PxVVFuFo_9Nn4YPb00aRHJbNQXhF77KMDS-Qhpo6zOFnnArf 
+```
 
-
-
-
-curl \
-  'https://www.googleapis.com/youtube/v3/playlistItems?key=[YOUR_API_KEY]' \
-  --header 'Authorization: Bearer [YOUR_ACCESS_TOKEN]' \
-  --header 'Accept: application/json' \
-  --compressed
+### How to get oauth token
+ 1. Go to https://tinyurl.com/vltl9p
+ 2. Execute a request in web console
+ 3. Copy token from Authorization header
+ 
+![How to get token](docs/images/how-to-get-token.png?raw=true "How to get token")
