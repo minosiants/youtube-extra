@@ -1,13 +1,12 @@
 package com.minosiants
 package youtube.extra
 
-import cats.data.EitherT
 import cats.effect.IO
 import org.http4s.client.dsl.io._
 import org.http4s._
 import org.http4s.client.Client
 import org.http4s.headers.{ Accept, Authorization }
-import YoutubeDataClient._
+import cats.implicits._
 
 final case class YoutubeDataAccessProps(key: String, token: String)
 
@@ -46,6 +45,7 @@ final case class YoutubeDataClient(
   }
 
   def getVideos(ids: List[String]): IO[List[YoutubeDataVideo]] = {
+
     val request = get(videosUri(ids))
     client.expect[YoutubeDataVideos](request)
 
@@ -61,8 +61,8 @@ final case class YoutubeDataClient(
       ids = playlistItems
         .filter(_.notPrivate)
         .map(_.snippet.resourceId.videoId)
-      videos <- getVideos(ids)
-    } yield FullPlaylist(playlist, videos)
+      videos <- ids.grouped(40).toList.map(getVideos).sequence
+    } yield FullPlaylist(playlist, videos.flatten)
 
   }
 
