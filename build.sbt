@@ -13,7 +13,7 @@ lazy val root = (project in file("."))
 
     organization := "com.minosiatns",
     name := "youtube-extra",
-    version := "0.0.1",
+    version := "0.0.2",
     scalaVersion := "2.13.1",
     mainClass in assembly := Some("com.minosiants.youtube.extra.Main"),
     assemblyJarName in assembly := s"youtube-extra-${(version in Compile).value}.jar",
