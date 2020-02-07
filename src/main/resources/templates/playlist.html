@@ -3,7 +3,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/arcticicestudio/nord/develop/src/nord.css">
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		
+		<script src="https://momentjs.com/downloads/moment.min.js"></script>
 		<style type="text/css" media="screen">
 			html, body, div, span, applet, object, iframe,
 		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -56,6 +56,7 @@
 			background-color: #2e3440 ;
 			color: #e5e9f0;
 			margin: 3rem;
+			line-height: 1.5rem;
 		}
 		.container{
 			width: 80%;
@@ -141,8 +142,7 @@
 						<h3 class="title description-item"><a target="_blank" href="https://www.youtube.com/watch?v=${item.id}">${item.snippet.title}</a></h3>
 						<div class ="description description-item">${item.snippet.description}</div>
 						<div class="published-at description-item">
-							<span class="label"> published</span>
-							<span class="label">${item.snippet.publishedAt}</span>
+							<span class="label">${moment(item.snippet.publishedAt).format("MMM Do YYYY")}</span>
 						</div>
 					</div>
 				</div>
