@@ -1,10 +1,11 @@
 <html>
-	<header>
-		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/arcticicestudio/nord/develop/src/nord.css">
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		<script src="https://momentjs.com/downloads/moment.min.js"></script>
-		<style type="text/css" media="screen">
+<header>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+          href="https://raw.githubusercontent.com/arcticicestudio/nord/develop/src/nord.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <style type="text/css" media="screen">
 			html, body, div, span, applet, object, iframe,
 		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 		a, abbr, acronym, address, big, cite, code,
@@ -129,9 +130,44 @@
 			background-color: #e5e9f0 ;
 			color: #2e3440;
 		}
-		</style>
-		<script type="text/javascript">
+
+    </style>
+    <script type="text/javascript">
 			const playlist = JSON.parse(`@playlist@`);
+			const formatVideoTime = function formatVideoTime(time){
+						const duration = moment.duration(time),
+							  format = duration.asHours() > 0 ? "mm:ss" : "HH:mm:ss";
+
+						return moment.utc(duration.asMilliseconds()).format(format)
+					},
+
+				  renderPlaylist = function renderPlaylist(pl){
+						$(".playlist").html(pl.videos.map(itemTemplate).join(''))
+				  },
+
+				  renderPlaylistInfo = function renderPlaylistInfo(pl){
+						$(".playlist-info").html(playlistInfoTemplate(pl))
+
+				   },
+
+					sortBy = function sortBy (pl, countField){
+
+						var items = pl.videos.sort(function(a, b){
+								var aa = parseInt(a.statistics[countField]),
+									bb = parseInt(b.statistics[countField]);
+
+								if( aa < bb)
+									return 1;
+								if( aa > bb)
+									return -1;
+								return 0;
+							});
+						return {playlistInfo:pl.playlistInfo,videos:items};
+				    },
+				   sortAndRender = function sortAndRender(pl, countField){
+						var _pl =  sortBy(pl, countField)
+						renderPlaylist(_pl);
+				   };
 			const itemTemplate = ( item ) => `
 			  <li class="item">
 				<div class="thumbnail">
@@ -143,6 +179,7 @@
 						<div class ="description description-item">${item.snippet.description}</div>
 						<div class="published-at description-item">
 							<span class="label">${moment(item.snippet.publishedAt).format("MMM Do YYYY")}</span>
+							<span class="label">${formatVideoTime(item.contentDetails.duration)}</span>
 						</div>
 					</div>
 				</div>
@@ -219,23 +256,24 @@
 				//$(".number-of-videos").html(playlist.length);
 
 			});
-		</script>
-	</header>
-	<body>
-		<div class ="container">
-		<header class="playlist-info">
-			<h1 class="playlist-title">Play list</h1>
-		</header>
-		<span class="label number-of-videos"></span>
-		<ul class="sorting-menu">
-			<li><a class="sorting-option" data="commentCount"  href="">comments</a></li>
-			<li><a class="sorting-option" data="favoriteCount" href="">favorites</a></li>
-			<li><a class="sorting-option" data="dislikeCount" href="">dislikes</a></li>
-			<li><a class="sorting-option selected" data="viewCount" href="">views</a></li>
-		</ul>
-		<ul class ="playlist">
 
-		</ul>
-		</div>
-	</body>
+    </script>
+</header>
+<body>
+<div class="container">
+    <header class="playlist-info">
+        <h1 class="playlist-title">Play list</h1>
+    </header>
+    <span class="label number-of-videos"></span>
+    <ul class="sorting-menu">
+        <li><a class="sorting-option" data="commentCount" href="">comments</a></li>
+        <li><a class="sorting-option" data="favoriteCount" href="">favorites</a></li>
+        <li><a class="sorting-option" data="dislikeCount" href="">dislikes</a></li>
+        <li><a class="sorting-option selected" data="viewCount" href="">views</a></li>
+    </ul>
+    <ul class="playlist">
+
+    </ul>
+</div>
+</body>
 </html>

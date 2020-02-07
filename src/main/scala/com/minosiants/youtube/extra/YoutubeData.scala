@@ -55,9 +55,15 @@ final case class YoutubeDataVideoStatistics(
     favoriteCount: String,
     commentCount: String
 )
+final case class YoutubeDataVideoContentDetails(
+    duration: String,
+    dimension: String
+)
+
 final case class YoutubeDataVideo(
     id: String,
     snippet: YoutubeDataVideoSnippet,
+    contentDetails: YoutubeDataVideoContentDetails,
     statistics: YoutubeDataVideoStatistics
 )
 

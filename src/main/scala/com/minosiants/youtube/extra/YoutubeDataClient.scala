@@ -73,7 +73,7 @@ final case class YoutubeDataClient(
     apiUri / "playlistItems" +? ("key", accessProps.key) +? ("playlistId", playlistId) +? ("part", "snippet") +? ("maxResults", 15)
 
   private def videosUri(ids: List[String]): Uri =
-    apiUri / "videos" +? ("key", accessProps.key) +? ("id", ids.mkString(",")) +? ("part", "snippet,statistics") +? ("maxResults", 15)
+    apiUri / "videos" +? ("key", accessProps.key) +? ("id", ids.mkString(",")) +? ("part", "snippet,statistics,contentDetails") +? ("maxResults", 15)
 
   private def get(uri: Uri): IO[Request[IO]] = Method.GET(
     uri,
