@@ -164,6 +164,8 @@
 					sortBy = function sortBy (pl, countField){
 
 						var items = pl.videos.sort(function(a, b){
+						        if(a.statistics.countField == null)
+						            return 0;
 								var aa = parseInt(a.statistics[countField]),
 									bb = parseInt(b.statistics[countField]);
 
@@ -208,7 +210,7 @@
 						<span class="label">favorites</span>
 					</li>
 					<li class="statistics">
-						<span class="label comment-count">${item.statistics.commentCount}</span>
+						<span class="label comment-count">${item.statistics.commentCount || 0}</span>
 						<span class="label">comments</span>
 					</li>
 				</ul>
