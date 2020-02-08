@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css"
           href="https://raw.githubusercontent.com/arcticicestudio/nord/develop/src/nord.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@1.22.0/build/global/luxon.min.js"></script>
     <style type="text/css" media="screen">
 			html, body, div, span, applet, object, iframe,
 		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -79,6 +79,15 @@
 		.thumbnail-video{
 			float: left;
 			display: inline;
+			position: relative;
+		}
+		.thumbnail-video-duration{
+			background:#2e3440 ;
+			position: absolute;
+			bottom: 1rem;
+			right: 1rem;
+			padding: 0.5rem 1rem;
+
 		}
 		.thumbnail-description{
 			float: left;
@@ -134,11 +143,13 @@
     </style>
     <script type="text/javascript">
 			const playlist = JSON.parse(`@playlist@`);
-			const formatVideoTime = function formatVideoTime(time){
-						const duration = moment.duration(time),
-							  format = duration.asHours() > 0 ? "mm:ss" : "HH:mm:ss";
+			const DateTime = luxon.DateTime,
+				  Duration = luxon.Duration,
+			      formatVideoTime = function formatVideoTime(time){
+						const duration = Duration.fromISO(time),
+							  format = duration.hours < 0 ? "mm:ss" : "HH:mm:ss";
 
-						return moment.utc(duration.asMilliseconds()).format(format)
+						return duration.toFormat("mm:ss");
 					},
 
 				  renderPlaylist = function renderPlaylist(pl){
@@ -171,15 +182,15 @@
 			const itemTemplate = ( item ) => `
 			  <li class="item">
 				<div class="thumbnail">
-					<img class="thumbnail-video" src="${item.snippet.thumbnails.medium.url}"></img>
+					<div class="thumbnail-video">
+                        <img src="${item.snippet.thumbnails.medium.url}"></img>
+                        <span class="thumbnail-video-duration label">${formatVideoTime(item.contentDetails.duration)}</span>
+					</div>
 					<div class="thumbnail-description">
-
-
 						<h3 class="title description-item"><a target="_blank" href="https://www.youtube.com/watch?v=${item.id}">${item.snippet.title}</a></h3>
 						<div class ="description description-item">${item.snippet.description}</div>
 						<div class="published-at description-item">
-							<span class="label">${moment(item.snippet.publishedAt).format("MMM Do YYYY")}</span>
-							<span class="label">${formatVideoTime(item.contentDetails.duration)}</span>
+							<span class="label">${DateTime.fromISO(item.snippet.publishedAt).toLocaleString(DateTime.DATE_MED)}</span>
 						</div>
 					</div>
 				</div>
@@ -205,8 +216,9 @@
 			`;
 			 const playlistInfoTemplate = ( pl ) => `
 
-				<h1 class="playlist-title">${pl.playlistInfo.snippet.title} ( ${pl.videos.length} videos)</h1>
+				<h1 class="playlist-title"><a target="_blank" href="https://www.youtube.com/playlist?list=${pl.playlistInfo.id}">${pl.playlistInfo.snippet.title} ( ${pl.videos.length} videos)</a></h1>
 				<div>${pl.playlistInfo.snippet.description}</div>
+				<div><a target="_blank" href="https://www.youtube.com/channel/${pl.playlistInfo.snippet.channelId}">${pl.playlistInfo.snippet.channelTitle}</a></div>
 
 
 			 `;
