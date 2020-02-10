@@ -18,20 +18,23 @@ case class YoutubeExtraApp()(
     implicit val c: Console
 ) {
 
+  private def withClient[A](
+      token: String
+  )(f: YoutubeDataClient => IO[A]): IO[A] =
+    BlazeClientBuilder[IO](ec).resource.use(
+      client => f(YoutubeDataClient(client, apiUri, props(googleAppKey, token)))
+    )
+
   def playlist(
       playlistId: String,
       token: String,
       destination: File
-  ): IO[Unit] =
-    BlazeClientBuilder[IO](ec).resource
-      .use { client =>
-        val ydClient =
-          YoutubeDataClient(client, apiUri, props(googleAppKey, token))
-        for {
-          playlist <- ydClient.getFullPlaylist(playlistId)
-          _        <- createPlaylist(playlist, destination)
-        } yield ()
-      }
+  ): IO[Unit] = withClient[Unit](token) { client =>
+    for {
+      playlist <- client.getFullPlaylist(playlistId)
+      _        <- createPlaylist(playlist, destination)
+    } yield ()
+  }
 
   def help(): IO[Unit] = IO {
     val message =
