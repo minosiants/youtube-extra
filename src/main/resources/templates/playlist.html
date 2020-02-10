@@ -202,7 +202,11 @@
 						<span  class="label">views</span>
 					</li>
 					<li>
-						<span class="label dislike-count" >${item.statistics.dislikeCount}</span>
+						<span class="label dislike-count" >${item.statistics.likeCount || 0}</span>
+						<span class="label">likes</span>
+					</li>
+					<li>
+						<span class="label dislike-count" >${item.statistics.dislikeCount || 0}</span>
 						<span class="label">dislikes</span>
 					</li>
 					<li>
@@ -283,6 +287,7 @@
         <li><a class="sorting-option" data="commentCount" href="">comments</a></li>
         <li><a class="sorting-option" data="favoriteCount" href="">favorites</a></li>
         <li><a class="sorting-option" data="dislikeCount" href="">dislikes</a></li>
+        <li><a class="sorting-option" data="likeCount" href="">likes</a></li>
         <li><a class="sorting-option selected" data="viewCount" href="">views</a></li>
     </ul>
     <ul class="playlist">

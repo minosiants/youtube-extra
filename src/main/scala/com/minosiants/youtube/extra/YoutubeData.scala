@@ -50,8 +50,8 @@ final case class YoutubeDataVideoSnippet(
 )
 final case class YoutubeDataVideoStatistics(
     viewCount: String,
-    likeCount: String,
-    dislikeCount: String,
+    likeCount: Option[String],
+    dislikeCount: Option[String],
     favoriteCount: String,
     commentCount: Option[String]
 )

@@ -1,0 +1,644 @@
+{
+  "kind": "youtube#videoListResponse",
+  "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/3eNmSQPx-ydSCt05elSGTWU5_HY\"",
+  "pageInfo": {
+    "totalResults": 10,
+    "resultsPerPage": 10
+  },
+  "items": [
+    {
+      "kind": "youtube#video",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/ezDvyZPbC66AbOqQWhmtlkg-W7Q\"",
+      "id": "1h8xNBykZqM",
+      "snippet": {
+        "publishedAt": "2019-07-12T16:06:17.000Z",
+        "channelId": "UC-CzKrmtV55SlW2eL3k1RRQ",
+        "title": "Keynote: Some Mistakes We Made When Designing Implicits – Martin Odersky",
+        "description": "We will talk about the history how Scala's implicits evolved, and about some of the mistakes we could have avoided in hindsight, but also about things that I believe we got right. I'll conclude with a presentation of revised implicits in Scala 3 which fixes most of the current problems and hopefully does not create too many new ones.\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nMartin Odersky is professor at EPFL, coordinating the LAMP group.\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/1h8xNBykZqM/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/1h8xNBykZqM/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/1h8xNBykZqM/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/1h8xNBykZqM/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/1h8xNBykZqM/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Typelevel",
+        "tags": [
+          "typelevel",
+          "functional programming"
+        ],
+        "categoryId": "28",
+        "liveBroadcastContent": "none",
+        "localized": {
+          "title": "Keynote: Some Mistakes We Made When Designing Implicits – Martin Odersky",
+          "description": "We will talk about the history how Scala's implicits evolved, and about some of the mistakes we could have avoided in hindsight, but also about things that I believe we got right. I'll conclude with a presentation of revised implicits in Scala 3 which fixes most of the current problems and hopefully does not create too many new ones.\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nMartin Odersky is professor at EPFL, coordinating the LAMP group.\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "defaultAudioLanguage": "en"
+      },
+      "contentDetails": {
+        "duration": "PT48M23S",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": false,
+        "projection": "rectangular"
+      },
+      "statistics": {
+        "viewCount": "2490",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
+    {
+      "kind": "youtube#video",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/k4qr_I6Ip26QsVOjX7WUr1KT6ek\"",
+      "id": "QoRm47x8gv8",
+      "snippet": {
+        "publishedAt": "2019-06-22T08:29:04.000Z",
+        "channelId": "UC-CzKrmtV55SlW2eL3k1RRQ",
+        "title": "Brave New World, tales of PureScript and Haskell in production – Felix Mulder",
+        "description": "The rumours are true. Writing code in purely functional languages tends to produce code that is much easier to read, modify and reason about. This talk examines how an experienced Scala team transitioned into writing production code using PureScript in AWS lambda, and services using Haskell.\n\n* Material *\n\nSlides: https://drive.google.com/file/d/0B2VO2DyaJtgzanZ2c21ER2FLQVE1b2EzVEo4WVFZYkJoZGQw/view?usp=sharing\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nFormer Scala 3 Compiler Engineer at LAMP, EPFL. Currently writes code for Snoop Dogg, building the next generation of banking at the Swedish payments company Klarna.\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/QoRm47x8gv8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/QoRm47x8gv8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/QoRm47x8gv8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/QoRm47x8gv8/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/QoRm47x8gv8/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Typelevel",
+        "tags": [
+          "functional programming",
+          "typelevel",
+          "haskell",
+          "scala",
+          "purescript"
+        ],
+        "categoryId": "28",
+        "liveBroadcastContent": "none",
+        "localized": {
+          "title": "Brave New World, tales of PureScript and Haskell in production – Felix Mulder",
+          "description": "The rumours are true. Writing code in purely functional languages tends to produce code that is much easier to read, modify and reason about. This talk examines how an experienced Scala team transitioned into writing production code using PureScript in AWS lambda, and services using Haskell.\n\n* Material *\n\nSlides: https://drive.google.com/file/d/0B2VO2DyaJtgzanZ2c21ER2FLQVE1b2EzVEo4WVFZYkJoZGQw/view?usp=sharing\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nFormer Scala 3 Compiler Engineer at LAMP, EPFL. Currently writes code for Snoop Dogg, building the next generation of banking at the Swedish payments company Klarna.\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "defaultAudioLanguage": "en"
+      },
+      "contentDetails": {
+        "duration": "PT28M57S",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": false,
+        "projection": "rectangular"
+      },
+      "statistics": {
+        "viewCount": "1002",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
+    {
+      "kind": "youtube#video",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/cYdDIIyOnJn0Rx6IWa16eL52gpU\"",
+      "id": "wO_jX8wGhU0",
+      "snippet": {
+        "publishedAt": "2019-06-22T08:32:09.000Z",
+        "channelId": "UC-CzKrmtV55SlW2eL3k1RRQ",
+        "title": "Actors Design Patterns and Arrowised FRP – Diego Alonso",
+        "description": "Object-oriented design patterns combine basic language features to solve coding problems in an extensible way. In functional Scala, we solve those coding problems with functions, combinators, and type-classes, so design patterns are less relevant. Actor design patterns combine basic features of the actors to solve coding problems in an extensible way. Arrowised functional reactive programming (based on languages like Scala and Haskell also offers a way to solve those coding problem using functions, combinators, and type-classes. This talk describes a prototype implementation of AFRP and its primitive types and functions, discusses its similarities to actors, and then describes how some actor design patterns in the existing literature corresponds to constructions of AFRP.\n\n* Material *\n\nSlides: https://www.slideshare.net/diesalbla/actors-and-functionalreactiveprogramming\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/wO_jX8wGhU0/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/wO_jX8wGhU0/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/wO_jX8wGhU0/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/wO_jX8wGhU0/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/wO_jX8wGhU0/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Typelevel",
+        "tags": [
+          "typelevel",
+          "functional programming",
+          "scala"
+        ],
+        "categoryId": "28",
+        "liveBroadcastContent": "none",
+        "localized": {
+          "title": "Actors Design Patterns and Arrowised FRP – Diego Alonso",
+          "description": "Object-oriented design patterns combine basic language features to solve coding problems in an extensible way. In functional Scala, we solve those coding problems with functions, combinators, and type-classes, so design patterns are less relevant. Actor design patterns combine basic features of the actors to solve coding problems in an extensible way. Arrowised functional reactive programming (based on languages like Scala and Haskell also offers a way to solve those coding problem using functions, combinators, and type-classes. This talk describes a prototype implementation of AFRP and its primitive types and functions, discusses its similarities to actors, and then describes how some actor design patterns in the existing literature corresponds to constructions of AFRP.\n\n* Material *\n\nSlides: https://www.slideshare.net/diesalbla/actors-and-functionalreactiveprogramming\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "defaultAudioLanguage": "en"
+      },
+      "contentDetails": {
+        "duration": "PT34M42S",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": false,
+        "projection": "rectangular"
+      },
+      "statistics": {
+        "viewCount": "700",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
+    {
+      "kind": "youtube#video",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/WtFGkbOs26AE9GFWcLv4sbS8-AY\"",
+      "id": "han6vHzPLsY",
+      "snippet": {
+        "publishedAt": "2019-06-22T08:34:52.000Z",
+        "channelId": "UC-CzKrmtV55SlW2eL3k1RRQ",
+        "title": "Taking Resources to the Type Level – Vilem-Benjamin Liepelt",
+        "description": "With the Granule project, we are working towards making statically typed functional languages more resource-aware, hence providing a way to enforce stateful protocols regarding memory, file handles, network interaction, etc. Static enforcement of security policies and first-class support for multi-stage programming are further examples of what is possible in a type system based on Linear Logic and Graded Modalities. We present Granule, a functional programming language which combines parametric polymorphism and indexed types with such a type system. Granule programs will probably look very familiar to you, especially if you know some Haskell/ML, but in Granule’s type system we can reason about much more. Hillel Wayne’s Great Theorem Prover Showdown has made a point of the fact that there are many things we can’t easily reason about with functional (programming | proving)—up until now! We will implement leftPad in Granule and prove it correct with little more effort that writing the type signatures. We will then breeze through how Granule’s type system very naturally supports session-typed channels and safe mutable arrays.\n\n* Material *\n\nSlides: https://drive.google.com/file/d/0B2VO2DyaJtgzOG1aTEJLRTBrMXkzMnFPTTFSX2NLUWZDcTRB/view?usp=sharing\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nI believe in static types & thoughtfully crafted APIs, good communication & documentation, and open-mindedness & fearless prototyping.\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/han6vHzPLsY/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/han6vHzPLsY/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/han6vHzPLsY/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/han6vHzPLsY/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/han6vHzPLsY/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Typelevel",
+        "tags": [
+          "functional programming",
+          "typelevel"
+        ],
+        "categoryId": "28",
+        "liveBroadcastContent": "none",
+        "localized": {
+          "title": "Taking Resources to the Type Level – Vilem-Benjamin Liepelt",
+          "description": "With the Granule project, we are working towards making statically typed functional languages more resource-aware, hence providing a way to enforce stateful protocols regarding memory, file handles, network interaction, etc. Static enforcement of security policies and first-class support for multi-stage programming are further examples of what is possible in a type system based on Linear Logic and Graded Modalities. We present Granule, a functional programming language which combines parametric polymorphism and indexed types with such a type system. Granule programs will probably look very familiar to you, especially if you know some Haskell/ML, but in Granule’s type system we can reason about much more. Hillel Wayne’s Great Theorem Prover Showdown has made a point of the fact that there are many things we can’t easily reason about with functional (programming | proving)—up until now! We will implement leftPad in Granule and prove it correct with little more effort that writing the type signatures. We will then breeze through how Granule’s type system very naturally supports session-typed channels and safe mutable arrays.\n\n* Material *\n\nSlides: https://drive.google.com/file/d/0B2VO2DyaJtgzOG1aTEJLRTBrMXkzMnFPTTFSX2NLUWZDcTRB/view?usp=sharing\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nI believe in static types & thoughtfully crafted APIs, good communication & documentation, and open-mindedness & fearless prototyping.\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "defaultAudioLanguage": "en"
+      },
+      "contentDetails": {
+        "duration": "PT35M43S",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": false,
+        "projection": "rectangular"
+      },
+      "statistics": {
+        "viewCount": "728",
+        "favoriteCount": "0",
+        "commentCount": "1"
+      }
+    },
+    {
+      "kind": "youtube#video",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/epuFRtn4FF0tiIrcGSLTuZ35hNs\"",
+      "id": "xJPnzqTgT5k",
+      "snippet": {
+        "publishedAt": "2019-07-04T06:25:52.000Z",
+        "channelId": "UC-CzKrmtV55SlW2eL3k1RRQ",
+        "title": "Lord of the rings: the Spire numerical towers – Denis Rosset",
+        "description": "Spire defines around 80 typeclasses, including 30 coming from algebra and cats-kernel. We’ll see how much of that structure is dictated by mathematical laws, and which parts are the result of design decisions that balance different tradeoffs. In particular, we’ll discuss the different roles played by typeclasses in the Scala ecosystem:\n\n- as encoding operations obeying well-defined laws,\n- as enabling the use of a particular syntax for those operations, if possible close to the mathematical notation of a domain (and subfields often disagree on the notation!),\n- defining a context in which a combination of typeclasses implicitly imposes additional laws (for example, the ordering of numbers and addition),\n- enabling the user to change the variant of a relation being used (Order),\n- singling out one variant of a structure as canonical (cats: the additive Group for integers),\n- as selecting a particular algorithm for an operation (integer factorization: deterministic or Monte-Carlo).\n\nIt quickly becomes apparent that these roles conflict. With this in mind, we’ll have a look at some design choices made in Spire. We’ll discuss success stories, such as the clarification of the laws of the % operator, the commutative ring tower that formalizes integer factorization and Euclidean division. We’ll also discuss parts where trade offs have been made, such as the triplication of group structures (Group, AdditiveGroup, MultiplicativeGroup), the problem of coherent instances, especially when various typeclasses are combined. Time permitting, we’ll also discuss issues with law-based property checks (precision, range, time and memory complexity).\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nI’m a researcher in quantum physics with a strong interest in convex optimization and numerical/symbolical computing. I’ve been using Scala&Play since I wanted to build a database of research results, and Play seemed to be a reasonable solution. I fell in love with the Scala language since then, and am contributing to its open source ecosystem (Spire + personal libraries for mathematical computations).\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/xJPnzqTgT5k/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/xJPnzqTgT5k/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/xJPnzqTgT5k/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/xJPnzqTgT5k/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/xJPnzqTgT5k/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Typelevel",
+        "tags": [
+          "functional programming",
+          "typelevel"
+        ],
+        "categoryId": "28",
+        "liveBroadcastContent": "none",
+        "localized": {
+          "title": "Lord of the rings: the Spire numerical towers – Denis Rosset",
+          "description": "Spire defines around 80 typeclasses, including 30 coming from algebra and cats-kernel. We’ll see how much of that structure is dictated by mathematical laws, and which parts are the result of design decisions that balance different tradeoffs. In particular, we’ll discuss the different roles played by typeclasses in the Scala ecosystem:\n\n- as encoding operations obeying well-defined laws,\n- as enabling the use of a particular syntax for those operations, if possible close to the mathematical notation of a domain (and subfields often disagree on the notation!),\n- defining a context in which a combination of typeclasses implicitly imposes additional laws (for example, the ordering of numbers and addition),\n- enabling the user to change the variant of a relation being used (Order),\n- singling out one variant of a structure as canonical (cats: the additive Group for integers),\n- as selecting a particular algorithm for an operation (integer factorization: deterministic or Monte-Carlo).\n\nIt quickly becomes apparent that these roles conflict. With this in mind, we’ll have a look at some design choices made in Spire. We’ll discuss success stories, such as the clarification of the laws of the % operator, the commutative ring tower that formalizes integer factorization and Euclidean division. We’ll also discuss parts where trade offs have been made, such as the triplication of group structures (Group, AdditiveGroup, MultiplicativeGroup), the problem of coherent instances, especially when various typeclasses are combined. Time permitting, we’ll also discuss issues with law-based property checks (precision, range, time and memory complexity).\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nI’m a researcher in quantum physics with a strong interest in convex optimization and numerical/symbolical computing. I’ve been using Scala&Play since I wanted to build a database of research results, and Play seemed to be a reasonable solution. I fell in love with the Scala language since then, and am contributing to its open source ecosystem (Spire + personal libraries for mathematical computations).\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "defaultAudioLanguage": "en"
+      },
+      "contentDetails": {
+        "duration": "PT31M38S",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": false,
+        "projection": "rectangular"
+      },
+      "statistics": {
+        "viewCount": "208",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
+    {
+      "kind": "youtube#video",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/bqtbEsnpuP1PtvXTxqdu-Pza-UQ\"",
+      "id": "K1ZwpumSHCc",
+      "snippet": {
+        "publishedAt": "2019-07-04T06:28:06.000Z",
+        "channelId": "UC-CzKrmtV55SlW2eL3k1RRQ",
+        "title": "Formal verification of Scala programs with Stainless – Romain Ruetschi",
+        "description": "Everyone knows that writing bug-free code is fundamentally difficult, and that bugs will sometimes sneak in even in the presence of unit- or property-based tests. One solution to this problem is formal software verification. Formal verification allows users to statically verify that software systems will never crash nor diverge, and will in addition satisfy given functional correctness properties. In this talk, I will present Stainless, a verification system for an expressive subset of Scala. I will start by explaining what formal verification is, what are some of the challenges people encounter when putting it into practice, and how it can be made more practical. Then I will give a high-level overview of Stainless, and finally present a few verified programs, such as a small actor system, a parallel map-reduce implementation, as well as a little surprise! I’ll also demonstrate the tooling we have developed around Stainless which lets users easily integrate Stainless in their SBT-based Scala projects.\n\n* Material *\n\nSlides: https://github.com/romac/talks/blob/master/2019-06-14-TypelevelSummit/TypelevelSummit.pdf\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nI earned a MSc degree in Computer Science from EPFL in February 2018, and I have since been working at the Laboratory for Automated Reasoning and Analysis (LARA) at EPFL, under the supervision of Prof. Viktor Kunčak. I discovered Scala directly from Prof. Martin Ordersky during my Bachelor at EPFL a few years ago, and have never stopped learning more of it, alongside other languages such as Haskell, Rust or Idris. I am mainly interested in pure functional programming, type systems and formal methods.\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/K1ZwpumSHCc/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/K1ZwpumSHCc/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/K1ZwpumSHCc/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/K1ZwpumSHCc/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/K1ZwpumSHCc/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Typelevel",
+        "tags": [
+          "typelevel",
+          "functional programming"
+        ],
+        "categoryId": "28",
+        "liveBroadcastContent": "none",
+        "localized": {
+          "title": "Formal verification of Scala programs with Stainless – Romain Ruetschi",
+          "description": "Everyone knows that writing bug-free code is fundamentally difficult, and that bugs will sometimes sneak in even in the presence of unit- or property-based tests. One solution to this problem is formal software verification. Formal verification allows users to statically verify that software systems will never crash nor diverge, and will in addition satisfy given functional correctness properties. In this talk, I will present Stainless, a verification system for an expressive subset of Scala. I will start by explaining what formal verification is, what are some of the challenges people encounter when putting it into practice, and how it can be made more practical. Then I will give a high-level overview of Stainless, and finally present a few verified programs, such as a small actor system, a parallel map-reduce implementation, as well as a little surprise! I’ll also demonstrate the tooling we have developed around Stainless which lets users easily integrate Stainless in their SBT-based Scala projects.\n\n* Material *\n\nSlides: https://github.com/romac/talks/blob/master/2019-06-14-TypelevelSummit/TypelevelSummit.pdf\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nI earned a MSc degree in Computer Science from EPFL in February 2018, and I have since been working at the Laboratory for Automated Reasoning and Analysis (LARA) at EPFL, under the supervision of Prof. Viktor Kunčak. I discovered Scala directly from Prof. Martin Ordersky during my Bachelor at EPFL a few years ago, and have never stopped learning more of it, alongside other languages such as Haskell, Rust or Idris. I am mainly interested in pure functional programming, type systems and formal methods.\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "defaultAudioLanguage": "en"
+      },
+      "contentDetails": {
+        "duration": "PT29M33S",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": false,
+        "projection": "rectangular"
+      },
+      "statistics": {
+        "viewCount": "502",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
+    {
+      "kind": "youtube#video",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/Hi6eCa_4NqbLBu7tbQRg-RsAWI0\"",
+      "id": "TBfvbrAXaWA",
+      "snippet": {
+        "publishedAt": "2019-07-07T08:46:39.000Z",
+        "channelId": "UC-CzKrmtV55SlW2eL3k1RRQ",
+        "title": "Exploring Scala Tooling ecosystem – Jeferson David Ossa",
+        "description": "We are going to explore and compare some build tools with special focus on LSP/BSP implementations, IDEs and text editor support. To help the audience’s judgement about the tools that are suitable for their particular needs this talk aims to get attendees familiar with terms like SemanticDB, Metals, Bloop, SBT, Pants, Bazel, Ensime, IntelliJ IDE, Scala IDE, Dotty IDE and other honorific mentions.\n\n* Material *\n\nSlides: https://speakerdeck.com/jedossa/exploring-the-scalas-tooling-ecosystem\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nI am a software engineer living in Medellin, Colombia. Scala and distributed systems enthusiast interested in FP, software architecture and infrastructure. Scuba diver wannabe.\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/TBfvbrAXaWA/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/TBfvbrAXaWA/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/TBfvbrAXaWA/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/TBfvbrAXaWA/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/TBfvbrAXaWA/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Typelevel",
+        "tags": [
+          "typelevel",
+          "functional programming"
+        ],
+        "categoryId": "28",
+        "liveBroadcastContent": "none",
+        "localized": {
+          "title": "Exploring Scala Tooling ecosystem – Jeferson David Ossa",
+          "description": "We are going to explore and compare some build tools with special focus on LSP/BSP implementations, IDEs and text editor support. To help the audience’s judgement about the tools that are suitable for their particular needs this talk aims to get attendees familiar with terms like SemanticDB, Metals, Bloop, SBT, Pants, Bazel, Ensime, IntelliJ IDE, Scala IDE, Dotty IDE and other honorific mentions.\n\n* Material *\n\nSlides: https://speakerdeck.com/jedossa/exploring-the-scalas-tooling-ecosystem\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nI am a software engineer living in Medellin, Colombia. Scala and distributed systems enthusiast interested in FP, software architecture and infrastructure. Scuba diver wannabe.\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "defaultAudioLanguage": "en"
+      },
+      "contentDetails": {
+        "duration": "PT29M5S",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": false,
+        "projection": "rectangular"
+      },
+      "statistics": {
+        "viewCount": "422",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
+    {
+      "kind": "youtube#video",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/G1WvwMuf_C-NTdXKfEvZGN2nVi0\"",
+      "id": "zuu-CgcrT-I",
+      "snippet": {
+        "publishedAt": "2019-07-07T08:48:55.000Z",
+        "channelId": "UC-CzKrmtV55SlW2eL3k1RRQ",
+        "title": "TwoFace values: a bridge between terms and types – Oron Port",
+        "description": "Scala 2.13 introduces literal types, and with great types comes great thirst for power to control them. In this talk we get acquainted with the singleton-ops library, a typelevel programming library that enables constraining and performing operations on literal types. We learn about the library’s TwoFace value feature, and how it can be used to bridge the gap between types and terms by converting a type expression to term expression and vice-versa.\n\n* Material *\n\nSlides: https://speakerdeck.com/soronpo/twoface-values-a-bridge-between-terms-and-types\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nI am a third year Electrical Engineering Ph.D. student at Technion – Israel Institute of Technology. My research topic is “DFiant: A Dataflow Hardware Description Language”, a Scala-based DSL. I’m involved in and contribute to the Scala ecosystem and especially to the singleton-ops library.\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/zuu-CgcrT-I/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/zuu-CgcrT-I/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/zuu-CgcrT-I/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/zuu-CgcrT-I/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/zuu-CgcrT-I/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Typelevel",
+        "tags": [
+          "functional programming",
+          "typelevel"
+        ],
+        "categoryId": "28",
+        "liveBroadcastContent": "none",
+        "localized": {
+          "title": "TwoFace values: a bridge between terms and types – Oron Port",
+          "description": "Scala 2.13 introduces literal types, and with great types comes great thirst for power to control them. In this talk we get acquainted with the singleton-ops library, a typelevel programming library that enables constraining and performing operations on literal types. We learn about the library’s TwoFace value feature, and how it can be used to bridge the gap between types and terms by converting a type expression to term expression and vice-versa.\n\n* Material *\n\nSlides: https://speakerdeck.com/soronpo/twoface-values-a-bridge-between-terms-and-types\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nI am a third year Electrical Engineering Ph.D. student at Technion – Israel Institute of Technology. My research topic is “DFiant: A Dataflow Hardware Description Language”, a Scala-based DSL. I’m involved in and contribute to the Scala ecosystem and especially to the singleton-ops library.\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "defaultAudioLanguage": "en"
+      },
+      "contentDetails": {
+        "duration": "PT33M",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": false,
+        "projection": "rectangular"
+      },
+      "statistics": {
+        "viewCount": "346",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
+    {
+      "kind": "youtube#video",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/9JwFGkLwh4r7xFJPycEGAkJXuk0\"",
+      "id": "VV9lPg3fNl8",
+      "snippet": {
+        "publishedAt": "2019-07-12T16:01:05.000Z",
+        "channelId": "UC-CzKrmtV55SlW2eL3k1RRQ",
+        "title": "GADTs in Dotty – Aleksander Boruch-Gruszecki",
+        "description": "GADTs (Generalized Algebraic Data Types) are a special case of ADTs (or Dotty enums) that, when we match on them, let us know more about type parameters to enclosing functions. In practice, they are mostly used to associate types with data constructors (case classes and objects in Scala’s case), and to ensure that incorrectly assembling data structures will not typecheck. Two good examples are a database query type that cannot be malformed (no integers as if conditions!) or a red-black tree data type that will only compile if it is balanced. So far Scala’s support for GADTs has been lacking and rife with runtime type errors compared to Haskell. Fortunately, I’ve been working on making it far better in Dotty! During the talk first we’ll walk through examples of GADTs, see what makes them useful and how they can be applied to solve real problems. Next, I’ll explain how GADTs in Scala naturally follow from subtyping and inheritance, completely unlike Haskell or any other language with GADTs. Finally, I’ll talk about how the support for GADTs in Dotty is tightly related to other features such as match types and (the possible) nullable types.\n\n* Material *\n\nSlides: https://drive.google.com/file/d/0B2VO2DyaJtgzQkk4UTNtWWlyRnUtTENZWGFBc3c1UUl0ckEw/view?usp=sharing\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nI’m Martin Odersky’s freshest PhD student, interested in GADTs, typelevel programming and effect systems. Before coming to EPFL, I spent four years working in the industry on back- and front-ends of web applications and dealing with the abomination known as TeamSite. Also, I drink frankly absurd amounts of coffee.\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/).",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/VV9lPg3fNl8/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/VV9lPg3fNl8/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/VV9lPg3fNl8/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/VV9lPg3fNl8/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/VV9lPg3fNl8/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Typelevel",
+        "tags": [
+          "functional programming",
+          "typelevel"
+        ],
+        "categoryId": "28",
+        "liveBroadcastContent": "none",
+        "localized": {
+          "title": "GADTs in Dotty – Aleksander Boruch-Gruszecki",
+          "description": "GADTs (Generalized Algebraic Data Types) are a special case of ADTs (or Dotty enums) that, when we match on them, let us know more about type parameters to enclosing functions. In practice, they are mostly used to associate types with data constructors (case classes and objects in Scala’s case), and to ensure that incorrectly assembling data structures will not typecheck. Two good examples are a database query type that cannot be malformed (no integers as if conditions!) or a red-black tree data type that will only compile if it is balanced. So far Scala’s support for GADTs has been lacking and rife with runtime type errors compared to Haskell. Fortunately, I’ve been working on making it far better in Dotty! During the talk first we’ll walk through examples of GADTs, see what makes them useful and how they can be applied to solve real problems. Next, I’ll explain how GADTs in Scala naturally follow from subtyping and inheritance, completely unlike Haskell or any other language with GADTs. Finally, I’ll talk about how the support for GADTs in Dotty is tightly related to other features such as match types and (the possible) nullable types.\n\n* Material *\n\nSlides: https://drive.google.com/file/d/0B2VO2DyaJtgzQkk4UTNtWWlyRnUtTENZWGFBc3c1UUl0ckEw/view?usp=sharing\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nI’m Martin Odersky’s freshest PhD student, interested in GADTs, typelevel programming and effect systems. Before coming to EPFL, I spent four years working in the industry on back- and front-ends of web applications and dealing with the abomination known as TeamSite. Also, I drink frankly absurd amounts of coffee.\n\n* Licensing *\n\nThis recording is licensed under CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "defaultAudioLanguage": "en"
+      },
+      "contentDetails": {
+        "duration": "PT30M44S",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": false,
+        "projection": "rectangular"
+      },
+      "statistics": {
+        "viewCount": "1685",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    },
+    {
+      "kind": "youtube#video",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/gCTnH6oUwNqyZ3bNIzSAnBMeaGo\"",
+      "id": "gHJ5JAIljTw",
+      "snippet": {
+        "publishedAt": "2019-07-12T16:03:16.000Z",
+        "channelId": "UC-CzKrmtV55SlW2eL3k1RRQ",
+        "title": "Want to Diversify the Scala Community? Here is How You Can Help! – Yifan Xing",
+        "description": "The Scala community has grown significantly over the past 15 years. As a community, we wrote millions of lines of code and developed hundreds of projects. While the language is thriving, there is still room to contribute to the community. Different from other tech talks, this talk focuses on contributing to the diversity aspect of the community. It explains the significance and benefits of diversity, and it proposes solutions to diversify and improve the community. One of the best ways to grow the community and to bring diversity into the community is to organize ScalaBridge workshops, which are intended to provide resources for people from underrepresented populations to learn Scala. (Diversity comes in many forms: race, gender, age, religion, culture, sexual orientation, socioeconomic background, etc.) While the workshops have positive and lasting impacts, it cannot be done by one individual or by a single organization. In order for the Scala community to become more diverse, we need your help to scale up! Attend this talk to learn about how to contribute to our community!\n\n* Material *\n\nSlides: https://drive.google.com/file/d/1MUrEI-fdP-Ak5OZ3SopnDhxL-K8jjqfp/view?usp=sharing\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nYifan is a software engineer, ScalaBridge organizer, and open-source contributor. Her work involves many distributed systems related topics, including network protocols, consensus, network security, etc. Yifan contributed to the message queue systems and asynchronous APIs for a Scala open source project Shared Health Research Information Network (SHRINE) at Harvard Medical School. The system uses concepts of parallel processing/multi-threading, non-blocking asynchronous, distributed systems, etc.",
+        "thumbnails": {
+          "default": {
+            "url": "https://i.ytimg.com/vi/gHJ5JAIljTw/default.jpg",
+            "width": 120,
+            "height": 90
+          },
+          "medium": {
+            "url": "https://i.ytimg.com/vi/gHJ5JAIljTw/mqdefault.jpg",
+            "width": 320,
+            "height": 180
+          },
+          "high": {
+            "url": "https://i.ytimg.com/vi/gHJ5JAIljTw/hqdefault.jpg",
+            "width": 480,
+            "height": 360
+          },
+          "standard": {
+            "url": "https://i.ytimg.com/vi/gHJ5JAIljTw/sddefault.jpg",
+            "width": 640,
+            "height": 480
+          },
+          "maxres": {
+            "url": "https://i.ytimg.com/vi/gHJ5JAIljTw/maxresdefault.jpg",
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "channelTitle": "Typelevel",
+        "tags": [
+          "typelevel",
+          "functional programming"
+        ],
+        "categoryId": "28",
+        "liveBroadcastContent": "none",
+        "localized": {
+          "title": "Want to Diversify the Scala Community? Here is How You Can Help! – Yifan Xing",
+          "description": "The Scala community has grown significantly over the past 15 years. As a community, we wrote millions of lines of code and developed hundreds of projects. While the language is thriving, there is still room to contribute to the community. Different from other tech talks, this talk focuses on contributing to the diversity aspect of the community. It explains the significance and benefits of diversity, and it proposes solutions to diversify and improve the community. One of the best ways to grow the community and to bring diversity into the community is to organize ScalaBridge workshops, which are intended to provide resources for people from underrepresented populations to learn Scala. (Diversity comes in many forms: race, gender, age, religion, culture, sexual orientation, socioeconomic background, etc.) While the workshops have positive and lasting impacts, it cannot be done by one individual or by a single organization. In order for the Scala community to become more diverse, we need your help to scale up! Attend this talk to learn about how to contribute to our community!\n\n* Material *\n\nSlides: https://drive.google.com/file/d/1MUrEI-fdP-Ak5OZ3SopnDhxL-K8jjqfp/view?usp=sharing\n\n* Event *\n\nTypelevel Summit Lausanne, June 2019: https://typelevel.org/event/2019-06-summit-lausanne/\n\n* About Speaker *\n\nYifan is a software engineer, ScalaBridge organizer, and open-source contributor. Her work involves many distributed systems related topics, including network protocols, consensus, network security, etc. Yifan contributed to the message queue systems and asynchronous APIs for a Scala open source project Shared Health Research Information Network (SHRINE) at Harvard Medical School. The system uses concepts of parallel processing/multi-threading, non-blocking asynchronous, distributed systems, etc."
+        },
+        "defaultAudioLanguage": "en"
+      },
+      "contentDetails": {
+        "duration": "PT31M34S",
+        "dimension": "2d",
+        "definition": "hd",
+        "caption": "false",
+        "licensedContent": false,
+        "projection": "rectangular"
+      },
+      "statistics": {
+        "viewCount": "198",
+        "favoriteCount": "0",
+        "commentCount": "0"
+      }
+    }
+  ]
+}
