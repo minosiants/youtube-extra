@@ -6,7 +6,8 @@ import org.http4s.client.dsl.io._
 import org.http4s._
 import org.http4s.client.Client
 import org.http4s.headers.{ Accept, Authorization }
-import cats.implicits._
+import cats.syntax.traverse._
+import cats.instances.list._
 
 final case class YoutubeDataAccessProps(key: String, token: String)
 
@@ -37,10 +38,10 @@ final case class YoutubeDataClient(
   def getPlaylistItems(playlistId: String): IO[List[YoutubeDataItem]] = {
 
     val uri = playlistItemsUri(playlistId)
-    val response =
+    val extract =
       (playlist: YoutubeDataPlaylistItems) =>
         (playlist.nextPageToken, playlist.items)
-    goThroughPages(uri, response)
+    goThroughPages(uri, extract)
 
   }
 
@@ -49,9 +50,9 @@ final case class YoutubeDataClient(
     val request = get(videosUri(ids))
     client.expect[YoutubeDataVideos](request)
 
-    val response =
+    val extract =
       (videos: YoutubeDataVideos) => (videos.nextPageToken, videos.items)
-    goThroughPages(videosUri(ids), response)
+    goThroughPages(videosUri(ids), extract)
   }
 
   def getFullPlaylist(playlistId: String): IO[FullPlaylist] = {
@@ -84,29 +85,25 @@ final case class YoutubeDataClient(
     Header("x-origin", "https://explorer.apis.google.com")
   )
 
-  def goThroughPages[A, B](uri: Uri, response: B => (Option[String], List[A]))(
+  private def goThroughPages[A, B](
+      uri: Uri,
+      extract: B => (Option[String], List[A])
+  )(
       implicit entityDecoder: EntityDecoder[IO, B]
   ): IO[List[A]] = {
 
-    def go(nextPageToken: Option[String], items: List[A]): IO[List[A]] = {
-      nextPageToken match {
-        case Some(pageToken) =>
-          val request = get(uri +? ("pageToken", pageToken))
-          for {
-            resp <- client.expect[B](request)
-            (_nextPageToken, _items) = response(resp)
-            result <- go(_nextPageToken, items ++ _items)
-          } yield result
-        case None => IO(items)
-      }
-    }
-    val request = get(uri)
-    for {
-      resp <- client.expect[B](request)
-      (_nextPageToken, _items) = response(resp)
-      items <- go(_nextPageToken, _items)
-    } yield items
+    def go(request: IO[Request[IO]]): IO[List[A]] =
+      for {
+        resp <- client.expect[B](request)
+        result <- extract(resp) match {
+          case (Some(pageToken), items) =>
+            val nextPageReq = get(uri +? ("pageToken", pageToken))
+            go(nextPageReq).map(_ ++ items)
+          case (None, items) => IO(items)
+        }
+      } yield result
 
+    go(get(uri))
   }
 }
 
