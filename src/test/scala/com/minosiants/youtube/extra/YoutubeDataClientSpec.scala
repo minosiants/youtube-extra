@@ -31,20 +31,24 @@ class YoutubeDataClientSpec extends YoutubeDataSpec with After with CatsIO {
 
   "YoutubeDataClint" should {
 
-    "get playlist" in {
+    "get playlist items" in {
       withClient(_.getPlaylistItems(playlistId))
         .map(toSpecResult)
         .unsafeRunSync()
     }
 
-    /*"get playlist wit pagination" in {
-      withClient(_.getPlayList("PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt"))
-        .map{
+    "get playlist items wit pagination" in {
+      withClient(_.getPlaylistItems("PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt"))
+        .map {
           case Right(playlist) => playlist.size mustEqual 10
-          case Left(error) => failure(error.getMessage)
-        }.unsafeRunSync()
+          case Left(error) =>
+            failure(error.getMessage)
+            10 mustEqual 2
+        }
+        .unsafeRunSync()
 
-    }*/
+    }
+
     "get videos" in {
       val ids = List("GvgqDSnpRQM", "V4DDt30Aat4", "XDgC4FMftpg")
       withClient(_.getVideos(ids)).map(toSpecResult).unsafeRunSync()
