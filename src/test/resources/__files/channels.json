@@ -1,0 +1,22 @@
+{
+  "kind": "youtube#channelListResponse",
+  "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/a0jGC2IqUYdLLiJ4NdCg5pkP2AY\"",
+  "pageInfo": {
+    "totalResults": 1,
+    "resultsPerPage": 1
+  },
+  "items": [
+    {
+      "kind": "youtube#channel",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/hM_bckACfhAoh_AF0By6lkDNf8o\"",
+      "id": "UCd9I8ZkgoR1d7GeSj_wi_LQ",
+      "contentDetails": {
+        "relatedPlaylists": {
+          "uploads": "UUd9I8ZkgoR1d7GeSj_wi_LQ",
+          "watchHistory": "HL",
+          "watchLater": "WL"
+        }
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "request": {
     "method": "GET",
-    "url": "/playlistItems?key=AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM&playlistId=PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt&part=snippet&maxResults=15"
+    "url": "/playlistItems?key=AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM&playlistId=PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt&part=snippet&maxResults=50"
   },
   "response": {
     "status": 200,

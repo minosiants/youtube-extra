@@ -81,6 +81,10 @@ object GoogleDataPage extends CommonCodecs {
       : EntityDecoder[IO, GoogleDataPage[YoutubeDataSubscription]] =
     jsonOf[IO, GoogleDataPage[YoutubeDataSubscription]]
 
+  implicit def channelDecoder
+      : EntityDecoder[IO, GoogleDataPage[YoutubeDataChannel]] =
+    jsonOf[IO, GoogleDataPage[YoutubeDataChannel]]
+
 }
 
 trait CommonCodecs {
