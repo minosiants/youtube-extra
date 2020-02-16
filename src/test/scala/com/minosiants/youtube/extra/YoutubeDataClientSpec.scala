@@ -1,8 +1,6 @@
 package com.minosiants
 package youtube.extra
 
-//import org.specs2.matcher._
-//import org.specs2.specification._
 import cats.effect.specs2.CatsIO
 import cats.effect.{ ContextShift, IO }
 import org.specs2.mutable._

@@ -32,13 +32,12 @@ final case class YoutubeDataItem(id: String, snippet: YoutubeDataSnippet) {
 }
 final case class YoutubeDataPageInfo(totalResults: Int, resultsPerPage: Int)
 
-final case class YoutubeDataPlaylistItems(
+case class GoogleDataPage[A](
     nextPageToken: Option[String],
     prevPageToken: Option[String],
     pageInfo: Option[YoutubeDataPageInfo],
-    items: List[YoutubeDataItem]
+    items: List[A]
 )
-
 final case class YoutubeDataVideoSnippet(
     channelTitle: String,
     publishedAt: Instant,
@@ -67,13 +66,6 @@ final case class YoutubeDataVideo(
     statistics: YoutubeDataVideoStatistics
 )
 
-final case class YoutubeDataVideos(
-    pageInfo: YoutubeDataPageInfo,
-    nextPageToken: Option[String],
-    prevPageToken: Option[String],
-    items: List[YoutubeDataVideo]
-)
-
 final case class YoutubeDataPlaylistSnippet(
     publishedAt: Instant,
     channelId: String,
@@ -85,10 +77,6 @@ final case class YoutubeDataPlaylistSnippet(
 final case class YoutubeDataPlaylist(
     id: String,
     snippet: YoutubeDataPlaylistSnippet
-)
-final case class YoutubeDataPlaylists(
-    pageInfo: YoutubeDataPageInfo,
-    items: List[YoutubeDataPlaylist]
 )
 
 final case class FullPlaylist(
@@ -121,21 +109,13 @@ object FullPlaylist extends CommonCodecs {
   val playlistTitleAndDescriptionLens = (playlistLens composeLens playlistSnippetLens composeTraversal playlisttitleAndDescription)
 }
 
-object YoutubeDataPlaylists extends CommonCodecs {
-  implicit def decoder: EntityDecoder[IO, YoutubeDataPlaylists] =
-    jsonOf[IO, YoutubeDataPlaylists]
-
-}
-
 object YoutubeDataVideos extends CommonCodecs {
-  implicit def decoder: EntityDecoder[IO, YoutubeDataVideos] =
-    jsonOf[IO, YoutubeDataVideos]
 
-  val itemsLens   = GenLens[YoutubeDataVideos](_.items)
+  val itemsLens   = GenLens[GoogleDataPage[YoutubeDataVideo]](_.items)
   val snippetLens = GenLens[YoutubeDataVideo](_.snippet)
 
   val allVideos
-      : Traversal[YoutubeDataVideos, YoutubeDataVideo] = itemsLens composeTraversal each
+      : Traversal[GoogleDataPage[YoutubeDataVideo], YoutubeDataVideo] = itemsLens composeTraversal each
 
   val titleAndDescription =
     Traversal.apply2[YoutubeDataVideoSnippet, String](_.title, _.description) {
@@ -145,11 +125,17 @@ object YoutubeDataVideos extends CommonCodecs {
 
 }
 
-object YoutubeDataPlaylistItems extends CommonCodecs {
+object GoogleDataPage extends CommonCodecs {
+  implicit def itemDecoder: EntityDecoder[IO, GoogleDataPage[YoutubeDataItem]] =
+    jsonOf[IO, GoogleDataPage[YoutubeDataItem]]
 
-  implicit def decoder: EntityDecoder[IO, YoutubeDataPlaylistItems] =
-    jsonOf[IO, YoutubeDataPlaylistItems]
+  implicit def videoDecoder
+      : EntityDecoder[IO, GoogleDataPage[YoutubeDataVideo]] =
+    jsonOf[IO, GoogleDataPage[YoutubeDataVideo]]
 
+  implicit def playlistDecoder
+      : EntityDecoder[IO, GoogleDataPage[YoutubeDataPlaylist]] =
+    jsonOf[IO, GoogleDataPage[YoutubeDataPlaylist]]
 }
 
 trait CommonCodecs {

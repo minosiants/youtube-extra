@@ -25,35 +25,22 @@ final case class YoutubeDataClient(
 
     val request = get(playlistsUri(playlistId))
 
-    client.expect[YoutubeDataPlaylists](request).flatMap { playlists =>
-      playlists.items.headOption match {
-        case Some(playlist) => IO(playlist)
-        case None =>
-          IO.raiseError(PlaylistNotFound(s"Playlist $playlistId not found"))
-      }
+    client.expect[GoogleDataPage[YoutubeDataPlaylist]](request).flatMap {
+      playlists =>
+        playlists.items.headOption match {
+          case Some(playlist) => IO(playlist)
+          case None =>
+            IO.raiseError(PlaylistNotFound(s"Playlist $playlistId not found"))
+        }
 
     }
   }
 
-  def getPlaylistItems(playlistId: String): IO[List[YoutubeDataItem]] = {
+  def getPlaylistItems(playlistId: String): IO[List[YoutubeDataItem]] =
+    goThroughPages[YoutubeDataItem](playlistItemsUri(playlistId))
 
-    val uri = playlistItemsUri(playlistId)
-    val extract =
-      (playlist: YoutubeDataPlaylistItems) =>
-        (playlist.nextPageToken, playlist.items)
-    goThroughPages(uri, extract)
-
-  }
-
-  def getVideos(ids: List[String]): IO[List[YoutubeDataVideo]] = {
-
-    val request = get(videosUri(ids))
-    client.expect[YoutubeDataVideos](request)
-
-    val extract =
-      (videos: YoutubeDataVideos) => (videos.nextPageToken, videos.items)
-    goThroughPages(videosUri(ids), extract)
-  }
+  def getVideos(ids: List[String]): IO[List[YoutubeDataVideo]] =
+    goThroughPages[YoutubeDataVideo](videosUri(ids))
 
   def getFullPlaylist(playlistId: String): IO[FullPlaylist] = {
     for {
@@ -85,21 +72,18 @@ final case class YoutubeDataClient(
     Header("x-origin", "https://explorer.apis.google.com")
   )
 
-  private def goThroughPages[A, B](
-      uri: Uri,
-      extract: B => (Option[String], List[A])
-  )(
-      implicit entityDecoder: EntityDecoder[IO, B]
+  private def goThroughPages[A](uri: Uri)(
+      implicit entityDecoder: EntityDecoder[IO, GoogleDataPage[A]]
   ): IO[List[A]] = {
 
     def go(request: IO[Request[IO]]): IO[List[A]] =
       for {
-        resp <- client.expect[B](request)
-        result <- extract(resp) match {
-          case (Some(pageToken), items) =>
+        resp <- client.expect[GoogleDataPage[A]](request)
+        result <- resp.nextPageToken match {
+          case Some(pageToken) =>
             val nextPageReq = get(uri +? ("pageToken", pageToken))
-            go(nextPageReq).map(_ ++ items)
-          case (None, items) => IO(items)
+            go(nextPageReq).map(_ ++ resp.items)
+          case None => IO(resp.items)
         }
       } yield result
 

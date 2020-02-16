@@ -11,16 +11,18 @@ class YoutubeDataCodecsSpec extends YoutubeDataSpec {
   "YoutubeDataCodecsSpec" should {
 
     "YoutubeDataPlaylistItems be decoded properly" in {
-      checkDecoding[YoutubeDataPlaylistItems]("__files/playlist.json")
+      checkDecoding[GoogleDataPage[YoutubeDataItem]]("__files/playlist.json")
         .unsafeRunSync()
     }
 
     "YoutubeDataVideos be decoded properly" in {
-      checkDecoding[YoutubeDataVideos]("__files/videos2.json").unsafeRunSync()
+      checkDecoding[GoogleDataPage[YoutubeDataVideo]]("__files/videos2.json")
+        .unsafeRunSync()
     }
     "YoutubeDataPlaylists be decoded properly" in {
-      checkDecoding[YoutubeDataPlaylists]("__files/playlists.json")
-        .unsafeRunSync()
+      checkDecoding[GoogleDataPage[YoutubeDataPlaylist]](
+        "__files/playlists.json"
+      ).unsafeRunSync()
     }
 
   }
