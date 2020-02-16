@@ -3,8 +3,9 @@ package youtube.extra
 
 import java.time.Instant
 
-import monocle.Traversal
 import monocle.macros.GenLens
+import monocle.function.all._
+import monocle.Traversal
 
 final case class YoutubeDataVideoSnippet(
     channelTitle: String,
