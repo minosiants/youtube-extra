@@ -15,13 +15,20 @@ class YoutubeDataCodecsSpec extends YoutubeDataSpec {
         .unsafeRunSync()
     }
 
-    "YoutubeDataVideos be decoded properly" in {
+    "YoutubeDataVideo be decoded properly" in {
       checkDecoding[GoogleDataPage[YoutubeDataVideo]]("__files/videos2.json")
         .unsafeRunSync()
     }
-    "YoutubeDataPlaylists be decoded properly" in {
+
+    "YoutubeDataPlaylist be decoded properly" in {
       checkDecoding[GoogleDataPage[YoutubeDataPlaylist]](
         "__files/playlists.json"
+      ).unsafeRunSync()
+    }
+
+    "YoutubeDataSubscription be decoded properly" in {
+      checkDecoding[GoogleDataPage[YoutubeDataSubscription]](
+        "__files/subscriptions.json"
       ).unsafeRunSync()
     }
 

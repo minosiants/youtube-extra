@@ -13,7 +13,11 @@ import monocle.macros.GenLens
 import monocle.function.all._
 import monocle.Traversal
 
-final case class YoutubeDataThumbnail(url: String, width: Int, height: Int)
+final case class YoutubeDataThumbnail(
+    url: String,
+    width: Option[Int],
+    height: Option[Int]
+)
 
 final case class YoutubeDataThumbnails(
     default: YoutubeDataThumbnail,
@@ -72,6 +76,11 @@ object GoogleDataPage extends CommonCodecs {
   implicit def playlistDecoder
       : EntityDecoder[IO, GoogleDataPage[YoutubeDataPlaylist]] =
     jsonOf[IO, GoogleDataPage[YoutubeDataPlaylist]]
+
+  implicit def subscriptionDecoder
+      : EntityDecoder[IO, GoogleDataPage[YoutubeDataSubscription]] =
+    jsonOf[IO, GoogleDataPage[YoutubeDataSubscription]]
+
 }
 
 trait CommonCodecs {
