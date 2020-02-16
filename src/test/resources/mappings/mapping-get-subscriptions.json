@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/subscriptions?key=AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM&channelId=UCAuUUnT6oDeKwE6v1NGQxug&part=snippet%2CcontentDetails&maxResults=15"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName" : "subscriptions.json",
+    "headers": {
+      "Content-Type": "text/json"
+    }
+  }
+}

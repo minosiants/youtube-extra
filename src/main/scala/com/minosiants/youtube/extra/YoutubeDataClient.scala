@@ -42,6 +42,9 @@ final case class YoutubeDataClient(
   def getVideos(ids: List[String]): IO[List[YoutubeDataVideo]] =
     goThroughPages[YoutubeDataVideo](videosUri(ids))
 
+  def getSubscriptions(channelId: String): IO[List[YoutubeDataSubscription]] =
+    goThroughPages[YoutubeDataSubscription](subUri(channelId))
+
   def getFullPlaylist(playlistId: String): IO[FullPlaylist] = {
     for {
       playlist      <- getPlaylists(playlistId)
@@ -62,6 +65,9 @@ final case class YoutubeDataClient(
 
   private def videosUri(ids: List[String]): Uri =
     apiUri / "videos" +? ("key", accessProps.key) +? ("id", ids.mkString(",")) +? ("part", "snippet,statistics,contentDetails") +? ("maxResults", 15)
+
+  private def subUri(channelId: String): Uri =
+    apiUri / "subscriptions" +? ("key", accessProps.key) +? ("channelId", channelId) +? ("part", "snippet,contentDetails") +? ("maxResults", 15)
 
   private def get(uri: Uri): IO[Request[IO]] = Method.GET(
     uri,
