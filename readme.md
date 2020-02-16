@@ -1,5 +1,6 @@
+![CI](https://github.com/minosiants/youtube-extra/workflows/CI/badge.svg)
 
-# youtube-extra
+# youtube-extra 
 Goal is to implement some extra useful functionality using youtube data api.
 
 ## Functionality available 
