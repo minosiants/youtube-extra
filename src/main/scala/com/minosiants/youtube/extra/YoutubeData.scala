@@ -22,14 +22,6 @@ final case class YoutubeDataThumbnails(
     standard: Option[YoutubeDataThumbnail]
 )
 
-final case class YoutubeDataResourceId(kind: String, videoId: String)
-final case class YoutubeDataSnippet(
-    resourceId: YoutubeDataResourceId,
-    thumbnails: Option[YoutubeDataThumbnails]
-)
-final case class YoutubeDataItem(id: String, snippet: YoutubeDataSnippet) {
-  def notPrivate: Boolean = snippet.thumbnails.nonEmpty
-}
 final case class YoutubeDataPageInfo(totalResults: Int, resultsPerPage: Int)
 
 case class GoogleDataPage[A](
@@ -37,46 +29,6 @@ case class GoogleDataPage[A](
     prevPageToken: Option[String],
     pageInfo: Option[YoutubeDataPageInfo],
     items: List[A]
-)
-final case class YoutubeDataVideoSnippet(
-    channelTitle: String,
-    publishedAt: Instant,
-    channelId: String,
-    title: String,
-    description: String,
-    thumbnails: Option[YoutubeDataThumbnails],
-    tags: Option[List[String]]
-)
-final case class YoutubeDataVideoStatistics(
-    viewCount: String,
-    likeCount: Option[String],
-    dislikeCount: Option[String],
-    favoriteCount: String,
-    commentCount: Option[String]
-)
-final case class YoutubeDataVideoContentDetails(
-    duration: String,
-    dimension: String
-)
-
-final case class YoutubeDataVideo(
-    id: String,
-    snippet: YoutubeDataVideoSnippet,
-    contentDetails: YoutubeDataVideoContentDetails,
-    statistics: YoutubeDataVideoStatistics
-)
-
-final case class YoutubeDataPlaylistSnippet(
-    publishedAt: Instant,
-    channelId: String,
-    title: String,
-    description: String,
-    thumbnails: YoutubeDataThumbnails,
-    channelTitle: String
-)
-final case class YoutubeDataPlaylist(
-    id: String,
-    snippet: YoutubeDataPlaylistSnippet
 )
 
 final case class FullPlaylist(
@@ -107,22 +59,6 @@ object FullPlaylist extends CommonCodecs {
       }
 
   val playlistTitleAndDescriptionLens = (playlistLens composeLens playlistSnippetLens composeTraversal playlisttitleAndDescription)
-}
-
-object YoutubeDataVideos extends CommonCodecs {
-
-  val itemsLens   = GenLens[GoogleDataPage[YoutubeDataVideo]](_.items)
-  val snippetLens = GenLens[YoutubeDataVideo](_.snippet)
-
-  val allVideos
-      : Traversal[GoogleDataPage[YoutubeDataVideo], YoutubeDataVideo] = itemsLens composeTraversal each
-
-  val titleAndDescription =
-    Traversal.apply2[YoutubeDataVideoSnippet, String](_.title, _.description) {
-      case (fn, ln, l) => l.copy(title = fn, description = ln)
-    }
-  val titleAndDescriptionLens = (snippetLens composeTraversal titleAndDescription)
-
 }
 
 object GoogleDataPage extends CommonCodecs {
