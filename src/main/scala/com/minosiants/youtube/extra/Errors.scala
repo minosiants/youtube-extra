@@ -36,4 +36,7 @@ object Error {
 
   def unableCreateDir[A](message: String): IO[A] =
     IO.raiseError(UnableCreateDir(message))
+
+  def resourceNotFound[A](message: String): IO[A] =
+    IO.raiseError(ResourceNotFound(message))
 }

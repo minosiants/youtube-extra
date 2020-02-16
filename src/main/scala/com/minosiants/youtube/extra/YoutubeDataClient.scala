@@ -45,6 +45,9 @@ final case class YoutubeDataClient(
   def getSubscriptions(channelId: String): IO[List[YoutubeDataSubscription]] =
     goThroughPages[YoutubeDataSubscription](subUri(channelId))
 
+  def getChannels(ids: List[String]): IO[List[YoutubeDataChannel]] =
+    goThroughPages[YoutubeDataChannel](channelsUri(ids))
+
   def getFullPlaylist(playlistId: String): IO[FullPlaylist] = {
     for {
       playlist      <- getPlaylists(playlistId)
@@ -61,13 +64,16 @@ final case class YoutubeDataClient(
     apiUri / "playlists" +? ("key", accessProps.key) +? ("id", playlistId) +? ("part", "snippet")
 
   private def playlistItemsUri(playlistId: String): Uri =
-    apiUri / "playlistItems" +? ("key", accessProps.key) +? ("playlistId", playlistId) +? ("part", "snippet") +? ("maxResults", 15)
+    apiUri / "playlistItems" +? ("key", accessProps.key) +? ("playlistId", playlistId) +? ("part", "snippet") +? ("maxResults", 50)
 
   private def videosUri(ids: List[String]): Uri =
-    apiUri / "videos" +? ("key", accessProps.key) +? ("id", ids.mkString(",")) +? ("part", "snippet,statistics,contentDetails") +? ("maxResults", 15)
+    apiUri / "videos" +? ("key", accessProps.key) +? ("id", ids.mkString(",")) +? ("part", "snippet,statistics,contentDetails") +? ("maxResults", 50)
 
   private def subUri(channelId: String): Uri =
-    apiUri / "subscriptions" +? ("key", accessProps.key) +? ("channelId", channelId) +? ("part", "snippet,contentDetails") +? ("maxResults", 15)
+    apiUri / "subscriptions" +? ("key", accessProps.key) +? ("channelId", channelId) +? ("part", "snippet,contentDetails") +? ("maxResults", 50)
+
+  private def channelsUri(ids: List[String]): Uri =
+    apiUri / "channels" +? ("key", accessProps.key) +? ("id", ids.mkString(",")) +? ("part", "contentDetails") +? ("maxResults", 50)
 
   private def get(uri: Uri): IO[Request[IO]] = Method.GET(
     uri,

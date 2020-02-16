@@ -69,6 +69,13 @@ class YoutubeDataClientSpec extends YoutubeDataSpec with After with CatsIO {
         .map(toSpecResult)
         .unsafeRunSync()
     }
+
+    "get channels" in {
+      val channelId = "UCd9I8ZkgoR1d7GeSj_wi_LQ"
+      withClient(_.getChannels(List(channelId)))
+        .map(toSpecResult)
+        .unsafeRunSync()
+    }
   }
 
   def withClient[A](
