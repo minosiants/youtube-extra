@@ -39,6 +39,9 @@ final case class YoutubeDataClient(
   def getPlaylistItems(playlistId: String): IO[List[YoutubeDataItem]] =
     goThroughPages[YoutubeDataItem](playlistItemsUri(playlistId))
 
+  def getOnePagePlaylistItems(playlistId: String): IO[List[YoutubeDataItem]] =
+    page[YoutubeDataItem](get(playlistItemsUri(playlistId))).map(_.items)
+
   def getVideos(ids: List[String]): IO[List[YoutubeDataVideo]] =
     goThroughPages[YoutubeDataVideo](videosUri(ids))
 
@@ -59,6 +62,44 @@ final case class YoutubeDataClient(
     } yield FullPlaylist(playlist, videos.flatten)
 
   }
+
+  private def subActivity(
+      sub: YoutubeDataSubscription,
+      channel: YoutubeDataChannel
+  ): IO[SubscriptionActivity] = {
+    val uploads = channel.contentDetails.relatedPlaylists.uploads
+    for {
+      items <- getOnePagePlaylistItems(uploads)
+      ids = items.filter(_.notPrivate).map(_.snippet.resourceId.videoId)
+      videos <- getVideos(ids.take(5))
+    } yield SubscriptionActivity(sub, videos)
+
+  }
+
+  private def channelBySub(
+      subs: List[YoutubeDataSubscription],
+      channels: List[YoutubeDataChannel]
+  ): List[(YoutubeDataSubscription, YoutubeDataChannel)] = {
+    (for {
+      sub <- subs
+      channelId = sub.snippet.resourceId.channelId
+      channel   = channels.find(_.id == channelId)
+    } yield channel.map((sub, _)).toList).flatten
+  }
+
+  def getSubsActivity(channelId: String): IO[List[SubscriptionActivity]] =
+    for {
+      subs <- getSubscriptions(channelId)
+      ids = subs.map(_.snippet.resourceId.channelId)
+      channels <- ids
+        .grouped(40)
+        .toList
+        .map(getChannels)
+        .sequence
+        .map(_.flatten)
+      subAndChannel = channelBySub(subs, channels)
+      result <- subAndChannel.map((subActivity _).tupled).sequence
+    } yield result
 
   private def playlistsUri(playlistId: String): Uri =
     apiUri / "playlists" +? ("key", accessProps.key) +? ("id", playlistId) +? ("part", "snippet")
@@ -84,13 +125,19 @@ final case class YoutubeDataClient(
     Header("x-origin", "https://explorer.apis.google.com")
   )
 
+  private def page[A](request: IO[Request[IO]])(
+      implicit entityDecoder: EntityDecoder[IO, GoogleDataPage[A]]
+  ): IO[GoogleDataPage[A]] = {
+    client.expect[GoogleDataPage[A]](request)
+  }
+
   private def goThroughPages[A](uri: Uri)(
       implicit entityDecoder: EntityDecoder[IO, GoogleDataPage[A]]
   ): IO[List[A]] = {
 
     def go(request: IO[Request[IO]]): IO[List[A]] =
       for {
-        resp <- client.expect[GoogleDataPage[A]](request)
+        resp <- page(request)
         result <- resp.nextPageToken match {
           case Some(pageToken) =>
             val nextPageReq = get(uri +? ("pageToken", pageToken))

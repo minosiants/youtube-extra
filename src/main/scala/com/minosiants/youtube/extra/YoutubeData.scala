@@ -39,6 +39,10 @@ final case class FullPlaylist(
     playlistInfo: YoutubeDataPlaylist,
     videos: List[YoutubeDataVideo]
 )
+final case class SubscriptionActivity(
+    sub: YoutubeDataSubscription,
+    videos: List[YoutubeDataVideo]
+)
 
 object FullPlaylist extends CommonCodecs {
 
