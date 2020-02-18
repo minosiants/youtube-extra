@@ -70,7 +70,8 @@ object FullPlaylist extends CommonCodecs {
 }
 
 object YoutubeDataPage extends CommonCodecs {
-  implicit def itemDecoder: EntityDecoder[IO, YoutubeDataPage[YoutubeDataItem]] =
+  implicit def itemDecoder
+      : EntityDecoder[IO, YoutubeDataPage[YoutubeDataItem]] =
     jsonOf[IO, YoutubeDataPage[YoutubeDataItem]]
 
   implicit def videoDecoder

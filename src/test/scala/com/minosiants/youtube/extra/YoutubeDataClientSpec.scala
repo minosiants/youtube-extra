@@ -24,8 +24,9 @@ class YoutubeDataClientSpec extends YoutubeDataSpec with After with CatsIO {
   val key = "AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM"
   val token =
     "ya29.ImS7BzsX8ziHDuAX8Y7O4lmZ55_sBiNVXXPakKmnDwfUFJ_kvdZ4LZfLTTnfMAIXKIGRBbBsCHaHMU33GXtX0lzjElI6wz7TFNDn8G0eNXxmoqamGojmU03fJMCQ2cmb52fXWQMq"
-  val playlistId = "PLBCF2DAC6FFB574DE"
-  val props      = YoutubeDataAccessProps(key, token)
+  val playlistId = "UUsT0YIqwnpJCM-mx7-gSA4Q"
+  //val playlistId = "PLBCF2DAC6FFB574DE"
+  val props = YoutubeDataAccessProps(key, token)
 
   "YoutubeDataClint" should {
 
@@ -71,8 +72,15 @@ class YoutubeDataClientSpec extends YoutubeDataSpec with After with CatsIO {
     }
 
     "get channels" in {
-      val channelId = "UCd9I8ZkgoR1d7GeSj_wi_LQ"
+      val channelId = "UCsT0YIqwnpJCM-mx7-gSA4Q"
       withClient(_.getChannels(List(channelId)))
+        .map(toSpecResult)
+        .unsafeRunSync()
+    }
+
+    "get subscriptions activity" in {
+      val channelId = "UCAuUUnT6oDeKwE6v1NGQxug"
+      withClient(_.getSubsActivity(channelId))
         .map(toSpecResult)
         .unsafeRunSync()
     }

@@ -1,18 +1,18 @@
 {
   "kind": "youtube#channelListResponse",
-  "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/a0jGC2IqUYdLLiJ4NdCg5pkP2AY\"",
+  "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/RwpPIKLPYJPJVbTr6vkH8cvH6nA\"",
   "pageInfo": {
-    "totalResults": 1,
-    "resultsPerPage": 1
+    "totalResults": 2,
+    "resultsPerPage": 2
   },
   "items": [
     {
       "kind": "youtube#channel",
-      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/hM_bckACfhAoh_AF0By6lkDNf8o\"",
-      "id": "UCd9I8ZkgoR1d7GeSj_wi_LQ",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/Mdnsb3E9bMJBb_lsebvd2lTnxMM\"",
+      "id": "UCsT0YIqwnpJCM-mx7-gSA4Q",
       "contentDetails": {
         "relatedPlaylists": {
-          "uploads": "UUd9I8ZkgoR1d7GeSj_wi_LQ",
+          "uploads": "UUsT0YIqwnpJCM-mx7-gSA4Q",
           "watchHistory": "HL",
           "watchLater": "WL"
         }
