@@ -1,15 +1,41 @@
 {
   "kind": "youtube#channelListResponse",
-  "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/RwpPIKLPYJPJVbTr6vkH8cvH6nA\"",
+  "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/cbvPQ2NNda1Ai_xkBnYQAmWJyYc\"",
   "pageInfo": {
-    "totalResults": 2,
-    "resultsPerPage": 2
+    "totalResults": 1,
+    "resultsPerPage": 1
   },
   "items": [
     {
       "kind": "youtube#channel",
-      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/Mdnsb3E9bMJBb_lsebvd2lTnxMM\"",
+      "etag": "\"Fznwjl6JEQdo1MGvHOGaz_YanRU/-xjA-CzaLMSYPPRiJCVXlbLCyXc\"",
       "id": "UCsT0YIqwnpJCM-mx7-gSA4Q",
+      "snippet": {
+        "title": "TEDx Talks",
+        "description": "TEDx is an international community that organizes TED-style events anywhere and everywhere -- celebrating locally-driven ideas and elevating them to a global stage. TEDx events are produced independently of TED conferences, each event curates speakers on their own, but based on TED's format and rules.\n\nFor more information on using TED for commercial purposes (e.g. employee learning, in a film, or in an online course), please submit a media request using the link below.",
+        "publishedAt": "2009-06-23T16:00:48.000Z",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/a/AGF-l79O1ys8TU2KwOEFMAhT9v1s-6wYG-Jw67Cudg=s88-c-k-c0xffffffff-no-rj-mo",
+            "width": 88,
+            "height": 88
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/a/AGF-l79O1ys8TU2KwOEFMAhT9v1s-6wYG-Jw67Cudg=s240-c-k-c0xffffffff-no-rj-mo",
+            "width": 240,
+            "height": 240
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/a/AGF-l79O1ys8TU2KwOEFMAhT9v1s-6wYG-Jw67Cudg=s800-c-k-c0xffffffff-no-rj-mo",
+            "width": 800,
+            "height": 800
+          }
+        },
+        "localized": {
+          "title": "TEDx Talks",
+          "description": "TEDx is an international community that organizes TED-style events anywhere and everywhere -- celebrating locally-driven ideas and elevating them to a global stage. TEDx events are produced independently of TED conferences, each event curates speakers on their own, but based on TED's format and rules.\n\nFor more information on using TED for commercial purposes (e.g. employee learning, in a film, or in an online course), please submit a media request using the link below."
+        }
+      },
       "contentDetails": {
         "relatedPlaylists": {
           "uploads": "UUsT0YIqwnpJCM-mx7-gSA4Q",

@@ -37,6 +37,18 @@ case class YoutubeExtraApp()(
     } yield ()
   }
 
+  def subscriptions(
+      channelId: String,
+      token: String,
+      destination: File
+  ): IO[Unit] = withClient(token) { client =>
+    for {
+      subs <- client.getSubsActivity(channelId)
+      _    <- SubscriptionsGenerator.createSubscriptions(subs, destination)
+    } yield ()
+
+  }
+
   def help(): IO[Unit] = {
     val message =
       """
@@ -48,6 +60,11 @@ case class YoutubeExtraApp()(
         |    -t  - OAuth token (can be obtained here: https://tinyurl.com/vltl9p6)
         |    -d  - optional directory where playlist will be saved. Default value is "."
         |
+        |subscriptions -id -t (-d)
+        |
+        |   -id - channel id
+        |   -t  - OAuth token (can be obtained here: https://tinyurl.com/vltl9p6)
+        |   -d  - optional directory where subscriptions will be saved. Default value is "."
         |
         |""".stripMargin
 
@@ -60,10 +77,10 @@ case class YoutubeExtraApp()(
       .flatMap {
         case HelpCommand =>
           help()
-        case PlaylistCommand(playlistId, token, Some(destination)) =>
+        case PlaylistCommand(playlistId, token, destination) =>
           playlist(playlistId, token, destination)
-        case PlaylistCommand(playlistId, token, None) =>
-          playlist(playlistId, token, new File("."))
+        case SubscriptionsCommand(channelId, token, destination) =>
+          subscriptions(channelId, token, destination)
       }
       .attempt
       .flatMap {
