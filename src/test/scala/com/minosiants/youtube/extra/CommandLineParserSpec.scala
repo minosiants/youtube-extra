@@ -11,8 +11,8 @@ class CommandLineParserSpec extends YoutubeDataSpec {
     "parse playlist command without destination" in {
       val result = CommandLineParser.parseArgs(args).attempt.unsafeRunSync()
       result match {
-        case Right(PlaylistCommand("id-value", "token-value", None)) => success
-        case _                                                       => failure
+        case Right(PlaylistCommand("id-value", "token-value", _)) => success
+        case _                                                    => failure
       }
     }
 
