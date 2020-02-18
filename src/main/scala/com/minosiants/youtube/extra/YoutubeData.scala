@@ -28,7 +28,7 @@ final case class YoutubeDataThumbnails(
 
 final case class YoutubeDataPageInfo(totalResults: Int, resultsPerPage: Int)
 
-case class GoogleDataPage[A](
+case class YoutubeDataPage[A](
     nextPageToken: Option[String],
     prevPageToken: Option[String],
     pageInfo: Option[YoutubeDataPageInfo],
@@ -69,25 +69,25 @@ object FullPlaylist extends CommonCodecs {
   val playlistTitleAndDescriptionLens = (playlistLens composeLens playlistSnippetLens composeTraversal playlisttitleAndDescription)
 }
 
-object GoogleDataPage extends CommonCodecs {
-  implicit def itemDecoder: EntityDecoder[IO, GoogleDataPage[YoutubeDataItem]] =
-    jsonOf[IO, GoogleDataPage[YoutubeDataItem]]
+object YoutubeDataPage extends CommonCodecs {
+  implicit def itemDecoder: EntityDecoder[IO, YoutubeDataPage[YoutubeDataItem]] =
+    jsonOf[IO, YoutubeDataPage[YoutubeDataItem]]
 
   implicit def videoDecoder
-      : EntityDecoder[IO, GoogleDataPage[YoutubeDataVideo]] =
-    jsonOf[IO, GoogleDataPage[YoutubeDataVideo]]
+      : EntityDecoder[IO, YoutubeDataPage[YoutubeDataVideo]] =
+    jsonOf[IO, YoutubeDataPage[YoutubeDataVideo]]
 
   implicit def playlistDecoder
-      : EntityDecoder[IO, GoogleDataPage[YoutubeDataPlaylist]] =
-    jsonOf[IO, GoogleDataPage[YoutubeDataPlaylist]]
+      : EntityDecoder[IO, YoutubeDataPage[YoutubeDataPlaylist]] =
+    jsonOf[IO, YoutubeDataPage[YoutubeDataPlaylist]]
 
   implicit def subscriptionDecoder
-      : EntityDecoder[IO, GoogleDataPage[YoutubeDataSubscription]] =
-    jsonOf[IO, GoogleDataPage[YoutubeDataSubscription]]
+      : EntityDecoder[IO, YoutubeDataPage[YoutubeDataSubscription]] =
+    jsonOf[IO, YoutubeDataPage[YoutubeDataSubscription]]
 
   implicit def channelDecoder
-      : EntityDecoder[IO, GoogleDataPage[YoutubeDataChannel]] =
-    jsonOf[IO, GoogleDataPage[YoutubeDataChannel]]
+      : EntityDecoder[IO, YoutubeDataPage[YoutubeDataChannel]] =
+    jsonOf[IO, YoutubeDataPage[YoutubeDataChannel]]
 
 }
 

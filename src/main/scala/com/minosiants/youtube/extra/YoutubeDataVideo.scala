@@ -37,11 +37,11 @@ final case class YoutubeDataVideo(
 
 object YoutubeDataVideo extends CommonCodecs {
 
-  val itemsLens   = GenLens[GoogleDataPage[YoutubeDataVideo]](_.items)
+  val itemsLens   = GenLens[YoutubeDataPage[YoutubeDataVideo]](_.items)
   val snippetLens = GenLens[YoutubeDataVideo](_.snippet)
 
   val allVideos
-      : Traversal[GoogleDataPage[YoutubeDataVideo], YoutubeDataVideo] = itemsLens composeTraversal each
+      : Traversal[YoutubeDataPage[YoutubeDataVideo], YoutubeDataVideo] = itemsLens composeTraversal each
 
   val titleAndDescription =
     Traversal.apply2[YoutubeDataVideoSnippet, String](_.title, _.description) {
