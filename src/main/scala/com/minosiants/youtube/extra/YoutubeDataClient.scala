@@ -25,7 +25,7 @@ final case class YoutubeDataClient(
 
     val request = get(playlistsUri(playlistId))
 
-    client.expect[GoogleDataPage[YoutubeDataPlaylist]](request).flatMap {
+    client.expect[YoutubeDataPage[YoutubeDataPlaylist]](request).flatMap {
       playlists =>
         playlists.items.headOption match {
           case Some(playlist) => IO(playlist)
@@ -126,13 +126,13 @@ final case class YoutubeDataClient(
   )
 
   private def page[A](request: IO[Request[IO]])(
-      implicit entityDecoder: EntityDecoder[IO, GoogleDataPage[A]]
-  ): IO[GoogleDataPage[A]] = {
-    client.expect[GoogleDataPage[A]](request)
+      implicit entityDecoder: EntityDecoder[IO, YoutubeDataPage[A]]
+  ): IO[YoutubeDataPage[A]] = {
+    client.expect[YoutubeDataPage[A]](request)
   }
 
   private def goThroughPages[A](uri: Uri)(
-      implicit entityDecoder: EntityDecoder[IO, GoogleDataPage[A]]
+      implicit entityDecoder: EntityDecoder[IO, YoutubeDataPage[A]]
   ): IO[List[A]] = {
 
     def go(request: IO[Request[IO]]): IO[List[A]] =
