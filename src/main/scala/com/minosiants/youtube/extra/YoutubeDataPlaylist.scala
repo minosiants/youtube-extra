@@ -11,6 +11,7 @@ final case class YoutubeDataPlaylistSnippet(
     thumbnails: YoutubeDataThumbnails,
     channelTitle: String
 )
+
 final case class YoutubeDataPlaylist(
     id: String,
     snippet: YoutubeDataPlaylistSnippet

@@ -3,9 +3,8 @@ package youtube.extra
 
 import java.time.Instant
 
-import monocle.macros.GenLens
-import monocle.function.all._
 import monocle.Traversal
+import monocle.macros.GenLens
 
 final case class YoutubeDataVideoSnippet(
     channelTitle: String,
@@ -16,6 +15,7 @@ final case class YoutubeDataVideoSnippet(
     thumbnails: Option[YoutubeDataThumbnails],
     tags: Option[List[String]]
 )
+
 final case class YoutubeDataVideoStatistics(
     viewCount: String,
     likeCount: Option[String],
@@ -35,18 +35,13 @@ final case class YoutubeDataVideo(
     statistics: YoutubeDataVideoStatistics
 )
 
-object YoutubeDataVideo extends CommonCodecs {
+object YoutubeDataVideo {
 
-  val itemsLens   = GenLens[YoutubeDataPage[YoutubeDataVideo]](_.items)
   val snippetLens = GenLens[YoutubeDataVideo](_.snippet)
 
-  val allVideos
-      : Traversal[YoutubeDataPage[YoutubeDataVideo], YoutubeDataVideo] = itemsLens composeTraversal each
-
-  val titleAndDescription =
+  val titleAndDescriptionTrav =
     Traversal.apply2[YoutubeDataVideoSnippet, String](_.title, _.description) {
-      case (fn, ln, l) => l.copy(title = fn, description = ln)
+      case (t, d, l) => l.copy(title = t, description = d)
     }
-  val titleAndDescriptionLens = (snippetLens composeTraversal titleAndDescription)
 
 }

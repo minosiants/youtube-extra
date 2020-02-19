@@ -97,7 +97,7 @@ final case class YoutubeDataClient(
     } yield channel.map((sub, _)).toList).flatten
   }
 
-  def getSubsActivity(channelId: String): IO[SubscriptionsActivity] =
+  def getSubsActivity(channelId: String): IO[Subscriptions] =
     for {
       owner <- getChannel(channelId)
       subs  <- getSubscriptions(channelId)
@@ -110,7 +110,7 @@ final case class YoutubeDataClient(
         .map(_.flatten)
       subAndChannel = channelBySub(subs, channels)
       result <- subAndChannel.map((subscription _).tupled).sequence
-    } yield SubscriptionsActivity(owner, result)
+    } yield Subscriptions(owner, result)
 
   private def get(uri: Uri): IO[Request[IO]] = Method.GET(
     uri,

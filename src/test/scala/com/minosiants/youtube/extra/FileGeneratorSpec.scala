@@ -3,12 +3,11 @@ package com.minosiants.youtube.extra
 import java.io.File
 
 import cats.effect.specs2.CatsIO
-import com.minosiants.youtube.extra.PlaylistGenerator.createPlaylist
 import io.circe.generic.auto._
 
-class PlaylistGeneratorSpec extends YoutubeDataSpec with CatsIO {
+class FileGeneratorSpec extends YoutubeDataSpec with CatsIO {
 
-  "PlaylistGenerator" should {
+  "File Generator" should {
 
     "create playlist" in {
       val destination = new File("target/playlist")
@@ -19,7 +18,7 @@ class PlaylistGeneratorSpec extends YoutubeDataSpec with CatsIO {
         videos <- decodeJson[YoutubeDataPage[YoutubeDataVideo]](
           "/__files/videos.json"
         )
-        _ <- createPlaylist(
+        _ <- FileGenerator.playlist(
           FullPlaylist(playlist, videos.items),
           destination
         )

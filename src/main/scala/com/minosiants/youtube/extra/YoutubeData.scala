@@ -9,9 +9,6 @@ import io.circe.{ Decoder, Encoder }
 import org.http4s.EntityDecoder
 import org.http4s.circe.jsonOf
 import io.circe.generic.auto._
-import monocle.macros.GenLens
-import monocle.function.all._
-import monocle.Traversal
 
 final case class YoutubeDataThumbnail(
     url: String,
@@ -34,45 +31,6 @@ case class YoutubeDataPage[A](
     pageInfo: Option[YoutubeDataPageInfo],
     items: List[A]
 )
-
-final case class FullPlaylist(
-    playlistInfo: YoutubeDataPlaylist,
-    videos: List[YoutubeDataVideo]
-)
-
-final case class Subscription(
-    sub: YoutubeDataSubscription,
-    videos: List[YoutubeDataVideo]
-)
-final case class SubscriptionsActivity(
-    owner: YoutubeDataChannel,
-    subs: List[Subscription]
-)
-
-object FullPlaylist extends CommonCodecs {
-
-  val videosLens  = GenLens[FullPlaylist](_.videos)
-  val snippetLens = GenLens[YoutubeDataVideo](_.snippet)
-
-  val allVideos
-      : Traversal[FullPlaylist, YoutubeDataVideo] = videosLens composeTraversal each
-
-  val titleAndDescription =
-    Traversal.apply2[YoutubeDataVideoSnippet, String](_.title, _.description) {
-      case (fn, ln, l) => l.copy(title = fn, description = ln)
-    }
-  val videoTitleAndDescriptionLens = (allVideos composeLens snippetLens composeTraversal titleAndDescription)
-
-  val playlistLens        = GenLens[FullPlaylist](_.playlistInfo)
-  val playlistSnippetLens = GenLens[YoutubeDataPlaylist](_.snippet)
-  val playlisttitleAndDescription =
-    Traversal
-      .apply2[YoutubeDataPlaylistSnippet, String](_.title, _.description) {
-        case (fn, ln, l) => l.copy(title = fn, description = ln)
-      }
-
-  val playlistTitleAndDescriptionLens = (playlistLens composeLens playlistSnippetLens composeTraversal playlisttitleAndDescription)
-}
 
 object YoutubeDataPage extends CommonCodecs {
   implicit def itemDecoder
