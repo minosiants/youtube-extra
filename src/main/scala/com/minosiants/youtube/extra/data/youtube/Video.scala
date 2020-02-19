@@ -16,7 +16,7 @@ final case class VideoSnippet(
 )
 
 final case class VideoStatistics(
-    viewCount: String,
+    viewCount: Option[String],
     likeCount: Option[String],
     dislikeCount: Option[String],
     favoriteCount: String,

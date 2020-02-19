@@ -23,7 +23,7 @@ case class Url(apiHost: Uri, key: String) {
     endpoint("subscriptions", maxResult) +? ("channelId", channelId) +? ("part", "snippet,contentDetails")
 
   def channels(ids: List[String], maxResult: Int = _maxResult): Uri =
-    endpoint("channels", maxResult) +? ("id", ids.mkString(",")) +? ("part", "contentDetails")
+    endpoint("channels", maxResult) +? ("id", ids.mkString(",")) +? ("part", "snippet,contentDetails")
 
   def channels(id: String): Uri = channels(List(id), 1)
 
