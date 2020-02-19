@@ -8,6 +8,7 @@ import io.circe.syntax._
 import io.circe.generic.auto._
 import FileUtils._
 import StringUtils._
+import com.minosiants.youtube.extra.data.{ FullPlaylist, Subscriptions }
 
 object FileGenerator {
 

@@ -1,14 +1,13 @@
-package com.minosiants
-package youtube.extra
+package com.minosiants.youtube.extra.data.youtube
 
 import java.time.Instant
 
 import cats.effect.IO
 import cats.syntax.either._
+import io.circe.generic.auto._
 import io.circe.{ Decoder, Encoder }
 import org.http4s.EntityDecoder
 import org.http4s.circe.jsonOf
-import io.circe.generic.auto._
 
 final case class YoutubeDataThumbnail(
     url: String,

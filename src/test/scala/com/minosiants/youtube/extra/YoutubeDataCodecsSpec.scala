@@ -6,6 +6,9 @@ import io.circe.Decoder
 import io.circe.generic.auto._
 import org.specs2.execute.Result
 
+import data.youtube._
+import data._
+
 class YoutubeDataCodecsSpec extends YoutubeDataSpec {
 
   "YoutubeDataCodecsSpec" should {

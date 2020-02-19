@@ -5,6 +5,14 @@ import java.io.File
 import cats.Applicative
 import cats.effect.IO
 import cats.implicits._
+import com.minosiants.youtube.extra.data.{
+  Command,
+  CommandNotFound,
+  HelpCommand,
+  NoRequiredArguments,
+  PlaylistCommand,
+  SubscriptionsCommand
+}
 
 import scala.annotation.tailrec
 
