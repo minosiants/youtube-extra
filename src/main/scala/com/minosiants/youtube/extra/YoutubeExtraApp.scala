@@ -6,10 +6,9 @@ import java.io.File
 import cats.effect.{ ContextShift, ExitCode, IO }
 import cats.instances.string._
 import cats.syntax.functor._
-
 import org.http4s.client.blaze.BlazeClientBuilder
+
 import scala.concurrent.ExecutionContext
-import PlaylistGenerator.createPlaylist
 import YoutubeDataAccessProps.props
 import YoutubeDataClient.{ apiUri, googleAppKey }
 
@@ -32,8 +31,8 @@ case class YoutubeExtraApp()(
       destination: File
   ): IO[Unit] = withClient(token) { client =>
     for {
-      playlist <- client.getFullPlaylist(playlistId)
-      _        <- createPlaylist(playlist, destination)
+      pl <- client.getFullPlaylist(playlistId)
+      _  <- FileGenerator.playlist(pl, destination)
     } yield ()
   }
 
@@ -44,7 +43,7 @@ case class YoutubeExtraApp()(
   ): IO[Unit] = withClient(token) { client =>
     for {
       subs <- client.getSubsActivity(channelId)
-      _    <- SubscriptionsGenerator.createSubscriptions(subs, destination)
+      _    <- FileGenerator.subscriptions(subs, destination)
     } yield ()
 
   }
