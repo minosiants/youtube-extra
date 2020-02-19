@@ -1,7 +1,7 @@
 {
   "request": {
     "method": "GET",
-    "url": "/subscriptions?key=AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM&channelId=UCAuUUnT6oDeKwE6v1NGQxug&part=snippet%2CcontentDetails&maxResults=50"
+    "url": "/subscriptions?key=AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM&maxResults=50&channelId=UCAuUUnT6oDeKwE6v1NGQxug&part=snippet%2CcontentDetails"
   },
   "response": {
     "status": 200,
