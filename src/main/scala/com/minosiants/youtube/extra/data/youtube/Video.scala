@@ -5,41 +5,41 @@ import java.time.Instant
 import monocle.Traversal
 import monocle.macros.GenLens
 
-final case class YoutubeDataVideoSnippet(
+final case class VideoSnippet(
     channelTitle: String,
     publishedAt: Instant,
     channelId: String,
     title: String,
     description: String,
-    thumbnails: Option[YoutubeDataThumbnails],
+    thumbnails: Option[Thumbnails],
     tags: Option[List[String]]
 )
 
-final case class YoutubeDataVideoStatistics(
+final case class VideoStatistics(
     viewCount: String,
     likeCount: Option[String],
     dislikeCount: Option[String],
     favoriteCount: String,
     commentCount: Option[String]
 )
-final case class YoutubeDataVideoContentDetails(
+final case class VideoContentDetails(
     duration: String,
     dimension: String
 )
 
-final case class YoutubeDataVideo(
+final case class Video(
     id: String,
-    snippet: YoutubeDataVideoSnippet,
-    contentDetails: YoutubeDataVideoContentDetails,
-    statistics: YoutubeDataVideoStatistics
+    snippet: VideoSnippet,
+    contentDetails: VideoContentDetails,
+    statistics: VideoStatistics
 )
 
-object YoutubeDataVideo {
+object Video {
 
-  val snippetLens = GenLens[YoutubeDataVideo](_.snippet)
+  val snippetLens = GenLens[Video](_.snippet)
 
   val titleAndDescriptionTrav =
-    Traversal.apply2[YoutubeDataVideoSnippet, String](_.title, _.description) {
+    Traversal.apply2[VideoSnippet, String](_.title, _.description) {
       case (t, d, l) => l.copy(title = t, description = d)
     }
 

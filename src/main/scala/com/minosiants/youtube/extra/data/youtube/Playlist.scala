@@ -2,16 +2,16 @@ package com.minosiants.youtube.extra.data.youtube
 
 import java.time.Instant
 
-final case class YoutubeDataPlaylistSnippet(
+final case class PlaylistSnippet(
     publishedAt: Instant,
     channelId: String,
     title: String,
     description: String,
-    thumbnails: YoutubeDataThumbnails,
+    thumbnails: Thumbnails,
     channelTitle: String
 )
 
-final case class YoutubeDataPlaylist(
+final case class Playlist(
     id: String,
-    snippet: YoutubeDataPlaylistSnippet
+    snippet: PlaylistSnippet
 )

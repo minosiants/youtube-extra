@@ -6,7 +6,7 @@ import io.circe.Decoder
 import io.circe.generic.auto._
 import org.specs2.execute.Result
 
-import data.youtube._
+import data.youtube.{ Subscription => YTSub, _ }
 import data._
 
 class YoutubeDataCodecsSpec extends YoutubeDataSpec {
@@ -14,29 +14,29 @@ class YoutubeDataCodecsSpec extends YoutubeDataSpec {
   "YoutubeDataCodecsSpec" should {
 
     "YoutubeDataPlaylistItems be decoded properly" in {
-      checkDecoding[YoutubeDataPage[YoutubeDataItem]]("/__files/playlist.json")
+      checkDecoding[Page[Item]]("/__files/playlist.json")
         .unsafeRunSync()
     }
 
     "YoutubeDataVideo be decoded properly" in {
-      checkDecoding[YoutubeDataPage[YoutubeDataVideo]]("/__files/videos2.json")
+      checkDecoding[Page[Video]]("/__files/videos2.json")
         .unsafeRunSync()
     }
 
     "YoutubeDataPlaylist be decoded properly" in {
-      checkDecoding[YoutubeDataPage[YoutubeDataPlaylist]](
+      checkDecoding[Page[Playlist]](
         "/__files/playlists.json"
       ).unsafeRunSync()
     }
 
     "YoutubeDataSubscription be decoded properly" in {
-      checkDecoding[YoutubeDataPage[YoutubeDataSubscription]](
+      checkDecoding[Page[YTSub]](
         "/__files/subscriptions.json"
       ).unsafeRunSync()
     }
 
     "YoutubeDataChannel be decoded properly" in {
-      checkDecoding[YoutubeDataPage[YoutubeDataChannel]](
+      checkDecoding[Page[Channel]](
         "/__files/channels.json"
       ).unsafeRunSync()
     }

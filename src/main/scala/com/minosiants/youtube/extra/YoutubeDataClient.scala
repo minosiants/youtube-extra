@@ -2,14 +2,14 @@ package com.minosiants
 package youtube.extra
 
 import cats.effect.IO
-import org.http4s.client.dsl.io._
-import org.http4s._
-import org.http4s.client.Client
-import org.http4s.headers.{ Accept, Authorization }
-import cats.syntax.traverse._
 import cats.instances.list._
-import data.youtube._
-import data._
+import cats.syntax.traverse._
+import com.minosiants.youtube.extra.data._
+import com.minosiants.youtube.extra.data.youtube.{ Subscription => YTSub, _ }
+import org.http4s.client.Client
+import org.http4s.client.dsl.io._
+import org.http4s.headers.{ Accept, Authorization }
+import org.http4s.{ EntityDecoder, _ }
 
 final case class YoutubeDataAccessProps(key: String, token: String)
 
@@ -25,38 +25,37 @@ final case class YoutubeDataClient(
 
   private val url = Url(apiUri, accessProps.key)
 
-  def getPlaylists(playlistId: String): IO[YoutubeDataPlaylist] = {
+  def getPlaylists(playlistId: String): IO[Playlist] = {
 
     val request = get(url.playlists(playlistId))
 
-    client.expect[YoutubeDataPage[YoutubeDataPlaylist]](request).flatMap {
-      playlists =>
-        playlists.items.headOption match {
-          case Some(playlist) => IO(playlist)
-          case None =>
-            IO.raiseError(PlaylistNotFound(playlistId))
-        }
+    client.expect[Page[Playlist]](request).flatMap { playlists =>
+      playlists.items.headOption match {
+        case Some(playlist) => IO(playlist)
+        case None =>
+          IO.raiseError(PlaylistNotFound(playlistId))
+      }
 
     }
   }
 
-  def getPlaylistItems(playlistId: String): IO[List[YoutubeDataItem]] =
-    goThroughPages[YoutubeDataItem](url.playlistItems(playlistId))
+  def getPlaylistItems(playlistId: String): IO[List[Item]] =
+    goThroughPages[Item](url.playlistItems(playlistId))
 
-  def getOnePagePlaylistItems(playlistId: String): IO[List[YoutubeDataItem]] =
-    page[YoutubeDataItem](get(url.playlistItems(playlistId))).map(_.items)
+  def getOnePagePlaylistItems(playlistId: String): IO[List[Item]] =
+    page[Item](get(url.playlistItems(playlistId))).map(_.items)
 
-  def getVideos(ids: List[String]): IO[List[YoutubeDataVideo]] =
-    goThroughPages[YoutubeDataVideo](url.videos(ids))
+  def getVideos(ids: List[String]): IO[List[Video]] =
+    goThroughPages[Video](url.videos(ids))
 
-  def getSubscriptions(channelId: String): IO[List[YoutubeDataSubscription]] =
-    goThroughPages[YoutubeDataSubscription](url.subscriptions(channelId))
+  def getSubscriptions(channelId: String): IO[List[YTSub]] =
+    goThroughPages[YTSub](url.subscriptions(channelId))
 
-  def getChannels(ids: List[String]): IO[List[YoutubeDataChannel]] =
-    goThroughPages[YoutubeDataChannel](url.channels(ids))
+  def getChannels(ids: List[String]): IO[List[Channel]] =
+    goThroughPages[Channel](url.channels(ids))
 
-  def getChannel(id: String): IO[YoutubeDataChannel] =
-    goThroughPages[YoutubeDataChannel](url.channels(id)).flatMap { channels =>
+  def getChannel(id: String): IO[Channel] =
+    goThroughPages[Channel](url.channels(id)).flatMap { channels =>
       channels.headOption match {
         case Some(c) => IO(c)
         case None    => Error.channelNotFound(id)
@@ -76,8 +75,8 @@ final case class YoutubeDataClient(
   }
 
   private def subscription(
-      sub: YoutubeDataSubscription,
-      channel: YoutubeDataChannel
+      sub: YTSub,
+      channel: Channel
   ): IO[Subscription] = {
     val uploads = channel.contentDetails.relatedPlaylists.uploads
     for {
@@ -89,9 +88,9 @@ final case class YoutubeDataClient(
   }
 
   private def channelBySub(
-      subs: List[YoutubeDataSubscription],
-      channels: List[YoutubeDataChannel]
-  ): List[(YoutubeDataSubscription, YoutubeDataChannel)] = {
+      subs: List[YTSub],
+      channels: List[Channel]
+  ): List[(YTSub, Channel)] = {
     (for {
       sub <- subs
       channelId = sub.snippet.resourceId.channelId
@@ -124,13 +123,13 @@ final case class YoutubeDataClient(
   )
 
   private def page[A](request: IO[Request[IO]])(
-      implicit entityDecoder: EntityDecoder[IO, YoutubeDataPage[A]]
-  ): IO[YoutubeDataPage[A]] = {
-    client.expect[YoutubeDataPage[A]](request)
+      implicit entityDecoder: EntityDecoder[IO, Page[A]]
+  ): IO[Page[A]] = {
+    client.expect[Page[A]](request)
   }
 
   private def goThroughPages[A](uri: Uri)(
-      implicit entityDecoder: EntityDecoder[IO, YoutubeDataPage[A]]
+      implicit entityDecoder: EntityDecoder[IO, Page[A]]
   ): IO[List[A]] = {
 
     def go(request: IO[Request[IO]]): IO[List[A]] =
@@ -153,4 +152,5 @@ object YoutubeDataClient {
   //key obtained using googleapis web console
   //https://developers.google.com/youtube/v3/docs/playlistItems/list
   val googleAppKey = "AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM"
+
 }
