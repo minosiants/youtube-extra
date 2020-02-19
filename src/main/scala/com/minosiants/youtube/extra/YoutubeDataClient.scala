@@ -8,6 +8,8 @@ import org.http4s.client.Client
 import org.http4s.headers.{ Accept, Authorization }
 import cats.syntax.traverse._
 import cats.instances.list._
+import data.youtube._
+import data._
 
 final case class YoutubeDataAccessProps(key: String, token: String)
 
@@ -110,7 +112,7 @@ final case class YoutubeDataClient(
         .map(_.flatten)
       subAndChannel = channelBySub(subs, channels)
       result <- subAndChannel.map((subscription _).tupled).sequence
-    } yield Subscriptions(owner, result)
+    } yield data.Subscriptions(owner, result)
 
   private def get(uri: Uri): IO[Request[IO]] = Method.GET(
     uri,

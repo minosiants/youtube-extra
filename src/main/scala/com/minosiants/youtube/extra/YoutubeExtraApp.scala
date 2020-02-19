@@ -11,6 +11,11 @@ import org.http4s.client.blaze.BlazeClientBuilder
 import scala.concurrent.ExecutionContext
 import YoutubeDataAccessProps.props
 import YoutubeDataClient.{ apiUri, googleAppKey }
+import com.minosiants.youtube.extra.data.{
+  HelpCommand,
+  PlaylistCommand,
+  SubscriptionsCommand
+}
 
 case class YoutubeExtraApp()(
     implicit val cs: ContextShift[IO],
@@ -84,7 +89,7 @@ case class YoutubeExtraApp()(
       .attempt
       .flatMap {
         case Right(_) => IO(ExitCode.Success)
-        case Left(e: Error) =>
+        case Left(e: data.Error) =>
           c.putStrLn(e).as(ExitCode.Error)
         case Left(error) =>
           c.putStrLn(error.getMessage).as(ExitCode.Error)

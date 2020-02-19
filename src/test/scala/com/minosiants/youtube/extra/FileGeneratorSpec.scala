@@ -3,6 +3,8 @@ package com.minosiants.youtube.extra
 import java.io.File
 
 import cats.effect.specs2.CatsIO
+import data.youtube._
+import data._
 import io.circe.generic.auto._
 
 class FileGeneratorSpec extends YoutubeDataSpec with CatsIO {

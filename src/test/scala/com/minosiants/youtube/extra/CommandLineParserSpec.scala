@@ -2,6 +2,12 @@ package com.minosiants
 package youtube.extra
 import java.io.File
 
+import com.minosiants.youtube.extra.data.{
+  CommandNotFound,
+  NoRequiredArguments,
+  PlaylistCommand
+}
+
 class CommandLineParserSpec extends YoutubeDataSpec {
 
   "CommandLineParser" should {

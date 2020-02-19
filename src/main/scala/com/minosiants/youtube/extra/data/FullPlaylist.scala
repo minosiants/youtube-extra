@@ -1,9 +1,14 @@
-package com.minosiants
-package youtube.extra
+package com.minosiants.youtube.extra.data
 
-import monocle.macros.GenLens
-import monocle.function.all._
+import com.minosiants.youtube.extra.data.youtube.{
+  CommonCodecs,
+  YoutubeDataPlaylist,
+  YoutubeDataPlaylistSnippet,
+  YoutubeDataVideo
+}
 import monocle.Traversal
+import monocle.function.all._
+import monocle.macros.GenLens
 
 final case class FullPlaylist(
     playlistInfo: YoutubeDataPlaylist,

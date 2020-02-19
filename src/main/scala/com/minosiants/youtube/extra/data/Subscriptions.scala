@@ -1,9 +1,16 @@
-package com.minosiants
-package youtube.extra
+package com.minosiants.youtube.extra.data
 
+import com.minosiants.youtube.extra.data.youtube.{
+  CommonCodecs,
+  YoutubeDataChannel,
+  YoutubeDataChannelSnippet,
+  YoutubeDataSubSnippet,
+  YoutubeDataSubscription,
+  YoutubeDataVideo
+}
 import monocle.Traversal
-import monocle.macros.GenLens
 import monocle.function.all._
+import monocle.macros.GenLens
 
 final case class Subscription(
     sub: YoutubeDataSubscription,

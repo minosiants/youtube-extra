@@ -1,5 +1,4 @@
-package com.minosiants
-package youtube.extra
+package com.minosiants.youtube.extra.data.youtube
 
 import java.time.Instant
 
