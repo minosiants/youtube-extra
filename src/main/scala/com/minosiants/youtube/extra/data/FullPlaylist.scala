@@ -1,34 +1,34 @@
 package com.minosiants.youtube.extra.data
 
 import com.minosiants.youtube.extra.data.youtube.{
-  CommonCodecs,
-  YoutubeDataPlaylist,
-  YoutubeDataPlaylistSnippet,
-  YoutubeDataVideo
+  Codecs,
+  Playlist,
+  PlaylistSnippet,
+  Video
 }
 import monocle.Traversal
 import monocle.function.all._
 import monocle.macros.GenLens
 
 final case class FullPlaylist(
-    playlistInfo: YoutubeDataPlaylist,
-    videos: List[YoutubeDataVideo]
+    playlistInfo: Playlist,
+    videos: List[Video]
 )
 
-object FullPlaylist extends CommonCodecs {
+object FullPlaylist extends Codecs {
 
   val videosLens = GenLens[FullPlaylist](_.videos)
 
   val allVideos
-      : Traversal[FullPlaylist, YoutubeDataVideo] = videosLens composeTraversal each
+      : Traversal[FullPlaylist, Video] = videosLens composeTraversal each
 
-  val videoTitleAndDescriptionLens = (allVideos composeLens YoutubeDataVideo.snippetLens composeTraversal YoutubeDataVideo.titleAndDescriptionTrav)
+  val videoTitleAndDescriptionLens = (allVideos composeLens Video.snippetLens composeTraversal Video.titleAndDescriptionTrav)
 
   val playlistLens        = GenLens[FullPlaylist](_.playlistInfo)
-  val playlistSnippetLens = GenLens[YoutubeDataPlaylist](_.snippet)
+  val playlistSnippetLens = GenLens[Playlist](_.snippet)
   val playlisttitleAndDescription =
     Traversal
-      .apply2[YoutubeDataPlaylistSnippet, String](_.title, _.description) {
+      .apply2[PlaylistSnippet, String](_.title, _.description) {
         case (fn, ln, l) => l.copy(title = fn, description = ln)
       }
 

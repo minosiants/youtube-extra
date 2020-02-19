@@ -1,33 +1,26 @@
 package com.minosiants.youtube.extra.data
 
-import com.minosiants.youtube.extra.data.youtube.{
-  CommonCodecs,
-  YoutubeDataChannel,
-  YoutubeDataChannelSnippet,
-  YoutubeDataSubSnippet,
-  YoutubeDataSubscription,
-  YoutubeDataVideo
-}
+import youtube.{ Subscription => YTSub, _ }
 import monocle.Traversal
 import monocle.function.all._
 import monocle.macros.GenLens
 
 final case class Subscription(
-    sub: YoutubeDataSubscription,
-    videos: List[YoutubeDataVideo]
+    sub: YTSub,
+    videos: List[Video]
 )
 
 final case class Subscriptions(
-    owner: YoutubeDataChannel,
+    owner: Channel,
     subs: List[Subscription]
 )
 
-object Subscriptions extends CommonCodecs {
+object Subscriptions extends Codecs {
 
-  type Snippet = YoutubeDataChannelSnippet
+  type Snippet = ChannelSnippet
 
   val ownerLens   = GenLens[Subscriptions](_.owner)
-  val snippetLens = GenLens[YoutubeDataChannel](_.snippet)
+  val snippetLens = GenLens[Channel](_.snippet)
 
   val snippetTitleAndDescLens = Traversal
     .apply2[Snippet, String](_.title, _.description) {
@@ -38,9 +31,9 @@ object Subscriptions extends CommonCodecs {
 
   val subsLens   = GenLens[Subscriptions](_.subs)
   val subLens    = GenLens[Subscription](_.sub)
-  val subSnippet = GenLens[YoutubeDataSubscription](_.snippet)
+  val subSnippet = GenLens[YTSub](_.snippet)
   val subTitleAndDescTrav = Traversal
-    .apply2[YoutubeDataSubSnippet, String](_.title, _.description) {
+    .apply2[SubscriptionSnippet, String](_.title, _.description) {
       case (t, d, l) => l.copy(title = t, description = d)
     }
 
@@ -51,9 +44,9 @@ object Subscriptions extends CommonCodecs {
 
   val videosLens = GenLens[Subscription](_.videos)
 
-  val videoSnippetLens = GenLens[YoutubeDataVideo](_.snippet)
+  val videoSnippetLens = GenLens[Video](_.snippet)
 
   val videoTitleAndDescriptionLens =
-    subsLens composeTraversal each composeLens videosLens composeTraversal each composeLens YoutubeDataVideo.snippetLens composeTraversal YoutubeDataVideo.titleAndDescriptionTrav
+    subsLens composeTraversal each composeLens videosLens composeTraversal each composeLens Video.snippetLens composeTraversal Video.titleAndDescriptionTrav
 
 }

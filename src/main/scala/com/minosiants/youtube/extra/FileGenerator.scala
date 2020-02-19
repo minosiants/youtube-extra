@@ -18,7 +18,7 @@ object FileGenerator {
   ): IO[Unit] = {
 
     val json         = escape(playlist).asJson.noSpaces
-    val filename     = escapeFliename(playlist.playlistInfo.snippet.title)
+    val filename     = escapeFilename(playlist.playlistInfo.snippet.title)
     val playlistFile = destination / s"$filename.html"
 
     create(json, "playlist", playlistFile)
@@ -30,7 +30,7 @@ object FileGenerator {
   ): IO[Unit] = {
 
     val json     = escape(subscriptions).asJson.noSpaces
-    val filename = escapeFliename(subscriptions.owner.snippet.title)
+    val filename = escapeFilename(subscriptions.owner.snippet.title)
     val file     = destination / s"$filename-subscriptions.html"
 
     create(json, "subscriptions", file)
@@ -63,7 +63,7 @@ object FileGenerator {
     )(playlist)
   }
 
-  private def escapeFliename(str: String): String = {
+  private def escapeFilename(str: String): String = {
     str.toLowerCase.replaceAll("\\s+", "-")
   }
 }
