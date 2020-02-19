@@ -21,9 +21,11 @@ final case class YoutubeDataClient(
     accessProps: YoutubeDataAccessProps
 ) {
 
+  private val url = Url(apiUri, accessProps.key)
+
   def getPlaylists(playlistId: String): IO[YoutubeDataPlaylist] = {
 
-    val request = get(playlistsUri(playlistId))
+    val request = get(url.playlists(playlistId))
 
     client.expect[YoutubeDataPage[YoutubeDataPlaylist]](request).flatMap {
       playlists =>
@@ -37,27 +39,26 @@ final case class YoutubeDataClient(
   }
 
   def getPlaylistItems(playlistId: String): IO[List[YoutubeDataItem]] =
-    goThroughPages[YoutubeDataItem](playlistItemsUri(playlistId))
+    goThroughPages[YoutubeDataItem](url.playlistItems(playlistId))
 
   def getOnePagePlaylistItems(playlistId: String): IO[List[YoutubeDataItem]] =
-    page[YoutubeDataItem](get(playlistItemsUri(playlistId))).map(_.items)
+    page[YoutubeDataItem](get(url.playlistItems(playlistId))).map(_.items)
 
   def getVideos(ids: List[String]): IO[List[YoutubeDataVideo]] =
-    goThroughPages[YoutubeDataVideo](videosUri(ids))
+    goThroughPages[YoutubeDataVideo](url.videos(ids))
 
   def getSubscriptions(channelId: String): IO[List[YoutubeDataSubscription]] =
-    goThroughPages[YoutubeDataSubscription](subUri(channelId))
+    goThroughPages[YoutubeDataSubscription](url.subscriptions(channelId))
 
   def getChannels(ids: List[String]): IO[List[YoutubeDataChannel]] =
-    goThroughPages[YoutubeDataChannel](channelsUri(ids))
+    goThroughPages[YoutubeDataChannel](url.channels(ids))
 
   def getChannel(id: String): IO[YoutubeDataChannel] =
-    goThroughPages[YoutubeDataChannel](channelsUri(List(id))).flatMap {
-      channels =>
-        channels.headOption match {
-          case Some(c) => IO(c)
-          case None    => Error.channelNotFound(id)
-        }
+    goThroughPages[YoutubeDataChannel](url.channels(id)).flatMap { channels =>
+      channels.headOption match {
+        case Some(c) => IO(c)
+        case None    => Error.channelNotFound(id)
+      }
     }
 
   def getFullPlaylist(playlistId: String): IO[FullPlaylist] = {
@@ -110,21 +111,6 @@ final case class YoutubeDataClient(
       subAndChannel = channelBySub(subs, channels)
       result <- subAndChannel.map((subscription _).tupled).sequence
     } yield SubscriptionsActivity(owner, result)
-
-  private def playlistsUri(playlistId: String): Uri =
-    apiUri / "playlists" +? ("key", accessProps.key) +? ("id", playlistId) +? ("part", "snippet")
-
-  private def playlistItemsUri(playlistId: String): Uri =
-    apiUri / "playlistItems" +? ("key", accessProps.key) +? ("playlistId", playlistId) +? ("part", "snippet") +? ("maxResults", 50)
-
-  private def videosUri(ids: List[String]): Uri =
-    apiUri / "videos" +? ("key", accessProps.key) +? ("id", ids.mkString(",")) +? ("part", "snippet,statistics,contentDetails") +? ("maxResults", 50)
-
-  private def subUri(channelId: String): Uri =
-    apiUri / "subscriptions" +? ("key", accessProps.key) +? ("channelId", channelId) +? ("part", "snippet,contentDetails") +? ("maxResults", 50)
-
-  private def channelsUri(ids: List[String]): Uri =
-    apiUri / "channels" +? ("key", accessProps.key) +? ("id", ids.mkString(",")) +? ("part", "contentDetails") +? ("maxResults", 50)
 
   private def get(uri: Uri): IO[Request[IO]] = Method.GET(
     uri,
