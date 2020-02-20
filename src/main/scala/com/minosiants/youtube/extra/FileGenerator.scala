@@ -47,9 +47,9 @@ object FileGenerator {
   private def escape(subscriptions: Subscriptions): Subscriptions = {
     Function.chain(
       Seq(
-        Subscriptions.ownerTitleAndDescriptionLens.modify(escapeHtml),
-        Subscriptions.subTitleAndDescriptionLens.modify(escapeHtml),
-        Subscriptions.videoTitleAndDescriptionLens.modify(escapeHtml)
+        Subscriptions.ownerTextFieldsLens.modify(escapeHtml),
+        Subscriptions.subTextFieldsLens.modify(escapeHtml),
+        Subscriptions.videoTextFieldsLens.modify(escapeHtml)
       )
     )(subscriptions)
   }
@@ -57,8 +57,8 @@ object FileGenerator {
   private def escape(playlist: FullPlaylist): FullPlaylist = {
     Function.chain(
       Seq(
-        FullPlaylist.playlistTitleAndDescriptionLens.modify(escapeHtml),
-        FullPlaylist.videoTitleAndDescriptionLens.modify(escapeHtml)
+        FullPlaylist.playlistTextFieldsLens.modify(escapeHtml),
+        FullPlaylist.videoTextFiledsLens.modify(escapeHtml)
       )
     )(playlist)
   }

@@ -11,8 +11,7 @@ final case class VideoSnippet(
     channelId: String,
     title: String,
     description: String,
-    thumbnails: Option[Thumbnails],
-    tags: Option[List[String]]
+    thumbnails: Option[Thumbnails]
 )
 
 final case class VideoStatistics(
@@ -38,9 +37,11 @@ object Video {
 
   val snippetLens = GenLens[Video](_.snippet)
 
-  val titleAndDescriptionTrav =
-    Traversal.apply2[VideoSnippet, String](_.title, _.description) {
-      case (t, d, l) => l.copy(title = t, description = d)
-    }
+  val textFieldsTrav =
+    Traversal
+      .apply3[VideoSnippet, String](_.channelTitle, _.title, _.description) {
+        case (ch, t, d, l) =>
+          l.copy(channelTitle = ch, title = t, description = d)
+      }
 
 }

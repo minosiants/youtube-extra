@@ -1,0 +1,166 @@
+<html>
+<header>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+          href="https://raw.githubusercontent.com/arcticicestudio/nord/develop/src/nord.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@1.22.0/build/global/luxon.min.js"></script>
+    <style type="text/css" media="screen">
+			html, body, div, span, applet, object, iframe,
+		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+		a, abbr, acronym, address, big, cite, code,
+		del, dfn, em, img, ins, kbd, q, s, samp,
+		small, strike, strong, sub, sup, tt, var,
+		b, u, i, center,
+		dl, dt, dd, ol, ul, li,
+		fieldset, form, label, legend,
+		table, caption, tbody, tfoot, thead, tr, th, td,
+		article, aside, canvas, details, embed,
+		figure, figcaption, footer, header, hgroup,
+		menu, nav, output, ruby, section, summary,
+		time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+		}
+		/* HTML5 display-role reset for older browsers */
+		article, aside, details, figcaption, figure,
+		footer, header, hgroup, menu, nav, section {
+		display: block;
+		}
+		body {
+		line-height: 1;
+		}
+		ol, ul {
+		list-style: none;
+		}
+		blockquote, q {
+		quotes: none;
+		}
+		blockquote:before, blockquote:after,
+		q:before, q:after {
+		content: '';
+		content: none;
+		}
+		table {
+		border-collapse: collapse;
+		border-spacing: 0;
+		}
+		html{
+			font-size: 16px;
+		}
+		body {
+			font-family: Roboto, Arial, sans-serif;
+			background-color: #2e3440 ;
+			color: #e5e9f0;
+			margin: 3rem;
+			line-height: 1.5rem;
+		}
+		.container{
+			width: 80%;
+			margin: 0 auto;
+		}
+		h1{
+			font-size: 2.3rem;
+			margin:  1rem 0;
+			padding: 1rem 0 ;
+		}
+		h3{
+			font-size: 1.5rem;
+			
+		}
+		a{
+			text-decoration: none;
+			color: #e5e9f0;
+			}
+		.thumbnail-video{
+			float: left;
+			display: inline;
+			position: relative;
+		}
+		.thumbnail-video-duration{
+			background:#2e3440 ;
+			position: absolute;
+			bottom: 1rem;
+			right: 1rem;
+			padding: 0.5rem 1rem;
+
+		}
+		.thumbnail-description{
+			float: left;
+			display: inline;
+			padding-left: 1rem;
+			width: 50%
+		}
+		.description-item{
+			padding-bottom: 1rem;
+		}
+		.sorting-menu:after, .statistics-block:after, .thumbnail:after{
+			content: "";
+			display: table;
+			clear: both;
+		}
+		.published-at{
+			color: #81a1c1;
+		}
+		.label{
+			margin-right:0.2rem;
+		}
+		.statistics-block li{
+			float: left;
+			margin-right:1rem;
+		}
+		.statistics-block{
+			margin-top:1rem;
+			color: #d08770;
+			font-weight: bold;
+		}
+		.item {
+			border-top: 1px solid #4c566a;
+			border-bottom: 1px solid #4c566a;
+			padding-top:1rem;
+			padding-bottom:1rem;
+		}
+		.sorting-menu li{
+			float: right;
+			margin: 1rem 0 1rem 1rem;
+
+		}
+
+		.sorting-menu li a{
+			padding: 0.5rem;
+
+		}
+
+		.selected {
+			background-color: #e5e9f0 ;
+			color: #2e3440;
+		}
+
+    </style>
+    <script type="text/javascript">
+			const subscriptions = JSON.parse('@subscriptions@');
+    </script>
+</header>
+<body>
+<div class="container">
+    <header class="playlist-info">
+        <h1 class="playlist-title">Subscriptions</h1>
+    </header>
+    <span class="label number-of-videos"></span>
+    <ul class="sorting-menu">
+        <li><a class="sorting-option" data="commentCount" href="">comments</a></li>
+        <li><a class="sorting-option" data="favoriteCount" href="">favorites</a></li>
+        <li><a class="sorting-option" data="dislikeCount" href="">dislikes</a></li>
+        <li><a class="sorting-option" data="likeCount" href="">likes</a></li>
+        <li><a class="sorting-option selected" data="viewCount" href="">views</a></li>
+    </ul>
+    <ul class="subscriptions">
+
+    </ul>
+</div>
+</body>
+</html>

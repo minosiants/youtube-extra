@@ -7,7 +7,8 @@ object StringUtils {
     xml.Utility
       .escape(text)
       .replaceAll("'", "&#39;")
-      .replaceAll("(\r\n|\n)", "<br/>");
+      .replaceAll("(\r\n|\n|\r)", "<br/>")
+      .replaceAll("\\\\", "&#92;");
   }
 
 }
