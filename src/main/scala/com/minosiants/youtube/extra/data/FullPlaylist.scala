@@ -22,15 +22,16 @@ object FullPlaylist extends Codecs {
   val allVideos
       : Traversal[FullPlaylist, Video] = videosLens composeTraversal each
 
-  val videoTitleAndDescriptionLens = (allVideos composeLens Video.snippetLens composeTraversal Video.titleAndDescriptionTrav)
+  val videoTextFiledsLens = (allVideos composeLens Video.snippetLens composeTraversal Video.textFieldsTrav)
 
   val playlistLens        = GenLens[FullPlaylist](_.playlistInfo)
   val playlistSnippetLens = GenLens[Playlist](_.snippet)
-  val playlisttitleAndDescription =
+  val playlistTextFieldsTrav =
     Traversal
-      .apply2[PlaylistSnippet, String](_.title, _.description) {
-        case (fn, ln, l) => l.copy(title = fn, description = ln)
+      .apply3[PlaylistSnippet, String](_.channelTitle, _.title, _.description) {
+        case (ch, t, d, l) =>
+          l.copy(channelTitle = ch, title = t, description = d)
       }
 
-  val playlistTitleAndDescriptionLens = (playlistLens composeLens playlistSnippetLens composeTraversal playlisttitleAndDescription)
+  val playlistTextFieldsLens = (playlistLens composeLens playlistSnippetLens composeTraversal playlistTextFieldsTrav)
 }

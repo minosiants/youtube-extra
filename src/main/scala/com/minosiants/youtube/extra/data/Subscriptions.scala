@@ -17,17 +17,15 @@ final case class Subscriptions(
 
 object Subscriptions extends Codecs {
 
-  type Snippet = ChannelSnippet
-
   val ownerLens   = GenLens[Subscriptions](_.owner)
   val snippetLens = GenLens[Channel](_.snippet)
 
   val snippetTitleAndDescLens = Traversal
-    .apply2[Snippet, String](_.title, _.description) {
+    .apply2[ChannelSnippet, String](_.title, _.description) {
       case (t, d, l) => l.copy(title = t, description = d)
     }
 
-  val ownerTitleAndDescriptionLens = ownerLens composeLens snippetLens composeTraversal snippetTitleAndDescLens
+  val ownerTextFieldsLens = ownerLens composeLens snippetLens composeTraversal snippetTitleAndDescLens
 
   val subsLens   = GenLens[Subscriptions](_.subs)
   val subLens    = GenLens[Subscription](_.sub)
@@ -39,14 +37,14 @@ object Subscriptions extends Codecs {
 
   val allSubsTraversal = subsLens composeTraversal each
 
-  val subTitleAndDescriptionLens =
+  val subTextFieldsLens =
     allSubsTraversal composeLens subLens composeLens subSnippet composeTraversal subTitleAndDescTrav
 
   val videosLens = GenLens[Subscription](_.videos)
 
   val videoSnippetLens = GenLens[Video](_.snippet)
 
-  val videoTitleAndDescriptionLens =
-    subsLens composeTraversal each composeLens videosLens composeTraversal each composeLens Video.snippetLens composeTraversal Video.titleAndDescriptionTrav
+  val videoTextFieldsLens =
+    subsLens composeTraversal each composeLens videosLens composeTraversal each composeLens Video.snippetLens composeTraversal Video.textFieldsTrav
 
 }
