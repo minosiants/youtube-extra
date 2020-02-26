@@ -77,29 +77,56 @@
 			text-decoration: none;
 			color: #e5e9f0;
 			}
-		.thumbnail-video{
+		.sub-image{
 			float: left;
 			display: inline;
 			position: relative;
 		}
-		.thumbnail-video-duration{
-			background:#2e3440 ;
-			position: absolute;
-			bottom: 1rem;
-			right: 1rem;
-			padding: 0.5rem 1rem;
 
-		}
-		.thumbnail-description{
+
+		.sub-info{
 			float: left;
 			display: inline;
 			padding-left: 1rem;
+			padding-bottom: 1rem;
 			width: 50%
 		}
-		.description-item{
-			padding-bottom: 1rem;
+
+		.sub-videos{
+			margin-top: 4rem;
 		}
-		.sorting-menu:after, .statistics-block:after, .thumbnail:after{
+
+		.video{
+			position: relative;
+			width: 320px;
+			float: left;
+			margin-right: 1rem;
+		}
+		.video-title {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 0.2rem 0.5rem;
+			background: rgba(46, 52, 64, .7);
+			width: 100%;
+		}
+
+		.video-duration {
+			position: absolute;
+			bottom: 1rem;
+			right: 0.5rem;
+			padding: 0.5rem 0.5rem;
+			background: rgba(46, 52, 64, .7);
+		}
+		.video-published{
+			position: absolute;
+			bottom: 1rem;
+			left: 0.5rem;
+			padding: 0.5rem 0.5rem;
+			background: rgba(46, 52, 64, .7);
+
+		}
+		.sorting-menu:after, .statistics-block:after, .sub:after, .sub-videos:after{
 			content: "";
 			display: table;
 			clear: both;
@@ -122,8 +149,8 @@
 		.item {
 			border-top: 1px solid #4c566a;
 			border-bottom: 1px solid #4c566a;
-			padding-top:1rem;
-			padding-bottom:1rem;
+			padding-top: 3rem;
+			padding-bottom: 3rem;
 		}
 		.sorting-menu li{
 			float: right;
@@ -143,7 +170,7 @@
 
     </style>
     <script type="text/javascript">
-			const subscriptions = JSON.parse('@subscriptions@');
+			const subscriptions = JSON.parse('@subscriptions');
 
 			const DateTime = luxon.DateTime,
 				  Duration = luxon.Duration,
@@ -161,25 +188,31 @@
 			`;
 
 			const videoTemplate = (video) => `
-					<li>
-						<img src="${video.snippet.thumbnails.default.url}"><a href="https://www.youtube.com/watch?v=${video.id}" > </a> </img>
+					<li class="video">
+						<a class ="video-url" href="https://www.youtube.com/watch?v=${video.id}" target="_blank">
+							<img src="${video.snippet.thumbnails.medium.url}"> </img>
+						</a>
 						<span class="video-title">${video.snippet.title}</span>
 						<span class="video-duration">${formatVideoTime(video.contentDetails.duration)}</span>
 						<span class="video-published">${DateTime.fromISO(video.snippet.publishedAt).toLocaleString(DateTime.DATE_MED)}</span>
 					</li>
 			`;
 			const subTemplate = (item) => `
-					<li>
-						<div>
-						 	<img src="${item.sub.snippet.thumbnails.medium.url}"> </img>
-						 	<div>
-						 		<h3 class="sub-title"><a href="https://www.youtube.com/channel/${item.sub.snippet.resourceId.channelId}">${item.sub.snippet.title}</a></h3>
+					<li class="item">
+						<div class = "sub">
+						 	<img class = "sub-image" src="${item.sub.snippet.thumbnails.medium.url}"> </img>
+						 	<div class = "sub-info">
+						 		<h3 class="sub-title">
+						 		 	<a href="https://www.youtube.com/channel/${item.sub.snippet.resourceId.channelId}" target="_blank">
+						 		 		${item.sub.snippet.title}
+						 		 	</a>
+						 		</h3>
 						 		<div class="sub-description">${item.sub.snippet.description} </div>
 	                            <div class ="sub-last-active"> </div>
 						 	</div>
 					 	</div>
 					 	<ul class="sub-videos">
-					 		${item.videos.map(videoTemplate).join('')}
+					 		${item.videos.slice(0, 3).map(videoTemplate).join('')}
 					 	</ul>
 					</li>
 
@@ -214,11 +247,8 @@
     </header>
     <span class="label number-of-videos"></span>
     <ul class="sorting-menu">
-        <li><a class="sorting-option" data="commentCount" href="">comments</a></li>
-        <li><a class="sorting-option" data="favoriteCount" href="">favorites</a></li>
-        <li><a class="sorting-option" data="dislikeCount" href="">dislikes</a></li>
-        <li><a class="sorting-option" data="likeCount" href="">likes</a></li>
-        <li><a class="sorting-option selected" data="viewCount" href="">views</a></li>
+        <li><a class="sorting-option" data="favoriteCount" href="">not active</a></li>
+        <li><a class="sorting-option selected" data="commentCount" href="">active</a></li>
     </ul>
     <ul class="subscriptions">
 
