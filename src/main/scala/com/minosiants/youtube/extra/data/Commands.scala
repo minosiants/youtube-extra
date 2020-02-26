@@ -2,7 +2,7 @@ package com.minosiants.youtube.extra.data
 
 import java.io.File
 
-sealed trait Command
+sealed trait Command extends Product with Serializable
 
 final case class PlaylistCommand(
     playlistId: String,

@@ -1,3 +1,4 @@
+
 <html>
 <header>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
@@ -70,7 +71,7 @@
 		}
 		h3{
 			font-size: 1.5rem;
-			
+
 		}
 		a{
 			text-decoration: none;
@@ -143,12 +144,43 @@
     </style>
     <script type="text/javascript">
 			const subscriptions = JSON.parse('@subscriptions@');
+
+			const DateTime = luxon.DateTime,
+				  Duration = luxon.Duration,
+
+			      formatVideoTime = (time) => {
+						const duration = Duration.fromISO(time),
+							  format = duration.hours < 0 ? "mm:ss" : "HH:mm:ss";
+
+						return duration.toFormat("mm:ss");
+					};
+
+			const ownerInfoTemplate = (subs) => `
+					<h1 class="owner-title"><a target="_blank" href="https://www.youtube.com/feed/subscriptions">${subs.owner.snippet.title} ( ${subs.subs.length} subscriptions)</a></h1>
+					<div>${subs.owner.snippet.description}</div>
+				  `;
+			$(() => {
+
+				const renderOwnerInfo = (subs) => {
+					$(".sub-info").html(ownerInfoTemplate(subs))
+
+				};
+
+				renderOwnerInfo(subscriptions);
+
+
+			});
+
+
+
+
+
     </script>
 </header>
 <body>
 <div class="container">
-    <header class="playlist-info">
-        <h1 class="playlist-title">Subscriptions</h1>
+    <header class="sub-info">
+
     </header>
     <span class="label number-of-videos"></span>
     <ul class="sorting-menu">
