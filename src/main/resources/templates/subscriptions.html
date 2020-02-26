@@ -158,16 +158,46 @@
 			const ownerInfoTemplate = (subs) => `
 					<h1 class="owner-title"><a target="_blank" href="https://www.youtube.com/feed/subscriptions">${subs.owner.snippet.title} ( ${subs.subs.length} subscriptions)</a></h1>
 					<div>${subs.owner.snippet.description}</div>
-				  `;
+			`;
+
+			const videoTemplate = (video) => `
+					<li>
+						<img src="${video.snippet.thumbnails.default.url}"><a href="https://www.youtube.com/watch?v=${video.id}" > </a> </img>
+						<span class="video-title">${video.snippet.title}</span>
+						<span class="video-duration">${formatVideoTime(video.contentDetails.duration)}</span>
+						<span class="video-published">${DateTime.fromISO(video.snippet.publishedAt).toLocaleString(DateTime.DATE_MED)}</span>
+					</li>
+			`;
+			const subTemplate = (item) => `
+					<li>
+						<div>
+						 	<img src="${item.sub.snippet.thumbnails.medium.url}"> </img>
+						 	<div>
+						 		<h3 class="sub-title"><a href="https://www.youtube.com/channel/${item.sub.snippet.resourceId.channelId}">${item.sub.snippet.title}</a></h3>
+						 		<div class="sub-description">${item.sub.snippet.description} </div>
+	                            <div class ="sub-last-active"> </div>
+						 	</div>
+					 	</div>
+					 	<ul class="sub-videos">
+					 		${item.videos.map(videoTemplate).join('')}
+					 	</ul>
+					</li>
+
+			`;
 			$(() => {
 
 				const renderOwnerInfo = (subs) => {
-					$(".sub-info").html(ownerInfoTemplate(subs))
+						$(".owner-info").html(ownerInfoTemplate(subs))
 
-				};
+					  },
+					  renderSubs = (subs) => {
+					  	$(".subscriptions").html(subs.subs.map(subTemplate).join(''));
+					  };
+
+
 
 				renderOwnerInfo(subscriptions);
-
+				renderSubs(subscriptions);
 
 			});
 
@@ -179,7 +209,7 @@
 </header>
 <body>
 <div class="container">
-    <header class="sub-info">
+    <header class="owner-info">
 
     </header>
     <span class="label number-of-videos"></span>
