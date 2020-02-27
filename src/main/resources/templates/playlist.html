@@ -230,32 +230,6 @@
 			 `;
 
 			$(function() {
-				var renderPlaylist = function renderPlaylist(pl){
-						$(".playlist").html(pl.videos.map(itemTemplate).join(''))
-					},
-					renderPlaylistInfo = function renderPlaylistInfo(pl){
-						$(".playlist-info").html(playlistInfoTemplate(pl))
-
-					},
-					sortBy = function sortBy (pl, countField){
-
-							var items = pl.videos.sort(function(a, b){
-									var aa = parseInt(a.statistics[countField]),
-										bb = parseInt(b.statistics[countField]);
-
-									if( aa < bb)
-										return 1;
-									if( aa > bb)
-										return -1;
-									return 0;
-								});
-							return {playlistInfo:pl.playlistInfo,videos:items};
-					},
-					sortAndRender = function sortAndRender(pl, countField){
-						var _pl =  sortBy(pl, countField)
-						renderPlaylist(_pl);
-					};
-
 
 				$(".sorting-option").click(function(event){
 					event.preventDefault();
