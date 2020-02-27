@@ -126,7 +126,7 @@
 			background: rgba(46, 52, 64, .7);
 
 		}
-		.sorting-menu:after, .statistics-block:after, .sub:after, .sub-videos:after{
+		.sorting-menu:after, .sub:after, .sub-videos:after{
 			content: "";
 			display: table;
 			clear: both;
@@ -137,15 +137,7 @@
 		.label{
 			margin-right:0.2rem;
 		}
-		.statistics-block li{
-			float: left;
-			margin-right:1rem;
-		}
-		.statistics-block{
-			margin-top:1rem;
-			color: #d08770;
-			font-weight: bold;
-		}
+
 		.item {
 			border-top: 1px solid #4c566a;
 			border-bottom: 1px solid #4c566a;
@@ -170,7 +162,7 @@
 
     </style>
     <script type="text/javascript">
-			const subscriptions = JSON.parse('@subscriptions');
+			const subscriptions = JSON.parse('@subscriptions@');
 
 			const DateTime = luxon.DateTime,
 				  Duration = luxon.Duration,
@@ -180,7 +172,34 @@
 							  format = duration.hours < 0 ? "mm:ss" : "HH:mm:ss";
 
 						return duration.toFormat("mm:ss");
-					};
+				  },
+
+				  renderOwnerInfo = (subs) => {
+						$(".owner-info").html(ownerInfoTemplate(subs))
+
+				  },
+
+				  renderSubs = (subs) => {
+					  	$(".subscriptions").html(subs.map(subTemplate).join(''));
+				  },
+
+				  sort = (subs, sorting) => {
+						const publishedAt = (sub) => {
+								return DateTime.fromISO(sub.videos[0].snippet.publishedAt);
+							  },
+							  result = subs.sort((a, b) => {
+								return publishedAt(a) < publishedAt(b) ? 1 : -1;
+							  });
+						return sorting == "new-first" ? result : result.reverse();
+				  },
+
+				  sortAndRenderSubs = (subs, sorting) => {
+						const result = sort(subs.subs, sorting);
+						renderSubs(result);
+				  };
+
+
+
 
 			const ownerInfoTemplate = (subs) => `
 					<h1 class="owner-title"><a target="_blank" href="https://www.youtube.com/feed/subscriptions">${subs.owner.snippet.title} ( ${subs.subs.length} subscriptions)</a></h1>
@@ -217,20 +236,22 @@
 					</li>
 
 			`;
-			$(() => {
+			$(function () {
 
-				const renderOwnerInfo = (subs) => {
-						$(".owner-info").html(ownerInfoTemplate(subs))
+				$(".sorting-option").click(function (event){
+					event.preventDefault();
+					const $this = $(this),
+						sorting = $this.attr('data');
+					$(".sorting-option").removeClass("selected");
+					console.log($this);
+					$this.addClass("selected");
 
-					  },
-					  renderSubs = (subs) => {
-					  	$(".subscriptions").html(subs.subs.map(subTemplate).join(''));
-					  };
+					sortAndRenderSubs(subscriptions, sorting);
 
-
+				});
 
 				renderOwnerInfo(subscriptions);
-				renderSubs(subscriptions);
+				sortAndRenderSubs(subscriptions, "new-first");
 
 			});
 
@@ -247,8 +268,8 @@
     </header>
     <span class="label number-of-videos"></span>
     <ul class="sorting-menu">
-        <li><a class="sorting-option" data="favoriteCount" href="">not active</a></li>
-        <li><a class="sorting-option selected" data="commentCount" href="">active</a></li>
+        <li><a class="sorting-option" data="old-first" href="">not active</a></li>
+        <li><a class="sorting-option selected" data="new-first" href="">active</a></li>
     </ul>
     <ul class="subscriptions">
 
