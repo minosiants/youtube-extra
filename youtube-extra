@@ -1,8 +1,8 @@
 #!/bin/bash
 
-jar_file=$HOME'/.youtube-extra/youtube-extra-0.0.2.jar'
+jar_file=$HOME'/.youtube-extra/youtube-extra-0.1.0.jar'
 if ! [ -f $jar_file ]; then
   mkdir -p $HOME'/.youtube-extra'
-  curl -Lo $jar_file "https://github.com/minosiants/youtube-extra/releases/download/v0.0.2/youtube-extra-0.0.2.jar"
+  curl -Lo $jar_file "https://github.com/minosiants/youtube-extra/releases/download/v0.1.0/youtube-extra-0.1.0.jar"
 fi
 java -jar $jar_file $@
