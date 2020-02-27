@@ -188,6 +188,10 @@
 								return DateTime.fromISO(sub.videos[0].snippet.publishedAt);
 							  },
 							  result = subs.sort((a, b) => {
+							    if(a.videos.length == 0)
+							  		return 1;
+							  	if(b.videos.length == 0)
+							  		return -1;
 								return publishedAt(a) < publishedAt(b) ? 1 : -1;
 							  });
 						return sorting == "new-first" ? result : result.reverse();
