@@ -46,12 +46,14 @@ youtube-extra playlist -id PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt -t ya29.ImS9ByJmfJ
  1. Go to https://tinyurl.com/vltl9p
  2. Execute a request in web console
  3. Copy token from Authorization header
+
+<img src="docs/images/how-to-get-token.png" alt="How to get token" width="50%"/>
  
-![How to get token](docs/images/how-to-get-token.png?raw=true "How to get token")
+### Screenshots of generated samples
 
+#### Playlist
+<img src="docs/images/playlist.png" alt="Playlist" width="50%"/>
 
-### Generated samples screenshots
-![playlist](docs/images/playlist.png?raw=true "Playlist" )
-
-![subscriptions](docs/images/subscriptions.png?raw=true "Subscriptions" )
+#### Subscriptions
+<img src="docs/images/subscriptions.png" alt="Subscriptions" width="50%"/>
 
