@@ -82,7 +82,7 @@ final case class YoutubeDataClient(
     for {
       items <- getOnePagePlaylistItems(uploads)
       ids = items.filter(_.notPrivate).map(_.snippet.resourceId.videoId)
-      videos <- getVideos(ids.take(5))
+      videos <- getVideos(ids.take(3))
     } yield Subscription(sub, videos)
 
   }
