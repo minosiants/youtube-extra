@@ -50,5 +50,8 @@ youtube-extra playlist -id PLLMLOC3WM2r5KDwkSRrLJ1_O6kZqlhhFt -t ya29.ImS9ByJmfJ
 ![How to get token](docs/images/how-to-get-token.png?raw=true "How to get token")
 
 
-### Generated sample
-[scala days lausanne 2019](../master/docs/scala-days-lausanne-2019.html)
+### Generated samples screenshots
+![playlist](docs/images/playlist.png?raw=true "Playlist" )
+
+![subscriptions](docs/images/subscriptions.png?raw=true "Subscriptions" )
+
